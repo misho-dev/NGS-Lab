@@ -1,0 +1,184 @@
+<style>
+    .product-page-component-wrapper {
+        width: 100%;
+    }
+
+    .product-page-component-wrapper .section1 {
+        width: calc(100% - 60px);
+        min-height: 86vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 50px;
+    }
+
+    .product-page-component-wrapper .section2 {
+        width: calc(100% - 60px);
+        min-height: 86vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 30px;
+    }
+
+    .product-page-component-wrapper .section3 {
+        width: calc(100% - 60px);
+        min-height: 86vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 50px;
+    }
+
+    .product-showcase-wrapper {
+        width: 85%;
+        height: 60%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .product-page-component-wrapper .section2 {
+        width: 100%;
+        min-height: 86vh;
+    }
+
+    .product-page-component-wrapper .section3 {
+        width: 100%;
+        min-height: 86vh;
+    }
+
+    .product-image {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-image img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .product-information {
+        width: 45%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .product-logo {
+        width: 100%;
+    }
+
+    .product-logo img {
+        width: 100%;
+    }
+
+    .product-slogan {
+        width: 100%;
+    }
+
+    .product-slogan h1 {
+        padding: 15px;
+    }
+
+    .product-desctiption {
+        width: 100%;
+    }
+
+    .product-desctiption p {
+        font-size: 1.3em;
+    }
+
+    .product-pro-list {
+        width: 45%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .section2 .product-showcase-wrapper .product-image {
+        height: 100%;
+        width: auto;
+    }
+
+    .section2 .product-showcase-wrapper .product-image img {
+        height: 100%;
+        width: auto;
+    }
+
+    @media screen and (max-width: 1368px) {
+        .product-showcase-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image img {
+            width: 85%;
+            object-fit: contain;
+        }
+
+        .product-information {
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .section2 .product-showcase-wrapper .product-pro-list {
+            align-items: flex-start;
+            width: 100%;
+        }
+
+    }
+</style>
+
+<div class="product-page-component-wrapper">
+    <div class="section1">
+        <div class="product-showcase-wrapper">
+
+            <div class="product-information">
+                <div class="product-logo">
+                    <img src="https://www.scrumdesk.com/wp-content/uploads/jira-logo-gradient-blue@2x-1.png">
+                </div>
+                <div class="product-slogan">
+                    <h1>
+                        The #1 software development tool used by agile teams
+                    </h1>
+                </div>
+                <div class="product-desctiption">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Id velit ut tortor pretium. Molestie a iaculis at erat pellentesque
+                        adipiscing. Maecenas sed enim ut sem viverra aliquet. Mauris ultrices eros in cursus. Maecenas
+                        ultricies mi eget mauris pharetra et ultrices. In tellus integer feugiat scelerisque varius
+                        morbi.
+                        At elementum eu facilisis sed odio. Sollicitudin aliquam ultrices sagittis orci a scelerisque
+                        purus
+                        semper
+                    </p>
+                </div>
+            </div>
+            <div class="product-image">
+                <img src="https://clearhub.tech/wp-content/uploads/2018/08/AppLogo_Jira.png">
+            </div>
+        </div>
+    </div>

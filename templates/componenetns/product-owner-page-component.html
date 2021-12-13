@@ -1,0 +1,173 @@
+<style>
+    .product-owner-page-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .product-owner-page-wrapper .profile-picture img {
+        width: 300px;
+        height: 300px;
+        border-radius: 100%;
+    }
+
+    .social-icons-product-owner ul li a i {
+        color: white;
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -ms-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+
+
+    }
+
+    .social-icons-product-owner ul li a i:hover {
+        color: grey;
+    }
+
+    .social-icons-product-owner ul {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-icons-product-owner h1 {
+        margin: 40px 0;
+    }
+
+    .social-icons-product-owner ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .social-icons-product-owner ul li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        margin: 0 15px;
+        text-decoration: none;
+        background-color: #5d5d5d;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+    .product-owner-page-wrapper .owner-bio {
+        width: 70%;
+        text-align: center;
+    }
+
+    .product-owner-page-wrapper .products {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+
+    .product-card-component {
+        width: 500px;
+        max-width: 95vw;
+        height: 400px;
+        max-height: 95vw;
+        margin: 30px;
+        border-radius: 30px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-owner-page-wrapper .projects {
+        width: 100%;
+    }
+
+    .our-projects-component-wrapper .project-listing ul {
+        list-style-type: circle;
+    }
+
+    .our-projects-component-wrapper .project-listing ul a {
+        text-decoration: none;
+        color: black;
+    }
+
+
+    .our-projects-component-wrapper .project-listing .our-project-listing-item {
+        width: 85%;
+        font-size: 1.5em;
+    }
+
+    .our-projects-component-wrapper .project-listing .our-project-listing-item .project-description {
+        font-size: 0.8em;
+        margin: 0;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        .product-owner-page-wrapper .products {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .product-owner-page-wrapper .owner-bio {
+            width: 90%;
+        }
+    }
+</style>
+
+<script>
+    $(function () {
+        $("#product-card1").load("/templates/componenetns/product-card-component.html");
+        $("#product-card2").load("/templates/componenetns/product-card-component.html");
+    });
+</script>
+<div class="product-owner-page-wrapper">
+    <div class="profile-picture">
+        <img src="https://th.bing.com/th/id/R.c6b482f5e343903955234a1f60e9ecda?rik=m789TZQTh%2fzXPA&riu=http%3a%2f%2fsunrift.com%2fwp-content%2fuploads%2f2014%2f12%2fBlake-profile-photo-square.jpg&ehk=KPaRRdhK2539xSF1ZlhKY25YNeohbiAO9FGYmnQIC7U%3d&risl=&pid=ImgRaw&r=0"
+            alt="">
+    </div>
+    <div class="profile-name">
+        <h1>Levan Chikaidze</h1>
+    </div>
+    <div class="socials">
+        <div class="social-icons-product-owner">
+            <ul>
+                <li><a href="#"><i class=" icon-facebook"></i></a></li>
+                <li><a href="#"><i class=" icon-linkedin"></i></a></li>
+                <li><a href="#"><i class="icon-instagram"></i></a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="owner-bio">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Id velit ut tortor pretium. Molestie a iaculis at erat pellentesque adipiscing. Maecenas sed
+            enim ut sem viverra aliquet. Mauris ultrices eros in cursus. Maecenas ultricies mi eget mauris pharetra et
+            ultrices. In tellus integer feugiat scelerisque varius morbi. At elementum eu facilisis sed odio.
+            Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper</p>
+    </div>
+    <div class="products">
+        <div id="product-card1"></div>
+        <div id="product-card2"></div>
+    </div>
+    <script>
+        $(function () {
+            $("#our-project-listing-item-component1").load("/templates/componenetns/our-project-listing-item-component.html");
+            $("#our-project-listing-item-component2").load("/templates/componenetns/our-project-listing-item-component.html");
+        });
+    </script>
+    <div class="projects">
+        <h1 style="margin-left: 50px;">Projects</h1>
+        <div class="our-projects-component-wrapper">
+            <div style="margin-left: 50px; margin-right: 50px;" class="project-listing">
+                <ul>
+                    <div id="our-project-listing-item-component1"></div>
+                    <div id="our-project-listing-item-component2"></div>
+                </ul>
+            </div>
+        </div>
+    </div>

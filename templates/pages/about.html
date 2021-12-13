@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#nav").load("/templates/componenetns/nav.html");
+            $("#footer").load("/templates/componenetns/footer.html");
+        });
+    </script>
+</head>
+
+<body>
+    <style>
+        .about-wrapper {
+            margin-top: 50px;
+            width: 100%;
+            min-height: 84vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-wrapper .section-title h1 {
+            border-bottom: 2px solid black;
+        }
+
+        .about-wrapper p {
+            text-align: center;
+            width: 40%;
+            margin-bottom: 40px;
+        }
+        .team-member-wrapper{
+            width: 100%;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .box{
+            margin: 15px;
+            width: 300px;
+            height: 300px;
+            background-color: black;
+        }
+        /*low-res monitors*/
+        @media screen and (max-width: 1368px) {}
+
+        /*phone resolution*/
+        @media screen and (max-width: 768px) {
+            .about-wrapper p {
+                width: 90%;
+            }
+        }
+    </style>
+
+    <div id="nav"></div>
+    <div class="about-wrapper">
+        <div class="section-title">
+            <h1>About Us</h1>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Id velit ut tortor pretium. Molestie a iaculis at erat pellentesque
+            adipiscing. Maecenas sed enim ut sem viverra aliquet. Mauris ultrices eros in cursus. Maecenas
+            ultricies mi eget mauris pharetra et ultrices. In tellus integer feugiat scelerisque varius morbi.
+            At elementum eu facilisis sed odio. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus
+            semper</p>
+        <div class="section-title">
+            <h1>Team Members</h1>
+        </div>
+        <div class="team-member-wrapper">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+
+</html>

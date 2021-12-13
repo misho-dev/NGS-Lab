@@ -1,0 +1,149 @@
+<style>
+    .product-owners-component-wrapper {
+        width: 100%;
+        min-width: 1368px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+
+    .product-owners-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .product-owner-wrapper {
+        min-width: 410px;
+        min-height: 410px;
+        border-radius: 70px;
+        width: 25vw;
+        height: 25vw;
+        background-image: url("photographer.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .product-owner-wrapper h1 {
+        position: relative;
+        height: 30px;
+        width: calc(100% - 60px);
+        line-height: 30px;
+        text-align: left;
+        padding: 30px;
+        background-color: #ebebeb;
+        position: relative;
+        border-radius: 70px 70px 0 0;
+    }
+
+    .product-owners-component-wrapper .section-title {
+        text-align: center;
+        border-bottom: 2px solid black;
+    }
+
+    .product-owners-component-wrapper p {
+        font-size: 1.5em;
+        width: 60%;
+    }
+
+    .product-owner-component {
+        text-decoration: none;
+        color: black;
+    }
+
+    .product-owner-component:hover~.product-owner-wrapper-hovered {
+        display: block;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    
+    /*low-res monitors*/
+    @media screen and (max-width: 1368px) {}
+
+    /*phone resolution*/
+    @media screen and (max-width: 768px) {
+        .product-owners-component-wrapper {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .product-owners-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .product-owner-wrapper {
+            width: 80vw;
+            height: 80vw;
+            min-width: 200px;
+            min-height: 200px;
+        }
+
+        .product-owner-wrapper h1 {
+            font-size: 1.5em;
+            position: relative;
+            height: 20px;
+            width: calc(100% - 40px);
+            line-height: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #ebebeb;
+            position: relative;
+            border-radius: 70px 70px 0 0;
+        }
+
+        .product-owners-component-wrapper p {
+            width: 90%;
+        }
+    }
+</style>
+
+
+<script>
+    $(function () {
+        $("#product-owner1").load("/templates/componenetns/product-owner-component.html");
+        $("#product-owner2").load("/templates/componenetns/product-owner-component.html");
+        $("#product-owner3").load("/templates/componenetns/product-owner-component.html");
+    });
+</script>
+
+<div class="product-owners-component-wrapper">
+    <div class="section-title">
+        <h1>PRODUCT OWNERS</h1>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Id velit ut tortor pretium. Molestie a iaculis at erat pellentesque
+        adipiscing. Maecenas sed enim ut sem viverra aliquet. Mauris ultrices eros in cursus. Maecenas
+        ultricies mi eget mauris pharetra et ultrices. In tellus integer feugiat scelerisque varius morbi.
+        At elementum eu facilisis sed odio. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus
+        semper</p>
+
+    <div class="product-owners-wrapper">
+        <div class="product-owner-card" id="product-owner1"></div>
+        <div class="product-owner-card" id="product-owner2"></div>
+        <div class="product-owner-card" id="product-owner3"></div>
+    </div>
+
+    <script>
+        document.querySelectorAll(".product-owner-card").forEach(elem => {
+            elem.addEventListener("click", e => {
+                let elem = e.target;
+                let nextSibling = elem.nextElementSibling;
+            });
+        });
+    </script>
+</div>
