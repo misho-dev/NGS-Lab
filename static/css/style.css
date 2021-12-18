@@ -26,7 +26,7 @@ body {
 
 @font-face {
     font-family: Magistral;
-    src: url('/NGS-Lab/static/fonts/magistral.ttf');
+    src: url('/static/fonts/magistral.ttf');
 }
 
 /*low-res monitors*/
