@@ -1,11 +1,13 @@
 <style>
     .project-componenet-wrapper {
         width: 100vw;
-        height: 87vh;
+        min-height: 87vh;
+        height: auto;
         display: flex;
+        align-items: center;
         justify-content: space-evenly;
     }
-
+    
     .project-componenet-wrapper .description {
         height: 100%;
         width: 45%;
@@ -15,28 +17,36 @@
         justify-content: space-evenly;
         padding: 50px;
     }
-
-    .project-componenet-wrapper .description p{
+    
+    .project-componenet-wrapper .description p {
         font-size: 1.5em;
     }
-
-    .project-componenet-wrapper .description h1{
+    
+    .project-componenet-wrapper .description h1 {
         margin: 0;
     }
-
+    
     .project-componenet-wrapper .image-carousel {
-        height: 90%;
+        height: 75vh;
         margin: 50px;
         width: 45vw;
-        background-image: url("https://scontent.ftbs5-2.fna.fbcdn.net/v/t39.30808-6/223641062_182460460603524_3444986129332529886_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=730e14&_nc_ohc=rAAwDg1Qh9UAX_061tA&tn=P_gCUkgcdAS-FIm7&_nc_ht=scontent.ftbs5-2.fna&oh=00_AT_RwbLlz4rNdWwQOK3WPfSM-F2BA1CcD4uZVGumMoenwA&oe=61BC683C");
+        background-color: black;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
         display: block;
     }
-
-
     /*phone resolution*/
-    @media screen and (max-width: 768px) {
+    
+    @media screen and (max-width: 1368px) {
         .project-componenet-wrapper {
             flex-direction: column;
+        }
+        .project-componenet-wrapper .description {
+            width: 80%;
+        }
+        .project-componenet-wrapper .image-carousel {
+            width: 60%;
         }
     }
 </style>
@@ -44,23 +54,13 @@
 <div class="project-componenet-wrapper">
     <div class="description">
         <h1>Giz - Learning Animal bio-diversity</h1>
-        <p>We are providing a Drone that is used in learning biodiversity, this drone is used to make aerial photo
-            shoots with geographic location tags. Based on this data we get information about migration and the number
-            of various animals.<br><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a turpis sit amet velit aliquet pharetra.
-            Praesent ac ex lacus. Curabitur rhoncus mattis dui eu scelerisque. Curabitur euismod auctor nunc a
-            tincidunt. Vestibulum pulvinar ipsum ac nibh vulputate faucibus. Donec tincidunt fringilla mi sed lacinia.
-            Fusce fermentum elit vitae ultrices ullamcorper. Duis eleifend neque at mattis porttitor. Fusce diam sem,
-            feugiat tincidunt ex nec, vehicula auctor ante. Proin ultricies volutpat odio, vel ultricies risus tempus
-            quis. Ut et varius felis, a pellentesque est. Nam molestie gravida hendrerit. Integer scelerisque mi ut est
-            placerat ultricies.<br><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a turpis sit amet velit aliquet pharetra.
-            Praesent ac ex lacus. Curabitur rhoncus mattis dui eu scelerisque. Curabitur euismod auctor nunc a
-            tincidunt. Vestibulum pulvinar ipsum ac nibh vulputate faucibus. Donec tincidunt fringilla mi sed lacinia.
-            Fusce fermentum elit vitae ultrices ullamcorper. Duis eleifend neque at mattis porttitor. Fusce diam sem,
-            feugiat tincidunt ex nec, vehicula auctor ante. Proin ultricies volutpat odio, vel ultricies risus tempus
-            quis. Ut et varius felis, a pellentesque est. Nam molestie gravida hendrerit. Integer scelerisque mi ut est
-            placerat ultricies.</p>
+        <p>We are providing a Drone that is used in learning biodiversity, this drone is used to make aerial photo shoots with geographic location tags. Based on this data we get information about migration and the number of various animals.<br><br> Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Nunc a turpis sit amet velit aliquet pharetra. Praesent ac ex lacus. Curabitur rhoncus mattis dui eu scelerisque. Curabitur euismod auctor nunc a tincidunt. Vestibulum pulvinar ipsum ac nibh
+            vulputate faucibus. Donec tincidunt fringilla mi sed lacinia. Fusce fermentum elit vitae ultrices ullamcorper. Duis eleifend neque at mattis porttitor. Fusce diam sem, feugiat tincidunt ex nec, vehicula auctor ante. Proin ultricies volutpat
+            odio, vel ultricies risus tempus quis. Ut et varius felis, a pellentesque est. Nam molestie gravida hendrerit. Integer scelerisque mi ut est placerat ultricies.<br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a turpis
+            sit amet velit aliquet pharetra. Praesent ac ex lacus. Curabitur rhoncus mattis dui eu scelerisque. Curabitur euismod auctor nunc a tincidunt. Vestibulum pulvinar ipsum ac nibh vulputate faucibus. Donec tincidunt fringilla mi sed lacinia.
+            Fusce fermentum elit vitae ultrices ullamcorper. Duis eleifend neque at mattis porttitor. Fusce diam sem, feugiat tincidunt ex nec, vehicula auctor ante. Proin ultricies volutpat odio, vel ultricies risus tempus quis. Ut et varius felis, a
+            pellentesque est. Nam molestie gravida hendrerit. Integer scelerisque mi ut est placerat ultricies.</p>
     </div>
-    <div class="image-carousel"></div>
+    <div class="image-carousel" style="background-image: url(https://scontent.fkut1-1.fna.fbcdn.net/v/t39.30808-6/222485976_182454050604165_4929851520084879327_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=730e14&_nc_ohc=kcMCdozEoSwAX_agdAH&tn=xt5r6m_arx8zOxMf&_nc_ht=scontent.fkut1-1.fna&oh=00_AT-E6iSGeOrDxL3XDQgjfwiG44xCv8F4TB3WFQnpY2G1PQ&oe=61C3C5A6);"></div>
 </div>
