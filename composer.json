@@ -2,7 +2,11 @@
   "name": "ngs/lab",
   "type": "project",
   "minimum-stability": "dev",
-  "require": {},
+  "require": {
+    "clancats/hydrahon": "dev-master",
+    "ext-pdo": "*",
+    "ext-mysqli": "*"
+  },
   "autoload": {
     "psr-4": {
       "App\\": "App",

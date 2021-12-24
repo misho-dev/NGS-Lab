@@ -1,0 +1,71 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "45b28c0391d77dc39de17cc747e8b781",
+    "packages": [
+        {
+            "name": "clancats/hydrahon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ClanCats/Hydrahon.git",
+                "reference": "ed6ccf09f528c664d64d86363b27a8b2047bc4f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ClanCats/Hydrahon/zipball/ed6ccf09f528c664d64d86363b27a8b2047bc4f8",
+                "reference": "ed6ccf09f528c664d64d86363b27a8b2047bc4f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ClanCats\\Hydrahon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mario Döring",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Fast & standalone PHP MySQL Query Builder library.",
+            "homepage": "https://github.com/ClanCats/Hydrahon",
+            "keywords": [
+                "builder",
+                "database",
+                "mysql",
+                "query",
+                "sqlite"
+            ],
+            "time": "2021-08-19T13:30:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "clancats/hydrahon": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "ext-pdo": "*",
+        "ext-mysqli": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
