@@ -3,6 +3,7 @@
 namespace App\Controller\Admin\Product;
 
 use App\Controller\ControllerAction;
+use App\Model\Helper\Url as UrlHelper;
 use App\Model\Repository\Product as ProductRepository;
 use App\ViewModel\View;
 

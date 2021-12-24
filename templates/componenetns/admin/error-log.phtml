@@ -1,0 +1,33 @@
+<style>
+    .error-wrapper {
+        background: #f79a9a;
+        padding: 0 10px 10px 15px;
+        font-family: initial;
+    }
+
+    .error-wrapper h4 {
+        margin: 10px 0 0 15px;
+    }
+
+    .error-wrapper ol {
+        line-height: 21px;
+        margin-top: 10px;
+    }
+</style>
+
+<?php if (isset($_SESSION['error_log'])): ?>
+    <?php /** @var \Exception $error */ ?>
+    <?php $error = $_SESSION['error_log']; ?>
+
+    <div class="error-wrapper">
+        <h4>&#10060; <?= $error->getMessage() ?></h4>
+        <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
+        <ol>
+            <?php foreach ($traceList as $trace): ?>
+                <li><?= strstr($trace, ' ') ?> </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+
+    <?php unset($_SESSION['error_log']); ?>
+<?php endif; ?>

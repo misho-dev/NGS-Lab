@@ -24,8 +24,8 @@ class Product
 
     public function __construct($data)
     {
-        $this->id = $data['entity_id'] ?? '';
-        $this->ownerId = $data['owner_id'] ?? '';
+        $this->id = $data['entity_id'] ?? null;
+        $this->ownerId = $data['owner_id'] ?? null;
         $this->name = $data['name'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';

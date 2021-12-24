@@ -4,46 +4,76 @@ namespace App\Model\Repository;
 
 use App\Model\Database\DAL;
 use App\Model\User as UserModel;
+use App\Model\Repository\Product as ProductRepository;
+use ClanCats\Hydrahon\Query\Sql\Exception as HydrahonException;
+use Exception;
 
 class User
 {
+    const TABLE_NAME = 'user_entity';
+
     /**
      * @return array
+     * @throws HydrahonException
+     * @throws Exception
      */
     public static function getUsers()
     {
-        $users_query = "SELECT *
-                FROM user_entity";
+        $users = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->get();
 
-        return self::buildUsersFromQuery($users_query);
+        return self::buildUsersFromQueryResult($users);
     }
 
     /**
-     * @return array|bool|null
+     * @return array
+     * @throws HydrahonException
+     * @throws Exception
+     */
+    public static function getEnabledUsers()
+    {
+        $enabledUsers = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->where('enabled', true)
+            ->get();
+
+        return self::buildUsersFromQueryResult($enabledUsers);
+    }
+
+    /**
+     * @return array
+     * @throws HydrahonException
+     * @throws Exception
      */
     public static function getProductOwners()
     {
-        $sql = "SELECT *
-                FROM user_entity ue
-                WHERE ue.is_owner IS TRUE";
+        $enabledUsers = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->where('is_owner', true)
+            ->get();
 
-        return self::buildUsersFromQuery($sql);
+        return self::buildUsersFromQueryResult($enabledUsers);
     }
 
     /**
      * @param string $id
      * @return UserModel|null
+     * @throws HydrahonException
+     * @throws Exception
      */
     public static function getUserById(string $id)
     {
-        $dal = DAL::getInstance();
+        $result = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->where('entity_id', (int) $id)
+            ->get();
 
-        $id = $dal->escapeString($id);
-        $sql = "SELECT *
-                FROM user_entity ue
-                WHERE entity_id = ('$id')";
-
-        $user = self::buildUsersFromQuery($sql);
+        $user = self::buildUsersFromQueryResult($result);
         if (!count($user)) {
             return null;
         }
@@ -51,66 +81,87 @@ class User
         return $user[0];
     }
 
+    /**
+     * @param UserModel $user
+     * @return mixed
+     * @throws Exception
+     */
     public static function addUser(UserModel $user)
     {
-        $dal = DAL::getInstance();
-        $name = $dal->escapeString($user->getName());
-        $shortDescription = $dal->escapeString($user->getShortDescription());
-        $description = $dal->escapeString($user->getDescription());
-        $isOwner = $user->isProductOwner() ? 'TRUE' : 'FALSE';
-
-        $sql = "INSERT
-                INTO `user_entity` (`full_name`, `short_description`, `description`, `is_owner`)
-                VALUES ('$name', '$shortDescription', '$description', $isOwner)";
-
-        return $dal->query($sql);
-    }
-
-    public static function updateUser(UserModel $user, $userId)
-    {
-        $oldUser = self::getUserById($userId);
-
-        $dal = DAL::getInstance();
-        $data = [
-            'full_name="' . $dal->escapeString($user->getName()),
-            'short_description="' . $dal->escapeString($user->getShortDescription()),
-            'description="' . $dal->escapeString($user->getDescription()),
-            'is_owner="' . ($user->isProductOwner() ? '1' : '0')
+        $newUser = [
+            'enabled' => (int) $user->isEnabled(),
+            'full_name' => $user->getName(),
+            'short_description' => $user->getShortDescription(),
+            'description' => $user->getDescription(),
+            'is_owner' => (int) $user->isProductOwner()
         ];
 
-        $sql = "UPDATE `user_entity` SET " . implode('", ', $data) . '" WHERE entity_id=' . $userId;
-
-        if ($dal->query($sql)) {
-            if ($oldUser->isProductOwner() && !$user->isProductOwner()) {
-                Product::unsetOwnerForProducts($userId);
-            }
-        }
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->insert($newUser)
+            ->execute();
     }
 
     /**
-     * @param $query
+     * @throws Exception
+     */
+    public static function updateUser(UserModel $updatedUser, $userId)
+    {
+        $oldUser = self::getUserById($userId);
+
+        $newData = [
+            'full_name' => $updatedUser->getName(),
+            'enabled' => (int) $updatedUser->isEnabled(),
+            'short_description' => $updatedUser->getShortDescription(),
+            'description' => $updatedUser->getDescription(),
+            'is_owner' => (int) $updatedUser->isProductOwner()
+        ];
+
+        $updated = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update($newData)
+            ->where('entity_id', (int) $userId)
+            ->execute();
+
+        if ($updated) {
+            if ($oldUser->isProductOwner() && !$updatedUser->isProductOwner()) {
+                return Product::unsetOwnerForProducts($userId);
+            }
+        }
+
+        return $updated;
+    }
+
+    /**
+     * @throws HydrahonException
+     * @throws Exception
+     */
+    public static function deleteUser($userId)
+    {
+        $deleted = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->delete()
+            ->where('entity_id', $userId)
+            ->execute();
+
+        if ($deleted) {
+            return ProductRepository::unsetOwnerForProducts($userId);
+        }
+
+        return $deleted;
+    }
+
+    /**
+     * @param $users
      * @return array
      */
-    private static function buildUsersFromQuery($query)
+    protected static function buildUsersFromQueryResult($users): array
     {
-        $dal = DAL::getInstance();
-
         $result = [];
-        foreach ($dal->query($query) as $user) {
+        foreach ($users as $user) {
             $result[] = new UserModel($user);
         }
 
         return $result;
-    }
-
-    private static function escapeUserData($user)
-    {
-        $dal = DAL::getInstance();
-        return [
-            'full_name' => $dal->escapeString($user->getName()),
-            'short_description' => $dal->escapeString($user->getShortDescription()),
-            'description' => $dal->escapeString($user->getDescription()),
-            'is_owner' => $user->isProductOwner() ? 'TRUE' : 'FALSE'
-        ];
     }
 }

@@ -7,6 +7,9 @@ class User
     /** @var int $id */
     private $id;
 
+    /** @var boolean $isEnabled */
+    private $enabled;
+
     /** @var string $name */
     private $name;
 
@@ -25,11 +28,12 @@ class User
     public function __construct($data)
     {
         $this->id = $data['entity_id'] ?? '';
+        $this->enabled = $data['enabled'] ?? true;
         $this->name = $data['full_name'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
-        $this->isOwner = $data['is_owner'] ?? '';
+        $this->isOwner = $data['is_owner'] ?? false;
     }
 
     /**
@@ -38,6 +42,14 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 
     /**

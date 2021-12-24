@@ -7,11 +7,11 @@ use App\Model\Helper\Url as UrlHelper;
 use App\Model\Repository\User as UserRepository;
 use App\ViewModel\View;
 
-class Index implements ControllerAction
+class Delete implements ControllerAction
 {
     public function execute()
     {
-        $users = UserRepository::getUsers();
-        View::render('admin/user-list.phtml', compact('users'));
+        UserRepository::deleteUser($_GET['id']);
+        UrlHelper::redirect("/admin/user");
     }
 }

@@ -7,74 +7,88 @@ use App\Model\Product as ProductModel;
 
 class Product
 {
+    const TABLE_NAME = 'product_entity';
+
     /**
      * @return array
+     * @throws \ClanCats\Hydrahon\Query\Sql\Exception
+     * @throws \Exception
      */
     public static function getProducts()
     {
-        $productsQuery = "SELECT * FROM product_entity pe";
+        $products = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->get();
 
-        return self::buildProductsFromQuery($productsQuery);
-    }
-
-    /**
-     * @return array
-     */
-    public static function getProductsOwnedByUser($userId)
-    {
-        $userId = DAL::getInstance()->escapeString($userId);
-
-        $sql = "SELECT pe.*
-                FROM user_entity ue
-                JOIN product_entity pe
-                ON pe.owner_id=ue.entity_id
-                WHERE ue.entity_id = ('$userId')";
-
-        return self::buildProductsFromQuery($sql);
+        return self::buildProducts($products);
     }
 
     /**
      * @param $id
      * @return ProductModel|null
+     * @throws \ClanCats\Hydrahon\Query\Sql\Exception
+     * @throws \Exception
      */
     public static function getProductById($id)
     {
-        $id = DAL::getInstance()->escapeString($id);
+        $result = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->where('entity_id', (int) $id)
+            ->get();
 
-        $sql = "SELECT *
-                FROM product_entity pe
-                WHERE entity_id = ('$id')";
-
-        $user = self::buildProductsFromQuery($sql);
-        if (!count($user)) {
+        $product = self::buildProducts($result);
+        if (!count($product)) {
             return null;
         }
 
-        return $user[0];
+        return $product[0];
     }
+
+    /**
+     * @return array
+     * @throws \ClanCats\Hydrahon\Query\Sql\Exception
+     * @throws \Exception
+     */
+    public static function getProductsOwnedByUser($userId)
+    {
+        $products = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->select()
+            ->where('owner_id', (int) $userId)
+            ->get();
+
+        return self::buildProducts($products);
+    }
+
+    /**
+     * @throws \Exception
+     */
     public static function addProduct(ProductModel $product)
     {
-        $dal = DAL::getInstance();
-        $name = $dal->escapeString($product->getName());
-        $shortDescription = $dal->escapeString($product->getShortDescription());
-        $description = $dal->escapeString($product->getDescription());
-        $isOwner = $product->getOwnerId();
+        $newProduct = [
+            'name' => $product->getName(),
+            'short_description' => $product->getShortDescription(),
+            'description' => $product->getDescription(),
+            'owner_id' => $product->getOwnerId()
+        ];
 
-        $sql = "INSERT
-                INTO `product_entity` (`name`, `short_description`, `description`, `owner_id`)
-                VALUES ('$name', '$shortDescription', '$description', $isOwner)";
-
-        return $dal->query($sql);
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->insert($newProduct)
+            ->execute();
     }
 
     public static function updateProduct(ProductModel $product, $productId)
     {
+        // TODO
         $dal = DAL::getInstance();
         $data = [
-            'name="' . $dal->escapeString($product->getName()),
-            'short_description="' . $dal->escapeString($product->getShortDescription()),
-            'description="' . $dal->escapeString($product->getDescription()),
-            'owner_id="' . $dal->escapeString($product->getOwnerId()),
+            'name="' . $product->getName(),
+            'short_description="' . $product->getShortDescription(),
+            'description="' . $product->getDescription(),
+            'owner_id="' . $product->getOwnerId(),
         ];
 
         $sql = "UPDATE `product_entity` SET " . implode('", ', $data) . '" WHERE entity_id=' . $productId;
@@ -82,25 +96,27 @@ class Product
         return $dal->query($sql);
     }
 
+    /**
+     * @throws \Exception
+     */
     public static function unsetOwnerForProducts($ownerId)
     {
-        $dal = DAL::getInstance();
-        $sql = "UPDATE product_entity SET owner_id=NULL WHERE owner_id=" . $dal->escapeString($ownerId);
-
-        return $dal->query($sql);
+        return DAL::builder()
+            ->table('product_entity')
+            ->update(['owner_id' => null])
+            ->where('owner_id', (int) $ownerId)
+            ->execute();
     }
 
     /**
-     * @param $query
+     * @param $products
      * @return array
      */
-    private static function buildProductsFromQuery($query)
+    protected static function buildProducts($products)
     {
-        $dal = DAL::getInstance();
-
         $result = [];
-        foreach ($dal->query($query) as $user) {
-            $result[] = new ProductModel($user);
+        foreach ($products as $product) {
+            $result[] = new ProductModel($product);
         }
 
         return $result;

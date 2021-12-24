@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
     <script>
         $(function () {
-            $("#nav").load("/templates/componenetns/nav.html");
+            $("#nav").load("/templates/componenetns/admin/nav.phtml");
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
@@ -75,6 +75,10 @@
         <h1><?= $user->getId() ? 'Edit User' : 'New User' ?></h1>
     </div>
     <form method="post" action="/admin/user/save?id=<?= $user->getId() ?>" enctype="multipart/form-data">
+        <label for="enabled">Enabled:</label>
+        <input type="checkbox" id="enabled" name="enabled" <?= $user->isEnabled() ? 'checked' : '' ?>>
+        <br>
+
         <label for="name_form">Full Name:</label>
         <input type="text" id="name_form" name="name" value="<?= $user->getName() ?>">
         <br>
@@ -93,6 +97,12 @@
 
         <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save</button>
     </form>
+
+    <?php if ($user->getId()): ?>
+        <form method="post" action="/admin/user/delete?id=<?= $user->getId() ?>">
+            <button type="submit" class="btn">DELETE</button>
+        </form>
+    <?php endif; ?>
     <p>Image: <?= $user->getImage() ?> </p>
 </div>
 <div id="footer"></div>

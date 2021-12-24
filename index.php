@@ -4,8 +4,10 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+session_start();
 
 use App\Model\Helper\ClassHelper;
+use App\Model\Helper\Url as UrlHelper;
 use App\ViewModel\View;
 
 // TODO: test
@@ -28,10 +30,24 @@ if (is_dir($controllerDir)) {
     /** @var App\Controller\ControllerAction|null $controller */
     $controller = ClassHelper::createFromDir($controllerDir, $action);
     if ($controller) {
-        $controller->execute();
+        try {
+            $controller->execute();
+        } catch (\Exception $e) {
+            $_SESSION['error_log'] = $e;
+            // TODO: log error in logfile
+            if ($isAdmin) {
+                if ($action != 'Index') {
+                    UrlHelper::redirect('/admin/' . strtolower($controllerName));
+                } else {
+                    UrlHelper::redirect('/admin');
+                }
+            } else {
+                View::render('500-page.html');
+            }
+        }
     } else {
-        $pageTitle = 'Not Found';
-        View::render(strtolower('contact.html')); // TODO: add .html? |> Create controller
+        // 404 Page not found
+        View::render('contact.html'); // TODO: add .html? |> Create controller
     }
 } else {
     // TODO: Check if page $controllerName exists
