@@ -1,31 +1,39 @@
 <?php
+
 require __DIR__.'/vendor/autoload.php';
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
-session_start();
-
+use App\Config\Config;
 use App\Model\Helper\ClassHelper;
 use App\Model\Helper\Url as UrlHelper;
 use App\ViewModel\View;
+use App\Model\Logger\Logger;
 
-// TODO: test
-$urlParams = explode('/', strtok($_SERVER['REQUEST_URI'], '?'));
-array_shift($urlParams);
+session_start();
+if (Config::get('app/config/mode') == 'developer') {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+}
 
-$controllerName = ucfirst(array_shift($urlParams));
+$urlPath = UrlHelper::getPath();
+
+$controllerName = ucfirst(array_shift($urlPath));
 if ($controllerName == 'Admin') {
-    // TODO: Check login
-    $isAdmin = true;
-    $controllerName = ucfirst(array_shift($urlParams));
+    $controllerName = ucfirst(array_shift($urlPath));
     $controllerDir = 'App/Controller/Admin/'.$controllerName;
+    $isAdmin = true;
+
+    if (!isset($_SESSION['admin'])) {
+        if ($controllerName != 'Login') {
+            UrlHelper::redirect('/admin/login');
+        }
+    }
 } else {
     $controllerDir = 'App/Controller/'.$controllerName;
 }
 
 if (is_dir($controllerDir)) {
-    $action = array_shift($urlParams) ?: 'Index';
+    $action = array_shift($urlPath) ?: 'Index';
 
     /** @var App\Controller\ControllerAction|null $controller */
     $controller = ClassHelper::createFromDir($controllerDir, $action);
@@ -33,8 +41,11 @@ if (is_dir($controllerDir)) {
         try {
             $controller->execute();
         } catch (\Exception $e) {
-            $_SESSION['error_log'] = $e;
-            // TODO: log error in logfile
+            $_SESSION['error_log'][] = $e;
+
+            $logger = new Logger('exception.log');
+            $logger->log($e->getMessage());
+
             if ($isAdmin) {
                 if ($action != 'Index') {
                     UrlHelper::redirect('/admin/' . strtolower($controllerName));

@@ -69,6 +69,14 @@ class User
     }
 
     /**
+     * @param $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
      * @return mixed|string
      */
     public function getShortDescription()

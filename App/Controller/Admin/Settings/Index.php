@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin\User;
+namespace App\Controller\Admin\Settings;
 
 use App\Controller\ControllerAction;
 use App\Model\Repository\User as UserRepository;
@@ -13,7 +13,6 @@ class Index implements ControllerAction
      */
     public function execute()
     {
-        $users = UserRepository::getUsers();
-        View::render('admin/user-list.phtml', compact('users'));
+        View::render('admin/settings.phtml');
     }
 }

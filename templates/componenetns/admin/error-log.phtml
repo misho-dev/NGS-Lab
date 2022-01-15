@@ -1,7 +1,17 @@
+<?php
+use App\Config\Config;
+?>
+
 <style>
+    .errors {
+        display: flex;
+        flex-direction: column;
+    }
+
     .error-wrapper {
         background: #f79a9a;
         padding: 0 10px 10px 15px;
+        margin-top: 10px;
         font-family: initial;
     }
 
@@ -16,18 +26,22 @@
 </style>
 
 <?php if (isset($_SESSION['error_log'])): ?>
-    <?php /** @var \Exception $error */ ?>
-    <?php $error = $_SESSION['error_log']; ?>
-
-    <div class="error-wrapper">
-        <h4>&#10060; <?= $error->getMessage() ?></h4>
-        <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
-        <ol>
-            <?php foreach ($traceList as $trace): ?>
-                <li><?= strstr($trace, ' ') ?> </li>
-            <?php endforeach; ?>
-        </ol>
+    <div class="errors">
+        <?php /** @var \Exception $error */ ?>
+        <?php foreach ($_SESSION['error_log'] as $error): ?>
+            <div class="error-wrapper">
+                <?php $prev = $error->getPrevious() ? $error->getPrevious()->getMessage() : '' ?>
+                <h4>&#10060; <?= $error->getMessage() . $prev ?></h4>
+                <?php if (Config::get('admin/settings/show_trace') == '1'): ?>
+                <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
+                <ol>
+                    <?php foreach ($traceList as $trace): ?>
+                        <li><?= strstr($trace, ' ') ?> </li>
+                    <?php endforeach; ?>
+                </ol>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
-
     <?php unset($_SESSION['error_log']); ?>
 <?php endif; ?>

@@ -133,6 +133,21 @@ class User
     }
 
     /**
+     * @param $image
+     * @param $userId
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateImage($image, $userId)
+    {
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update(['image' => $image])
+            ->where('entity_id', (int) $userId)
+            ->execute();
+    }
+
+    /**
      * @throws HydrahonException
      * @throws Exception
      */

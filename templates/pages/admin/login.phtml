@@ -69,14 +69,21 @@
     <div class="about-wrapper">
         <?php App\ViewModel\View::renderComponent('admin/error-log.phtml'); ?>
         <div class="section-title">
-            <h1>Admin Dashboard</h1>
+            <h1>Login</h1>
         </div>
-        <a href="/admin/user">Users</a>
-        <a href="/admin/product">Products</a>
-        <a href="/admin/project">Projects</a>
-        <a href="/admin/settings">General Settings</a>
-        <div>&nbsp;</div>
-        <a href="/admin/logout">Logout</a>
+
+        <form method="post" action="/admin/login/auth" enctype="multipart/form-data">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <br>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
     </div>
     <div id="footer"></div>
 </body>

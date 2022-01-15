@@ -103,7 +103,13 @@
             <button type="submit" class="btn">DELETE</button>
         </form>
     <?php endif; ?>
-    <p>Image: <?= $user->getImage() ?> </p>
+    <h3>Image</h3>
+    <form method="POST" action="/admin/user/upload?id=<?= $user->getId() ?>" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+        <input type="file" name="user_pic" accept="image/*"/>
+        <input type="submit" value="upload"/>
+    </form>
+    <img src="<?= $user->getImage() ?>">
 </div>
 <div id="footer"></div>
 </body>

@@ -1,3 +1,6 @@
+<?php
+use App\Config\Config;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,14 +72,37 @@
     <div class="about-wrapper">
         <?php App\ViewModel\View::renderComponent('admin/error-log.phtml'); ?>
         <div class="section-title">
-            <h1>Admin Dashboard</h1>
+            <h1>General Settings</h1>
         </div>
-        <a href="/admin/user">Users</a>
-        <a href="/admin/product">Products</a>
-        <a href="/admin/project">Projects</a>
-        <a href="/admin/settings">General Settings</a>
-        <div>&nbsp;</div>
-        <a href="/admin/logout">Logout</a>
+
+        <form method="post" action="/admin/settings/save" enctype="multipart/form-data">
+            <h3>Admin</h3>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<?= Config::get('admin/user/name') ?>">
+            <br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <br>
+
+            <h3>Alt Images</h3>
+            <span>User: </span>
+            <br>
+            <span>Project: </span>
+            <br>
+            <span>Product: </span>
+            <br>
+
+            <?php if(Config::get('app/config/mode') == 'developer'): ?>
+                <h3>Developer</h3>
+
+                <label for="show_trace">Show Trace:</label>
+                <input type="checkbox" id="show_trace" name="show_trace" <?= Config::get('admin/settings/show_trace') ? 'checked' : '' ?>>
+                <br>
+            <?php endif; ?>
+
+            <button type="submit" class="btn">Save</button>
+        </form>
     </div>
     <div id="footer"></div>
 </body>

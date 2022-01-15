@@ -5,7 +5,8 @@
   "require": {
     "clancats/hydrahon": "dev-master",
     "ext-pdo": "*",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "samayo/bulletproof": "4.0.*"
   },
   "autoload": {
     "psr-4": {
