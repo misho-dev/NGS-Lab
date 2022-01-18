@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Helper;
+namespace App\Helper;
 
 class Url
 {
@@ -16,13 +16,23 @@ class Url
         return $res;
     }
 
-    public static function redirect(string $url)
+    public static function isAdmin()
+    {
+        return ucfirst(self::getPath()[0]) == 'Admin';
+    }
+
+    public static function redirect(string $url, $code = 200)
     {
         ob_start();
         while (ob_get_status()) {
             ob_end_clean();
         }
 
-        header("Location: $url");
+        header("Location: $url", true, $code);
+    }
+
+    public static function setResponseCode($code)
+    {
+
     }
 }

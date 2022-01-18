@@ -1,5 +1,5 @@
 <?php
-/** @var App\Model\User $user */
+/** @var App\Model\Blog $blog */
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +18,17 @@
         $(function () {
             $("#nav").load("/templates/componenetns/admin/nav.phtml");
             $("#footer").load("/templates/componenetns/footer.html");
+        });
+    </script>
+    <?php $tinyApiKey = \App\Config\Config::get('tiny_mce/editor/api') ?>
+    <script src="https://cdn.tiny.cloud/1/<?= $tinyApiKey ?>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#blog_body',
+            plugins: 'code image imagetools preview link anchor lists advlist fullscreen hr',
+            toolbar: 'undo redo | numlist bullist hr link image anchor | preview code fullscreen',
+            width: 850,
+            height: 550,
         });
     </script>
 </head>
@@ -72,44 +83,34 @@
 <div id="nav"></div>
 <div class="about-wrapper">
     <div class="section-title">
-        <h1><?= $user->getId() ? 'Edit User' : 'New User' ?></h1>
+        <h1><?= $blog->getId() ? 'Edit Blog' : 'New Blog' ?></h1>
     </div>
-    <form method="post" action="/admin/user/save?id=<?= $user->getId() ?>" enctype="multipart/form-data">
+    <form method="post" action="/admin/blog/save?id=<?= $blog->getId() ?>" enctype="multipart/form-data">
         <label for="enabled">Enabled:</label>
-        <input type="checkbox" id="enabled" name="enabled" <?= $user->isEnabled() ? 'checked' : '' ?>>
+        <input type="checkbox" id="enabled" name="enabled" <?= $blog->isEnabled() ? 'checked' : '' ?>>
         <br>
 
-        <label for="name_form">Full Name:</label>
-        <input type="text" id="name_form" name="name" value="<?= $user->getName() ?>" required>
+        <label for="title_form">Title:</label>
+        <input type="text" id="title_form" name="title" value="<?= $blog->getTitle() ?>" required>
         <br>
 
-        <label for="full_description">Full Description: </label>
-        <textarea id="full_description" name="description"><?= $user->getDescription() ?></textarea>
+        <label for="blog_body">Body: </label>
+        <textarea id="blog_body" name="blog_body">
+            <?= $blog->getBody() ?>
+        </textarea>
+
+        <label for="meta_keys">Meta Keywords (separated by comma, ex. "computer,mouse,keyboard")</label>
+        <input type="text" id="meta_keys" name="meta_keys" value="<?= $blog->getMetaKeys() ?>">
         <br>
 
-        <label for="desc_form">Short Description</label>
-        <textarea class="desc" id="desc_form" name="short_description"><?= $user->getShortDescription() ?></textarea>
-        <br>
-
-        <label for="is_owner">Is Product Owner:</label>
-        <input type="checkbox" id="is_owner" name="is_owner" <?= $user->isProductOwner() ? 'checked' : '' ?>>
-        <br>
-
-        <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save</button>
+        <button type="submit" class="btn" name="<?= $blog->getId() ? 'update_blog' : 'create_blog' ?>">Save</button>
     </form>
 
-    <?php if ($user->getId()): ?>
-        <form method="post" action="/admin/user/delete?id=<?= $user->getId() ?>">
+    <?php if ($blog->getId()): ?>
+        <form method="post" action="/admin/blog/delete?id=<?= $blog->getId() ?>">
             <button type="submit" class="btn">DELETE</button>
         </form>
     <?php endif; ?>
-    <h3>Image</h3>
-    <form method="POST" action="/admin/user/upload?id=<?= $user->getId() ?>" enctype="multipart/form-data">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-        <input type="file" name="user_pic" accept="image/*"/>
-        <input type="submit" value="upload"/>
-    </form>
-    <img src="<?= $user->getImage() ?>">
 </div>
 <div id="footer"></div>
 </body>

@@ -77,7 +77,7 @@
     </div>
     <form method="post" action="/admin/product/save?id=<?= $product->getId() ?>" enctype="multipart/form-data">
         <label for="name_form">Name:</label>
-        <input type="text" id="name_form" name="name" value="<?= $product->getName() ?>">
+        <input type="text" id="name_form" name="name" value="<?= $product->getName() ?>" required>
         <br>
 
         <label for="desc_form">Short Description:</label>

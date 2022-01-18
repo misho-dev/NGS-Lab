@@ -2,17 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\Dashboard\Index as DashboardIndex;
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 
-class Index implements ControllerAction
+class Index extends AbstractAdminAction
 {
-    /**
-     * Redirect to admin dashboard
-     */
     public function execute()
     {
-        $dashboardIndex = new DashboardIndex();
+        $dashboardIndex = new \App\Controller\Admin\Dashboard\Index();
         $dashboardIndex->execute();
     }
 }

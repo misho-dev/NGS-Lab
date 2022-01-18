@@ -25,23 +25,25 @@ use App\Config\Config;
     }
 </style>
 
-<?php if (isset($_SESSION['error_log'])): ?>
+<?php if (isset($_SESSION['admin']['error_log'])): ?>
     <div class="errors">
         <?php /** @var \Exception $error */ ?>
-        <?php foreach ($_SESSION['error_log'] as $error): ?>
+        <?php foreach ($_SESSION['admin']['error_log'] as $error): ?>
             <div class="error-wrapper">
                 <?php $prev = $error->getPrevious() ? $error->getPrevious()->getMessage() : '' ?>
                 <h4>&#10060; <?= $error->getMessage() . $prev ?></h4>
-                <?php if (Config::get('admin/settings/show_trace') == '1'): ?>
-                <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
-                <ol>
-                    <?php foreach ($traceList as $trace): ?>
-                        <li><?= strstr($trace, ' ') ?> </li>
-                    <?php endforeach; ?>
-                </ol>
+                <?php if (isset($_SESSION['admin']['username'])): ?>
+                    <?php if (isset($_SESSION['admin']['permissions']['developer']) && Config::get('admin/settings/show_trace') == '1'): ?>
+                    <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
+                    <ol>
+                        <?php foreach ($traceList as $trace): ?>
+                            <li><?= strstr($trace, ' ') ?> </li>
+                        <?php endforeach; ?>
+                    </ol>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
-    <?php unset($_SESSION['error_log']); ?>
+    <?php unset($_SESSION['admin']['error_log']); ?>
 <?php endif; ?>

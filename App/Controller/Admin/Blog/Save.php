@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Controller\Admin\Blog;
+
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url as UrlHelper;
+use App\Model\Blog as BlogModel;
+use App\Model\Repository\Blog as BlogRepository;
+
+class Save extends AbstractAdminAction
+{
+    public const ACTION_PERMISSION = self::PERMISSION_BLOG;
+
+    /**
+     * @throws \Exception
+     */
+    public function execute()
+    {
+        $blog = $this->createBlogFromPostRequest();
+
+        if (isset($_POST['create_blog'])) {
+            BlogRepository::addBlog($blog);
+        } else if (isset($_POST['update_blog']) && $_GET['id']) {
+            BlogRepository::updateBlog($blog, $_GET['id']);
+        } else {
+            throw new \Exception('Unexpected error occurred. Please try again.');
+        }
+
+        UrlHelper::redirect("/admin/blog");
+    }
+
+    protected function createBlogFromPostRequest()
+    {
+        return new BlogModel([
+            'enabled' => $_POST['enabled'] == 'on',
+            'title' => $_POST['title'],
+            'body' => $_POST['blog_body'],
+            'meta_keys' => $_POST['meta_keys'],
+        ]);
+    }
+}

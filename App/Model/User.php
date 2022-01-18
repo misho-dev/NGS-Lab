@@ -99,4 +99,9 @@ class User
     {
         return $this->isOwner;
     }
+
+    public function getUrl()
+    {
+
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-/** @var array $users */
+/** @var App\Model\User[] $users */
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +77,6 @@
     </div>
     <a href="/admin/user/create">Create New User</a>
     <div>&nbsp;</div>
-    <? /** @var App\Model\User $user */ ?>
     <?php foreach ($users as $user): ?>
         <a href="/admin/user/edit?id=<?= $user->getId() ?>"> <?= $user->getName(); ?> </a>
     <?php endforeach; ?>

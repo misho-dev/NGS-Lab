@@ -72,29 +72,30 @@ use App\Config\Config;
     <div class="about-wrapper">
         <?php App\ViewModel\View::renderComponent('admin/error-log.phtml'); ?>
         <div class="section-title">
-            <h1>General Settings</h1>
+            <h1>Settings</h1>
         </div>
 
         <form method="post" action="/admin/settings/save" enctype="multipart/form-data">
-            <h3>Admin</h3>
+            <h3>Login</h3>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?= Config::get('admin/user/name') ?>">
+            <input type="text" id="username" name="username" value="<?= $_SESSION['admin']['username'] ?>" required>
             <br>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
             <br>
 
-            <h3>Alt Images</h3>
-            <span>User: </span>
-            <br>
-            <span>Project: </span>
-            <br>
-            <span>Product: </span>
+            <label for="password_confirm">Confirm Password:</label>
+            <input type="password" id="password_confirm">
             <br>
 
-            <?php if(Config::get('app/config/mode') == 'developer'): ?>
-                <h3>Developer</h3>
+            <h3>3rd Party</h3>
+            <label for="tiny_mce_api">TinyMCE API key:</label>
+            <input type="tiny_mce_api" id="tiny_mce_api" name="tiny_mce_api" value="<?= Config::get('tiny_mce/editor/api') ?>">
+            <br>
+
+            <?php if (isset($_SESSION['admin']['permissions']['developer'])): ?>
+                <h3>Developer Settings</h3>
 
                 <label for="show_trace">Show Trace:</label>
                 <input type="checkbox" id="show_trace" name="show_trace" <?= Config::get('admin/settings/show_trace') ? 'checked' : '' ?>>

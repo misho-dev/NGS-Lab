@@ -1,5 +1,5 @@
 <?php
-/** @var App\Model\User $user */
+/** @var App\Model\Blog[] $blogs */
 ?>
 
 <!DOCTYPE html>
@@ -71,45 +71,15 @@
 
 <div id="nav"></div>
 <div class="about-wrapper">
+    <?php App\ViewModel\View::renderComponent('admin/error-log.phtml'); ?>
     <div class="section-title">
-        <h1><?= $user->getId() ? 'Edit User' : 'New User' ?></h1>
+        <h1>Blogs</h1>
     </div>
-    <form method="post" action="/admin/user/save?id=<?= $user->getId() ?>" enctype="multipart/form-data">
-        <label for="enabled">Enabled:</label>
-        <input type="checkbox" id="enabled" name="enabled" <?= $user->isEnabled() ? 'checked' : '' ?>>
-        <br>
-
-        <label for="name_form">Full Name:</label>
-        <input type="text" id="name_form" name="name" value="<?= $user->getName() ?>" required>
-        <br>
-
-        <label for="full_description">Full Description: </label>
-        <textarea id="full_description" name="description"><?= $user->getDescription() ?></textarea>
-        <br>
-
-        <label for="desc_form">Short Description</label>
-        <textarea class="desc" id="desc_form" name="short_description"><?= $user->getShortDescription() ?></textarea>
-        <br>
-
-        <label for="is_owner">Is Product Owner:</label>
-        <input type="checkbox" id="is_owner" name="is_owner" <?= $user->isProductOwner() ? 'checked' : '' ?>>
-        <br>
-
-        <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save</button>
-    </form>
-
-    <?php if ($user->getId()): ?>
-        <form method="post" action="/admin/user/delete?id=<?= $user->getId() ?>">
-            <button type="submit" class="btn">DELETE</button>
-        </form>
-    <?php endif; ?>
-    <h3>Image</h3>
-    <form method="POST" action="/admin/user/upload?id=<?= $user->getId() ?>" enctype="multipart/form-data">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-        <input type="file" name="user_pic" accept="image/*"/>
-        <input type="submit" value="upload"/>
-    </form>
-    <img src="<?= $user->getImage() ?>">
+    <a href="/admin/blog/create">Create New Blog</a>
+    <div>&nbsp;</div>
+    <?php foreach ($blogs as $blog): ?>
+        <a href="/admin/blog/edit?id=<?= $blog->getId() ?>"> <?= $blog->getTitle(); ?> </a>
+    <?php endforeach; ?>
 </div>
 <div id="footer"></div>
 </body>

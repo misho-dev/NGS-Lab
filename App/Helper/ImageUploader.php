@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Helper;
+namespace App\Helper;
 
 use Bulletproof\Image;
 

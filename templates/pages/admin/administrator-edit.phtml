@@ -1,0 +1,135 @@
+<?php
+
+use App\Controller\Admin\AbstractAdminAction;
+
+/** @var App\Model\Administrator $administrator */
+$permissions = $administrator->getPermissionsAsArray();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#nav").load("/templates/componenetns/admin/nav.phtml");
+            $("#footer").load("/templates/componenetns/footer.html");
+        });
+    </script>
+</head>
+
+<body>
+<style>
+    .about-wrapper {
+        margin-top: 50px;
+        width: 100%;
+        min-height: 84vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-wrapper .section-title h1 {
+        border-bottom: 2px solid black;
+    }
+
+    .about-wrapper p {
+        text-align: center;
+        width: 40%;
+        margin-bottom: 40px;
+    }
+    .team-member-wrapper{
+        width: 100%;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .box{
+        margin: 15px;
+        width: 300px;
+        height: 300px;
+        background-color: black;
+    }
+    /*low-res monitors*/
+    @media screen and (max-width: 1368px) {}
+
+    /*phone resolution*/
+    @media screen and (max-width: 768px) {
+        .about-wrapper p {
+            width: 90%;
+        }
+    }
+</style>
+
+<div id="nav"></div>
+<div class="about-wrapper">
+    <div class="section-title">
+        <h1><?= $administrator->getId() ? $administrator->getUsername() : 'New Administrator' ?></h1>
+    </div>
+    <form method="post" action="/admin/administrator/save?id=<?= $administrator->getId() ?>" enctype="multipart/form-data">
+
+        <?php if (!$administrator->getId()): ?>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+
+            <label for="password_confirm">Confirm Password:</label>
+            <input type="password" id="password_confirm" required>
+            <br>
+        <?php endif; ?>
+
+        <h3>Permissions</h3>
+        <label for="permission_user">User:</label>
+        <input type="checkbox" id="permission_user" name="permission_user"
+               <?php $a = isset($permissions[AbstractAdminAction::PERMISSION_USER]) ?>
+            <?= in_array(AbstractAdminAction::PERMISSION_USER, $permissions) ? 'checked' : '' ?>
+        >
+        <br>
+
+        <label for="permission_product">Product:</label>
+        <input type="checkbox" id="permission_product" name="permission_product"
+            <?= in_array(AbstractAdminAction::PERMISSION_PRODUCT, $permissions) ? 'checked' : '' ?>
+        >
+        <br>
+
+        <label for="permission_project">Project:</label>
+        <input type="checkbox" id="permission_project" name="permission_project"
+            <?= in_array(AbstractAdminAction::PERMISSION_PROJECT, $permissions) ? 'checked' : '' ?>
+        >
+        <br>
+
+        <label for="permission_blog">Blog:</label>
+        <input type="checkbox" id="permission_blog" name="permission_blog"
+            <?= in_array(AbstractAdminAction::PERMISSION_BLOG, $permissions) ? 'checked' : '' ?>
+        >
+        <br>
+
+        <button type="submit" class="btn" name="<?= $administrator->getId() ? 'update_administrator' : 'create_administrator' ?>">Save</button>
+    </form>
+
+    <?php if ($administrator->getId()): ?>
+        <form method="post" action="/admin/admin/delete?id=<?= $administrator->getId() ?>">
+            <button type="submit" class="btn">DELETE</button>
+        </form>
+    <?php endif; ?>
+</div>
+<div id="footer"></div>
+</body>
+
+</html>
