@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin\Product;
 
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 use App\Model\Repository\Product as ProductRepository;
 use App\ViewModel\View;
 
-class Index implements ControllerAction
+class Index extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_PRODUCT;
+
     /**
      * @throws \Exception
      */

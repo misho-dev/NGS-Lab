@@ -2,11 +2,11 @@
 
 namespace App\Controller\Admin\Logout;
 
-use App\Controller\ControllerAction;
-use App\Model\Helper\Url;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url;
 use App\ViewModel\View;
 
-class Index implements ControllerAction
+class Index extends AbstractAdminAction
 {
     public function execute()
     {

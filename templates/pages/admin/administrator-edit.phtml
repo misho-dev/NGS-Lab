@@ -95,6 +95,14 @@ $permissions = $administrator->getPermissionsAsArray();
         <?php endif; ?>
 
         <h3>Permissions</h3>
+        <label for="permission_admin">Admin:</label>
+        <input type="checkbox" id="permission_admin" name="permission_admin"
+            <?php $a = isset($permissions[AbstractAdminAction::PERMISSION_ADMIN]) ?>
+            <?= in_array(AbstractAdminAction::PERMISSION_ADMIN, $permissions) ? 'checked' : '' ?>
+        >
+        <div>* This privilege grants access to every action. Can also create, edit and delete other administrators</div>
+        <br>
+
         <label for="permission_user">User:</label>
         <input type="checkbox" id="permission_user" name="permission_user"
                <?php $a = isset($permissions[AbstractAdminAction::PERMISSION_USER]) ?>

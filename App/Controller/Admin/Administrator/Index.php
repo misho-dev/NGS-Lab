@@ -8,6 +8,8 @@ use App\ViewModel\View;
 
 class Index extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     /**
      * @throws \Exception
      */

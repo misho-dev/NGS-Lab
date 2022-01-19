@@ -4,11 +4,13 @@ namespace App\Controller\Admin\Administrator;
 
 use App\Controller\Admin\AbstractAdminAction;
 use App\Helper\Url as UrlHelper;
-use App\Model\Administrator as AdministratorModel;
+use App\Model\Administrator;
 use App\Model\Repository\Administrator as AdministratorRepository;
 
 class Save extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     /**
      * @throws \Exception
      */
@@ -29,9 +31,10 @@ class Save extends AbstractAdminAction
 
     protected function createAdministratorFromPostRequest()
     {
-        $admin = new AdministratorModel(['username' => $_POST['username'],]);
+        $admin = new Administrator(['username' => $_POST['username'],]);
 
         $admin->setPermissions([
+            $_POST['permission_admin'] == 'on' ? AbstractAdminAction::PERMISSION_ADMIN : '',
             $_POST['permission_user'] == 'on' ? AbstractAdminAction::PERMISSION_USER : '',
             $_POST['permission_product'] == 'on' ? AbstractAdminAction::PERMISSION_PRODUCT : '',
             $_POST['permission_project'] == 'on' ? AbstractAdminAction::PERMISSION_PROJECT : '',

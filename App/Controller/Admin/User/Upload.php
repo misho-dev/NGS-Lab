@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin\User;
 
-use App\Controller\ControllerAction;
-use App\Model\Helper\ImageUploader;
-use App\Model\Helper\Url;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\ImageUploader;
+use App\Helper\Url;
 use App\Model\Repository\User as UserRepository;
 
-class Upload implements ControllerAction
+class Upload extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_USER;
+
     /**
      * @throws \Exception
      */

@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin\Product;
 
-use App\Controller\ControllerAction;
-use App\Model\Helper\Url as UrlHelper;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url as UrlHelper;
 use App\Model\Product as ProductModel;
 use App\Model\Repository\Product as ProductRepository;
 
-class Save implements ControllerAction
+class Save extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_PRODUCT;
+
     /**
      * @throws \Exception
      */

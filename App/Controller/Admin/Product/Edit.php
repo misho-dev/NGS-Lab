@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin\Product;
 
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 use App\Model\Repository\Product as ProductRepository;
 use App\Model\Repository\User as UserRepository;
 use App\ViewModel\View;
 
-class Edit implements ControllerAction
+class Edit extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_PRODUCT;
+
     /**
      * @throws \Exception
      */

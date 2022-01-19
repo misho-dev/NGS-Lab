@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin\User;
 
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 use App\Model\User;
 use App\ViewModel\View;
 
-class Create implements ControllerAction
+class Create extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_USER;
+
     public function execute()
     {
         $user = new User([]);

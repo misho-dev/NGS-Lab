@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin\User;
 
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 use App\Model\Repository\User as UserRepository;
 use App\ViewModel\View;
 
-class Edit implements ControllerAction
+class Edit extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_USER;
+
     public function execute()
     {
         $user = UserRepository::getUserById($_GET['id']);

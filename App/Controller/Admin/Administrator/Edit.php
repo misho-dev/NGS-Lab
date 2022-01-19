@@ -8,6 +8,8 @@ use App\ViewModel\View;
 
 class Edit extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     public function execute()
     {
         $administrator = AdministratorRepository::getAdministratorById($_GET['id']);

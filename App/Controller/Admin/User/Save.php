@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin\User;
 
-use App\Controller\ControllerAction;
-use App\Model\Helper\Url as UrlHelper;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url as UrlHelper;
 use App\Model\User as UserModel;
 use App\Model\Repository\User as UserRepository;
 
-class Save implements ControllerAction
+class Save extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_USER;
+
     /**
      * @throws \Exception
      */

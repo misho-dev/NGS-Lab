@@ -8,6 +8,8 @@ use App\ViewModel\View;
 
 class Create extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     public function execute()
     {
         $administrator = new Administrator([]);

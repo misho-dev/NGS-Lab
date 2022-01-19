@@ -8,6 +8,8 @@ use App\Model\Repository\Administrator as AdministratorRepository;
 
 class Delete extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     /**
      * @throws \Exception
      */

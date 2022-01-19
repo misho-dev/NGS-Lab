@@ -2,13 +2,18 @@
 
 namespace App\Controller\Admin\Login;
 
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url;
 use App\ViewModel\View;
 
-class Index implements ControllerAction
+class Index extends AbstractAdminAction
 {
     public function execute()
     {
-        View::render('admin/login.phtml');
+        if (isset($_SESSION['admin']['username'])) {
+            Url::redirect('/admin');
+        } else {
+            View::render('admin/login.phtml');
+        }
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Controller\Admin\Dashboard;
 
 use App\ViewModel\View;
-use App\Controller\ControllerAction;
+use App\Controller\Admin\AbstractAdminAction;
 
-class Index implements ControllerAction
+class Index extends AbstractAdminAction
 {
     public function execute()
     {

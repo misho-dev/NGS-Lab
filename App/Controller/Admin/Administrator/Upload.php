@@ -9,6 +9,8 @@ use App\Model\Repository\Administrator as AdministratorRepository;
 
 class Upload extends AbstractAdminAction
 {
+    const ACTION_PERMISSION = self::PERMISSION_ADMIN;
+
     /**
      * @throws \Exception
      */

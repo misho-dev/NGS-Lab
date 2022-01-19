@@ -3,10 +3,10 @@
 namespace App\Controller\Admin\Settings;
 
 use App\Config\Config;
-use App\Controller\ControllerAction;
-use App\Model\Helper\Url as UrlHelper;
+use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\Url as UrlHelper;
 
-class Save implements ControllerAction
+class Save extends AbstractAdminAction
 {
     /**
      * @throws \Exception
@@ -14,6 +14,7 @@ class Save implements ControllerAction
     public function execute()
     {
         $this->saveUser();
+        $this->saveThirdPartySettings();
         $this->saveDeveloperSettings();
 
         UrlHelper::redirect("/admin/settings");
@@ -31,6 +32,17 @@ class Save implements ControllerAction
                 if ($_POST['password']) {
                     Config::set('admin/user/password', md5($_POST['password']));
                 }
+            }
+        } catch (\Exception $e) {
+            $_SESSION['error_log'][] = new \Exception('Admin: ', 0, $e);
+        }
+    }
+
+    protected function saveThirdPartySettings()
+    {
+        try {
+            if (isset($_POST['tiny_mce_api'])) {
+                Config::set('tiny_mce/editor/api', $_POST['tiny_mce_api']);
             }
         } catch (\Exception $e) {
             $_SESSION['error_log'][] = new \Exception('Admin: ', 0, $e);

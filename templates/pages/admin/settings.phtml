@@ -89,10 +89,10 @@ use App\Config\Config;
             <input type="password" id="password_confirm">
             <br>
 
-            <h3>3rd Party</h3>
-            <label for="tiny_mce_api">TinyMCE API key:</label>
-            <input type="tiny_mce_api" id="tiny_mce_api" name="tiny_mce_api" value="<?= Config::get('tiny_mce/editor/api') ?>">
-            <br>
+                <h3>3rd Party</h3>
+                <label for="tiny_mce_api">TinyMCE API key:</label>
+                <input type="tiny_mce_api" id="tiny_mce_api" name="tiny_mce_api" value="<?= Config::get('tiny_mce/editor/api') ?>">
+                <br>
 
             <?php if (isset($_SESSION['admin']['permissions']['developer'])): ?>
                 <h3>Developer Settings</h3>

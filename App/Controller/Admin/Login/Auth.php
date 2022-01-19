@@ -11,15 +11,21 @@ class Auth extends AbstractAdminAction
 {
     public function execute()
     {
-        $admin = AdministratorRepository::getAdministratorByUsername($_POST['username']);
+        if (!isset($_SESSION['admin']['username'])) {
+            if (!isset($_POST['username'])) {
+                throw new \Exception('Unexpected error occurred. Please try again.');
+            }
 
-        if (!$admin || $admin->getPassword() != Encrypter::encrypt(($_POST['password']))) {
-            // throw new \Exception('Incorrect login');
+            $admin = AdministratorRepository::getAdministratorByUsername($_POST['username']);
+
+            if (!$admin || $admin->getPassword() != Encrypter::encrypt(($_POST['password']))) {
+                throw new \Exception('Incorrect login');
+            }
+
+            $_SESSION['admin'] = [];
+            $_SESSION['admin']['username'] = $admin->getUsername() ?? '';
+            $_SESSION['admin']['permissions'] = $admin->getPermissionsAsArray();
         }
-
-        $_SESSION['admin'] = [];
-        $_SESSION['admin']['username'] = $admin->getUsername() ?? '';
-        $_SESSION['admin']['permissions'] = $admin->getPermissionsAsArray();
         Url::redirect('/admin');
     }
 }
