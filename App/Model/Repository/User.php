@@ -133,16 +133,31 @@ class User
     }
 
     /**
-     * @param $image
+     * @param $imageId
      * @param $userId
      * @return mixed
      * @throws \Exception
      */
-    public static function updateImage($image, $userId)
+    public static function updateImage($imageId, $userId)
     {
         return DAL::builder()
             ->table(self::TABLE_NAME)
-            ->update(['image' => $image])
+            ->update(['image' => $imageId])
+            ->where('entity_id', (int) $userId)
+            ->execute();
+    }
+
+    /**
+     * @param $imageId
+     * @param $userId
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateGif($imageId, $userId)
+    {
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update(['gif' => $imageId])
             ->where('entity_id', (int) $userId)
             ->execute();
     }

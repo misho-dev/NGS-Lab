@@ -94,7 +94,7 @@ use App\Config\Config;
                 <input type="tiny_mce_api" id="tiny_mce_api" name="tiny_mce_api" value="<?= Config::get('tiny_mce/editor/api') ?>">
                 <br>
 
-            <?php if (isset($_SESSION['admin']['permissions']['developer'])): ?>
+            <?php if (in_array('developer', $_SESSION['admin']['permissions'])): ?>
                 <h3>Developer Settings</h3>
 
                 <label for="show_trace">Show Trace:</label>

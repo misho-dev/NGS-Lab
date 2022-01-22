@@ -16,18 +16,22 @@ class Product
     /** @var string $image */
     private $image;
 
+    /** @var string $logo */
+    private $logo;
+
     /** @var string $shortDescription */
     private $shortDescription;
 
     /** @var string $description */
     private $description;
 
-    public function __construct($data)
+    public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? null;
         $this->ownerId = $data['owner_id'] ?? null;
         $this->name = $data['name'] ?? '';
         $this->image = $data['image'] ?? '';
+        $this->logo = $data['logo'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
     }
@@ -62,6 +66,14 @@ class Product
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 
     /**
