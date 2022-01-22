@@ -4,7 +4,7 @@ namespace Config;
 class Database
 {
     const HOST = 'localhost';
-    const USER = 'memento';
-    const PASSWORD = 'mori';
+    const USER = 'ngs';
+    const PASSWORD = '1121';
     const NAME = 'ngs';
 }

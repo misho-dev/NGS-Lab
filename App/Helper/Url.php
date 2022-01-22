@@ -28,7 +28,8 @@ class Url
             ob_end_clean();
         }
 
-        header("Location: $url", true, $code);
+        header("Location: $url");
+        exit();
     }
 
     public static function setResponseCode($code)
