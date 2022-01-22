@@ -12,7 +12,7 @@ class Create extends AbstractAdminAction
 
     public function execute()
     {
-        $blog = new Blog([]);
+        $blog = new Blog();
         View::render('admin/blog-edit.phtml', compact('blog'));
     }
 }

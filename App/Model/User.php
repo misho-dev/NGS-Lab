@@ -16,6 +16,9 @@ class User
     /** @var string $image */
     private $image;
 
+    /** @var string $gif */
+    private $gif;
+
     /** @var string $shortDescription */
     private $shortDescription;
 
@@ -25,12 +28,13 @@ class User
     /** @var boolean $isOwner */
     private $isOwner;
 
-    public function __construct($data)
+    public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? '';
         $this->enabled = $data['enabled'] ?? true;
         $this->name = $data['full_name'] ?? '';
         $this->image = $data['image'] ?? '';
+        $this->gif = $data['gif'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
         $this->isOwner = $data['is_owner'] ?? false;
@@ -61,7 +65,7 @@ class User
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public function getImage()
     {
@@ -74,6 +78,38 @@ class User
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageAlt()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageTitle()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGif()
+    {
+        return $this->gif;
+    }
+
+    /**
+     * @param $gif
+     */
+    public function setGif($gif)
+    {
+        $this->gif = $gif;
     }
 
     /**

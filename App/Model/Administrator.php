@@ -18,7 +18,7 @@ class Administrator
     /** @var string $permissions */
     private $permissions;
 
-    public function __construct($data)
+    public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? '';
         $this->username = $data['username'] ?? '';

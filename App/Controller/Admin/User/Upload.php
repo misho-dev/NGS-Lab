@@ -21,17 +21,43 @@ class Upload extends AbstractAdminAction
             throw new \Exception('User with given ID (' . $_GET['id'] . ') does not exist');
         }
 
-        $image = ImageUploader::uploadImage('user_pic');
-        $path = substr($image->getFullPath(), strlen($_SERVER['DOCUMENT_ROOT']));
-        UserRepository::updateImage($path, $_GET['id']);
-
-        if ($user->getImage()) {
-            $oldImage = $_SERVER['DOCUMENT_ROOT'] . $user->getImage();
-            if (is_file($oldImage)) {
-                unlink($oldImage);
-            }
-        }
+        $this->uploadImage();
+        $this->uploadGif();
 
         Url::redirect('/admin/user/edit?id=' . $_GET['id']);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    protected function uploadImage()
+    {
+        $imageId = ImageUploader::uploadAndSaveImage(
+            $_POST['user_pic_id'],
+            'user_pic',
+            $_POST['user_pic_title'],
+            $_POST['user_pic_alt']
+        );
+
+        if ($imageId) {
+            UserRepository::updateImage($imageId, $_GET['id']);
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    protected function uploadGif()
+    {
+        $imageId = ImageUploader::uploadAndSaveImage(
+            $_POST['user_gif_id'],
+            'user_gif',
+            $_POST['user_gif_title'],
+            $_POST['user_gif_alt']
+        );
+
+        if ($imageId) {
+            UserRepository::updateGif($imageId, $_GET['id']);
+        }
     }
 }

@@ -18,7 +18,7 @@ class Create extends AbstractAdminAction
      */
     public function execute()
     {
-        $product = new Product([]);
+        $product = new Product();
         $productOwners = UserRepository::getProductOwners();
         View::render('admin/product-edit.phtml', compact('product', 'productOwners'));
     }

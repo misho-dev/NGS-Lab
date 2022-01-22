@@ -33,7 +33,7 @@ use App\Config\Config;
                 <?php $prev = $error->getPrevious() ? $error->getPrevious()->getMessage() : '' ?>
                 <h4>&#10060; <?= $error->getMessage() . $prev ?></h4>
                 <?php if (isset($_SESSION['admin']['username'])): ?>
-                    <?php if (isset($_SESSION['admin']['permissions']['developer']) && Config::get('admin/settings/show_trace') == '1'): ?>
+                    <?php if (in_array('developer', $_SESSION['admin']['permissions']) && Config::get('admin/settings/show_trace') == '1'): ?>
                     <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
                     <ol>
                         <?php foreach ($traceList as $trace): ?>

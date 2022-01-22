@@ -1,6 +1,8 @@
 <?php
 /** @var App\Model\Product $product */
 /** @var array $productOwners */
+/** @var App\Model\Image $image */
+/** @var App\Model\Image $logo */
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +104,51 @@
 
         <button type="submit" class="btn" name="<?= $product->getId() ? 'update_product' : 'create_product' ?>">Save</button>
     </form>
-    <p>Image: <?= $product->getImage() ?> </p>
+
+
+    <?php if ($product->getId()): ?>
+        <form method="post" action="/admin/product/delete?id=<?= $product->getId() ?>">
+            <button type="submit" class="btn">Delete User</button>
+        </form>
+        <h2>Images</h2>
+        <form method="POST" action="/admin/product/upload?id=<?= $product->getId() ?>" enctype="multipart/form-data">
+            <h4>Picture</h4>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+
+            <input type="hidden" name="product_pic_id" value="<?= $product->getImage() ?>"/>
+            <input type="file" name="product_pic" accept="image/*"/>
+            <img src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
+            <br>
+
+            <label for="product_pic_title">Title:</label>
+            <input type="text" id="product_pic_title" name="product_pic_title" value="<?= $image->getTitle() ?? '' ?>">
+            <br>
+
+            <label for="product_pic_alt">Alt:</label>
+            <input type="text" id="product_pic_alt" name="product_pic_alt" value="<?= $image->getAlt() ?? '' ?>">
+            <br>
+
+
+            <h4>Logo</h4>
+            <input type="hidden" name="product_logo_id" value="<?= $logo->getId() ?>"/>
+            <input type="file" name="product_logo" accept="image/*"/>
+            <img src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">
+            <br>
+
+            <label for="product_logo_title">Title:</label>
+            <input type="text" id="product_logo_title" name="product_logo_title" value="<?= $logo->getTitle() ?? '' ?>">
+            <br>
+
+            <label for="product_logo_alt">Alt:</label>
+            <input type="text" id="product_logo_alt" name="product_logo_alt" value="<?= $logo->getAlt() ?? '' ?>">
+            <br>
+
+            <br>
+            <br>
+
+            <input type="submit" value="Save Images"/>
+        </form>
+    <?php endif; ?>
 </div>
 <div id="footer"></div>
 </body>

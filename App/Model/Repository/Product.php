@@ -80,6 +80,36 @@ class Product
             ->execute();
     }
 
+    /**
+     * @param $imageId
+     * @param $productId
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateImage($imageId, $productId)
+    {
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update(['image' => $imageId])
+            ->where('entity_id', (int) $productId)
+            ->execute();
+    }
+
+    /**
+     * @param $imageId
+     * @param $productId
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateLogo($imageId, $productId)
+    {
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update(['logo' => $imageId])
+            ->where('entity_id', (int) $productId)
+            ->execute();
+    }
+
     public static function updateProduct(ProductModel $product, $productId)
     {
         // TODO

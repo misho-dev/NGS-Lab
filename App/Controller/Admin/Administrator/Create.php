@@ -12,7 +12,7 @@ class Create extends AbstractAdminAction
 
     public function execute()
     {
-        $administrator = new Administrator([]);
+        $administrator = new Administrator();
         View::render('admin/administrator-edit.phtml', compact('administrator'));
     }
 }

@@ -25,7 +25,7 @@ class Blog
     /** @var string $isOwner */
     private $updatedAt;
 
-    public function __construct($data)
+    public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? '';
         $this->enabled = $data['enabled'] ?? true;
