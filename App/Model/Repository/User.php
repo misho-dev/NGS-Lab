@@ -44,7 +44,7 @@ class User
     }
 
     /**
-     * @return array
+     * @return UserModel[]
      * @throws HydrahonException
      * @throws Exception
      */
@@ -54,6 +54,7 @@ class User
             ->table(self::TABLE_NAME)
             ->select()
             ->where('is_owner', true)
+            ->where('enabled', true)
             ->get();
 
         return self::buildUsersFromQueryResult($enabledUsers);

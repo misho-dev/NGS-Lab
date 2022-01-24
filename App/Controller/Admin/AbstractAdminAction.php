@@ -21,4 +21,6 @@ abstract class AbstractAdminAction implements ControllerAction
     const PERMISSION_BLOG = 'blog';
     const PERMISSION_PRODUCT = 'product';
     const PERMISSION_PROJECT = 'project';
+
+    const PERMISSION_DEVELOPER = 'developer';
 }

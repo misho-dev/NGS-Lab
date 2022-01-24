@@ -1,3 +1,9 @@
+<?php
+/** @var App\Model\User[] $productOwners */
+/** @var App\Model\Image[] $productOwnerImages */
+/** @var App\Model\Image[] $productOwnerGifs */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +34,6 @@
       );
       $("#landing-component-item4").load(
         "/templates/componenetns/landing-component-item.html"
-      );
-      $("#product-owners-component").load(
-        "/templates/componenetns/product-owners-component.html"
       );
       $("#footer").load("/templates/componenetns/footer.html");
     });
@@ -340,7 +343,10 @@
       </script>
     </div>
     <br><br>
-    <div id="product-owners-component" class="snap-child"></div>
+    <div id="product-owners-component" class="snap-child">
+        <?php \App\ViewModel\View::renderComponent('product-owners-component.phtml',
+            compact('productOwners', 'productOwnerGifs', 'productOwnerImages')); ?>
+    </div>
     <div id="our-projects-component" class="snap-child"></div>
     <div id="footer" class="snap-child"></div>
   </div>

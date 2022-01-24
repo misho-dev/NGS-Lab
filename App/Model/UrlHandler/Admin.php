@@ -3,6 +3,7 @@
 namespace App\Model\UrlHandler;
 
 use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\AdminSession;
 use App\Helper\ClassHelper;
 use App\Model\Logger\Logger;
 use App\Helper\Url;
@@ -25,7 +26,7 @@ class Admin
             /** @var AbstractAdminAction $controller */
             $controller = ClassHelper::createClassFromDir($controllerDir, $action);
 
-            if (!isset($_SESSION['admin']['username'])) {
+            if (!AdminSession::isLoggedIn()) {
                 if ($controllerName != 'Login') {
                     Url::redirect('/admin/login');
                 }
@@ -33,15 +34,15 @@ class Admin
 
             try {
                 if ($controller::ACTION_PERMISSION != AbstractAdminAction::PERMISSION_NONE
-                    && !in_array(AbstractAdminAction::PERMISSION_ADMIN, $_SESSION['admin']['permissions'])
-                    && !in_array($controller::ACTION_PERMISSION, $_SESSION['admin']['permissions'])
+                    && !AdminSession::hasPermission(AbstractAdminAction::PERMISSION_ADMIN)
+                    && !AdminSession::hasPermission($controller::ACTION_PERMISSION)
                 ) {
                     throw new \Exception('You do not have permission to perform this action');
                 }
 
                 $controller->execute();
             } catch (\Exception $e) {
-                $_SESSION['admin']['error_log'][] = $e;
+                AdminSession::addErrorLog($e);
 
                 $logger = new Logger('exception.log');
                 $logger->log($e->getMessage());
@@ -53,7 +54,7 @@ class Admin
                 }
             }
         } else {
-            $_SESSION['admin']['error_log'][] = new \Exception('Invalid request');
+            AdminSession::addErrorLog(new \Exception('Invalid request'));
             Url::redirect('/admin');
         }
     }

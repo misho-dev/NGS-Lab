@@ -19,6 +19,10 @@ class Save extends AbstractAdminAction
         $administrator = $this->createAdministratorFromPostRequest();
 
         if (isset($_POST['create_administrator'])) {
+            if (AdministratorRepository::getAdministratorByUsername($administrator->getUsername())) {
+                throw new \Exception('Administrator with this username already exists');
+            }
+
             AdministratorRepository::addAdministrator($administrator);
         } else if (isset($_POST['update_administrator']) && $_GET['id']) {
             AdministratorRepository::updateAdministrator($administrator, $_GET['id']);

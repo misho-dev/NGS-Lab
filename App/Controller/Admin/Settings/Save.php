@@ -4,6 +4,8 @@ namespace App\Controller\Admin\Settings;
 
 use App\Config\Config;
 use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\AdminSession;
+use App\Model\Repository\Administrator;
 use App\Helper\Url as UrlHelper;
 
 class Save extends AbstractAdminAction
@@ -13,28 +15,36 @@ class Save extends AbstractAdminAction
      */
     public function execute()
     {
-        $this->saveUser();
+        $this->saveLogin();
         $this->saveThirdPartySettings();
         $this->saveDeveloperSettings();
 
         UrlHelper::redirect("/admin/settings");
     }
 
-    protected function saveUser()
+    protected function saveLogin()
     {
+        $admin = AdminSession::getAdmin();
         try {
             if (isset($_POST['username'])) {
-                Config::set('admin/user/name', $_POST['username']);
+                if (Administrator::getAdministratorByUsername($_POST['username'])) {
+                    throw new \Exception('Administrator with this username already exists');
+                }
+                $admin->setUsername($_POST['username']);
             }
 
             if (isset($_POST['password'])) {
                 // TODO: check password strength (maybe?)
                 if ($_POST['password']) {
-                    Config::set('admin/user/password', md5($_POST['password']));
+                    $admin->setPassword($_POST['password']);
                 }
             }
+
+            if (Administrator::updateAdministrator($admin, $admin->getId())) {
+                AdminSession::setAdmin($admin);
+            }
         } catch (\Exception $e) {
-            $_SESSION['error_log'][] = new \Exception('Admin: ', 0, $e);
+            AdminSession::addErrorLog(new \Exception('Login: ', 0, $e));
         }
     }
 
@@ -45,7 +55,7 @@ class Save extends AbstractAdminAction
                 Config::set('tiny_mce/editor/api', $_POST['tiny_mce_api']);
             }
         } catch (\Exception $e) {
-            $_SESSION['error_log'][] = new \Exception('Admin: ', 0, $e);
+            AdminSession::addErrorLog(new \Exception('Admin: ', 0, $e));
         }
     }
 
@@ -54,7 +64,7 @@ class Save extends AbstractAdminAction
         try {
             Config::set('admin/settings/show_trace', isset($_POST['show_trace']) ? '1' : '0');
         } catch (\Exception $e) {
-            $_SESSION['error_log'][] = new \Exception('Developer: ', 0, $e);
+            AdminSession::addErrorLog(new \Exception('Developer: ', 0, $e));
         }
     }
 }

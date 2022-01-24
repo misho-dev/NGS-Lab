@@ -82,4 +82,10 @@ class Image
     {
         return $this->type;
     }
+
+    public function toHtml($classes = '')
+    {
+        return sprintf('<img src="%s" alt="%s" title="%s" class="%s">',
+            $this->getValue(), $this->getAlt(), $this->getTitle(), $classes);
+    }
 }

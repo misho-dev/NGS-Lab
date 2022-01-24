@@ -9,9 +9,9 @@ class View
         require_once "templates/pages/$page";
     }
 
-    public static function renderComponent($page, array $params = [])
+    public static function renderComponent($component, array $params = [])
     {
         extract($params, EXTR_SKIP);
-        require_once "templates/componenetns/$page";
+        require_once "templates/componenetns/$component";
     }
 }

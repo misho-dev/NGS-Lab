@@ -25,15 +25,16 @@ use App\Config\Config;
     }
 </style>
 
-<?php if (isset($_SESSION['admin']['error_log'])): ?>
+<?php if (\App\Helper\AdminSession::getErrorLog()): ?>
     <div class="errors">
         <?php /** @var \Exception $error */ ?>
-        <?php foreach ($_SESSION['admin']['error_log'] as $error): ?>
+        <?php foreach (\App\Helper\AdminSession::getErrorLog() as $error): ?>
             <div class="error-wrapper">
                 <?php $prev = $error->getPrevious() ? $error->getPrevious()->getMessage() : '' ?>
                 <h4>&#10060; <?= $error->getMessage() . $prev ?></h4>
-                <?php if (isset($_SESSION['admin']['username'])): ?>
-                    <?php if (in_array('developer', $_SESSION['admin']['permissions']) && Config::get('admin/settings/show_trace') == '1'): ?>
+                <?php if (\App\Helper\AdminSession::isLoggedIn()): ?>
+                    <?php if (\App\Helper\AdminSession::hasPermission(\App\Controller\Admin\AbstractAdminAction::PERMISSION_DEVELOPER)
+                        && Config::get('admin/settings/show_trace') == '1'): ?>
                     <?php $traceList = explode("\n", $error->getTraceAsString()); ?>
                     <ol>
                         <?php foreach ($traceList as $trace): ?>
@@ -45,5 +46,5 @@ use App\Config\Config;
             </div>
         <?php endforeach; ?>
     </div>
-    <?php unset($_SESSION['admin']['error_log']); ?>
+    <?php \App\Helper\AdminSession::clearErrorLog(); ?>
 <?php endif; ?>

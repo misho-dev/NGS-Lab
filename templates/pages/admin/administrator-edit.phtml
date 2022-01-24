@@ -132,7 +132,7 @@ $permissions = $administrator->getPermissionsAsArray();
     </form>
 
     <?php if ($administrator->getId()): ?>
-        <form method="post" action="/admin/admin/delete?id=<?= $administrator->getId() ?>">
+        <form method="post" action="/admin/administrator/delete?id=<?= $administrator->getId() ?>">
             <button type="submit" class="btn">DELETE</button>
         </form>
     <?php endif; ?>

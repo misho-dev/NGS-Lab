@@ -3,6 +3,7 @@
 namespace App\Controller\Admin\Login;
 
 use App\Controller\Admin\AbstractAdminAction;
+use App\Helper\AdminSession;
 use App\Helper\Encrypter;
 use App\Helper\Url;
 use App\Model\Repository\Administrator as AdministratorRepository;
@@ -11,7 +12,7 @@ class Auth extends AbstractAdminAction
 {
     public function execute()
     {
-        if (!isset($_SESSION['admin']['username'])) {
+        if (!AdminSession::isLoggedIn()) {
             if (!isset($_POST['username'])) {
                 throw new \Exception('Unexpected error occurred. Please try again.');
             }
@@ -22,10 +23,9 @@ class Auth extends AbstractAdminAction
                 throw new \Exception('Incorrect login');
             }
 
-            $_SESSION['admin'] = [];
-            $_SESSION['admin']['username'] = $admin->getUsername() ?? '';
-            $_SESSION['admin']['permissions'] = $admin->getPermissionsAsArray();
+            AdminSession::setAdmin($admin);
         }
+
         Url::redirect('/admin');
     }
 }

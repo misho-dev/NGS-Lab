@@ -3,34 +3,34 @@
 namespace App\Model\Repository;
 
 use App\Model\Database\DAL;
-use App\Model\Product as ProductModel;
+use App\Model\Project as ProjectModel;
 
-class Product
+class Project
 {
-    const TABLE_NAME = 'product_entity';
+    const TABLE_NAME = 'project_entity';
 
     /**
      * @return array
      * @throws \ClanCats\Hydrahon\Query\Sql\Exception
      * @throws \Exception
      */
-    public static function getProducts()
+    public static function getProjects()
     {
-        $products = DAL::builder()
+        $projects = DAL::builder()
             ->table(self::TABLE_NAME)
             ->select()
             ->get();
 
-        return self::buildProducts($products);
+        return self::buildProjects($projects);
     }
 
     /**
      * @param $id
-     * @return ProductModel|null
+     * @return ProjectModel|null
      * @throws \ClanCats\Hydrahon\Query\Sql\Exception
      * @throws \Exception
      */
-    public static function getProductById($id)
+    public static function getProjectById($id)
     {
         $result = DAL::builder()
             ->table(self::TABLE_NAME)
@@ -38,12 +38,12 @@ class Product
             ->where('entity_id', (int) $id)
             ->get();
 
-        $product = self::buildProducts($result);
-        if (!count($product)) {
+        $project = self::buildProjects($result);
+        if (!count($project)) {
             return null;
         }
 
-        return $product[0];
+        return $project[0];
     }
 
     /**
@@ -51,102 +51,102 @@ class Product
      * @throws \ClanCats\Hydrahon\Query\Sql\Exception
      * @throws \Exception
      */
-    public static function getProductsOwnedByUser($userId)
+    public static function getProjectsOwnedByUser($userId)
     {
-        $products = DAL::builder()
+        // TODO
+        $projects = DAL::builder()
             ->table(self::TABLE_NAME)
             ->select()
             ->where('owner_id', (int) $userId)
             ->get();
 
-        return self::buildProducts($products);
+        return self::buildProjects($projects);
     }
 
     /**
      * @throws \Exception
      */
-    public static function addProduct(ProductModel $product)
+    public static function addProject(ProjectModel $project)
     {
-        $newProduct = [
-            'name' => $product->getName(),
-            'short_description' => $product->getShortDescription(),
-            'description' => $product->getDescription(),
-            'owner_id' => $product->getOwnerId()
+        $newProject = [
+            'name' => $project->getName(),
+            'short_description' => $project->getShortDescription(),
+            'description' => $project->getDescription(),
         ];
 
         return DAL::builder()
             ->table(self::TABLE_NAME)
-            ->insert($newProduct)
+            ->insert($newProject)
             ->execute();
     }
 
     /**
      * @param $imageId
-     * @param $productId
+     * @param $projectId
      * @return mixed
      * @throws \Exception
      */
-    public static function updateImage($imageId, $productId)
+    public static function updateImage($imageId, $projectId)
     {
         return DAL::builder()
             ->table(self::TABLE_NAME)
             ->update(['image' => $imageId])
-            ->where('entity_id', (int) $productId)
+            ->where('entity_id', (int) $projectId)
             ->execute();
     }
 
     /**
      * @param $imageId
-     * @param $productId
+     * @param $projectId
      * @return mixed
      * @throws \Exception
      */
-    public static function updateLogo($imageId, $productId)
+    public static function updateLogo($imageId, $projectId)
     {
         return DAL::builder()
             ->table(self::TABLE_NAME)
             ->update(['logo' => $imageId])
-            ->where('entity_id', (int) $productId)
+            ->where('entity_id', (int) $projectId)
             ->execute();
     }
 
-    public static function updateProduct(ProductModel $product, $productId)
+    public static function updateProject(ProjectModel $project, $projectId)
     {
         $data = [
-            'name' => $product->getName(),
-            'short_description' => $product->getShortDescription(),
-            'description' => $product->getDescription(),
-            'owner_id' => $product->getOwnerId(),
+            'name' => $project->getName(),
+            'short_description' => $project->getShortDescription(),
+            'description' => $project->getDescription(),
         ];
 
         return DAL::builder()
             ->table(self::TABLE_NAME)
             ->update($data)
-            ->where('entity_id', (int) $productId)
+            ->where('entity_id', (int) $projectId)
             ->execute();
     }
 
     /**
      * @throws \Exception
      */
-    public static function unsetOwnerForProducts($ownerId)
+    public static function unsetOwnerForProjects($ownerId)
     {
+        // TODO ?
         return DAL::builder()
-            ->table('product_entity')
+            ->table('project_entity')
             ->update(['owner_id' => null])
             ->where('owner_id', (int) $ownerId)
             ->execute();
     }
 
     /**
-     * @param $products
+     * @param $projects
      * @return array
      */
-    protected static function buildProducts($products)
+    protected static function buildProjects($projects)
     {
         $result = [];
-        foreach ($products as $product) {
-            $result[] = new ProductModel($product);
+        foreach ($projects as $project) {
+            $result[] = new ProjectModel($project);
         }
 
         return $result;

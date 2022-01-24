@@ -43,6 +43,14 @@ class Administrator
     }
 
     /**
+     * @param $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
      * @return mixed|string
      */
     public function getPassword()

@@ -78,7 +78,7 @@ use App\Config\Config;
         <form method="post" action="/admin/settings/save" enctype="multipart/form-data">
             <h3>Login</h3>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?= $_SESSION['admin']['username'] ?>" required>
+            <input type="text" id="username" name="username" value="<?= \App\Helper\AdminSession::getAdmin()->getUsername() ?>" required>
             <br>
 
             <label for="password">Password:</label>
@@ -89,12 +89,13 @@ use App\Config\Config;
             <input type="password" id="password_confirm">
             <br>
 
+            <?php // TODO: Add check ?>
                 <h3>3rd Party</h3>
                 <label for="tiny_mce_api">TinyMCE API key:</label>
                 <input type="tiny_mce_api" id="tiny_mce_api" name="tiny_mce_api" value="<?= Config::get('tiny_mce/editor/api') ?>">
                 <br>
 
-            <?php if (in_array('developer', $_SESSION['admin']['permissions'])): ?>
+            <?php if (\App\Helper\AdminSession::hasPermission(\App\Controller\Admin\AbstractAdminAction::PERMISSION_DEVELOPER)): ?>
                 <h3>Developer Settings</h3>
 
                 <label for="show_trace">Show Trace:</label>

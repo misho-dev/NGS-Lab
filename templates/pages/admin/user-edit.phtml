@@ -106,42 +106,42 @@
         </form>
         <h2>Images</h2>
         <form method="POST" action="/admin/user/upload?id=<?= $user->getId() ?>" enctype="multipart/form-data">
-        <h4>Profile picture</h4>
-        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+            <h4>Profile picture</h4>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
 
-        <input type="hidden" name="user_pic_id" value="<?= $image->getId() ?>"/>
-        <input type="file" name="user_pic" accept="image/*"/>
-        <img src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
-        <br>
+            <input type="hidden" name="user_pic_id" value="<?= $image->getId() ?>"/>
+            <input type="file" name="user_pic" accept="image/*"/>
+            <?= $image->toHtml(); ?>
+            <br>
 
-        <label for="user_pic_title">Title:</label>
-        <input type="text" id="user_pic_title" name="user_pic_title" value="<?= $image->getTitle() ?? '' ?>">
-        <br>
+            <label for="user_pic_title">Title:</label>
+            <input type="text" id="user_pic_title" name="user_pic_title" value="<?= $image->getTitle() ?? '' ?>">
+            <br>
 
-        <label for="user_pic_alt">Alt:</label>
-        <input type="text" id="user_pic_alt" name="user_pic_alt" value="<?= $image->getAlt() ?? '' ?>">
-        <br>
+            <label for="user_pic_alt">Alt:</label>
+            <input type="text" id="user_pic_alt" name="user_pic_alt" value="<?= $image->getAlt() ?? '' ?>">
+            <br>
 
 
-        <h4>Gif Image</h4>
-        <input type="hidden" name="user_gif_id" value="<?= $gif->getId() ?>"/>
-        <input type="file" name="user_gif" accept="image/*"/>
-        <img src="<?= $gif->getValue() ?>" title="<?= $gif->getTitle() ?>" alt="<?= $gif->getAlt() ?>">
-        <br>
+            <h4>Gif Image</h4>
+            <input type="hidden" name="user_gif_id" value="<?= $gif->getId() ?>"/>
+            <input type="file" name="user_gif" accept="image/*"/>
+            <?= $gif->toHtml(); ?>
+            <br>
 
-        <label for="user_gif_title">Title:</label>
-        <input type="text" id="user_gif_title" name="user_gif_title" value="<?= $gif->getTitle() ?? '' ?>">
-        <br>
+            <label for="user_gif_title">Title:</label>
+            <input type="text" id="user_gif_title" name="user_gif_title" value="<?= $gif->getTitle() ?? '' ?>">
+            <br>
 
-        <label for="user_gif_alt">Alt:</label>
-        <input type="text" id="user_gif_alt" name="user_gif_alt" value="<?= $gif->getAlt() ?? '' ?>">
-        <br>
+            <label for="user_gif_alt">Alt:</label>
+            <input type="text" id="user_gif_alt" name="user_gif_alt" value="<?= $gif->getAlt() ?? '' ?>">
+            <br>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <input type="submit" value="Save Images"/>
-    </form>
+            <input type="submit" value="Save Images"/>
+        </form>
     <?php endif; ?>
 </div>
 <div id="footer"></div>
