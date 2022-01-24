@@ -27,7 +27,8 @@ class Save extends AbstractAdminAction
         $admin = AdminSession::getAdmin();
         try {
             if (isset($_POST['username'])) {
-                if (Administrator::getAdministratorByUsername($_POST['username'])) {
+                if (AdminSession::getAdmin()->getUsername() != $_POST['username']
+                    && Administrator::getAdministratorByUsername($_POST['username'])) {
                     throw new \Exception('Administrator with this username already exists');
                 }
                 $admin->setUsername($_POST['username']);
