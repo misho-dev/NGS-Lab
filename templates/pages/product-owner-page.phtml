@@ -34,11 +34,7 @@
             justify-content: space-evenly;
         }
 
-        .product-owner-page-wrapper .profile-picture img {
-            width: 300px;
-            height: 300px;
-            border-radius: 100%;
-        }
+
 
         .social-icons-product-owner ul li a i {
             color: white;
@@ -136,8 +132,10 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            width: 100%;
-            height: 100%;
+            max-width: 95vw;
+            max-height: 95vw;
+            width: 410px;
+            height: 410px;
             background-color: #ebebeb;
         }
 
@@ -147,10 +145,7 @@
         }
 
         .swiper-slide {
-            max-width: 95vw;
-            max-height: 95vw;
-            width: 410px;
-            height: 410px;
+
             text-align: center;
             font-size: 18px;
             background: #fff;
@@ -169,8 +164,28 @@
             -webkit-align-items: center;
             align-items: center;
         }
-        .overlay-image:hover{
-            display:none;
+        .profile-picture {
+        display: grid;
+        
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        
+        cursor: pointer;
+        }
+
+        .profile-picture img {
+        grid-area: 1 / 1;
+        width: 100%;
+        }
+
+        .profile-picture img:last-of-type {
+        transition: all 0.3s ease;
+        }
+
+        .profile-picture:hover img:last-of-type {
+        opacity: 0;
         }
 
         @media screen and (max-width: 768px) {
@@ -188,9 +203,8 @@
 
             <div class="profile-picture">
 
-
-                <img class="overlay-image" src="<?= $user->getImage() ?>">
                 <img src="https://media3.giphy.com/media/Y5qrZjgde6PxIK2VPo/giphy.gif">
+                <img src="<?= $user->getImage() ?>">
                 
             </div>
 
@@ -252,7 +266,7 @@
                     breakpoints: {
                         // when window width is <= 499px
                         1368: {
-                        slidesPerView:2,
+                        slidesPerView:(document.querySelectorAll(".swiper-slide").length >=2 ? 2 : 1),
                         },
                     }
                 });

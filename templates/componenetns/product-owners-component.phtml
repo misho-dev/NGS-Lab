@@ -291,7 +291,7 @@
             breakpoints: {
                 // when window width is <= 499px
                 1368: {
-                    slidesPerView: 2,
+                    slidesPerView: (document.querySelectorAll(".swiper-slide3").length >=2 ? 2 : 1),
                 },
             }
         });
