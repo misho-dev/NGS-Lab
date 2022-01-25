@@ -140,9 +140,9 @@ class Product
 
     /**
      * @param $products
-     * @return array
+     * @return \App\Model\Product[]
      */
-    protected static function buildProducts($products)
+    public static function buildProducts($products)
     {
         $result = [];
         foreach ($products as $product) {

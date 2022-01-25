@@ -12,6 +12,6 @@ class View
     public static function renderComponent($component, array $params = [])
     {
         extract($params, EXTR_SKIP);
-        require_once "templates/componenetns/$component";
+        require "templates/componenetns/$component";
     }
 }

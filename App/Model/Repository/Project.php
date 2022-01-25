@@ -10,7 +10,7 @@ class Project
     const TABLE_NAME = 'project_entity';
 
     /**
-     * @return array
+     * @return \App\Model\Project[]
      * @throws \ClanCats\Hydrahon\Query\Sql\Exception
      * @throws \Exception
      */
@@ -142,7 +142,7 @@ class Project
      * @param $projects
      * @return array
      */
-    protected static function buildProjects($projects)
+    public static function buildProjects($projects)
     {
         $result = [];
         foreach ($projects as $project) {

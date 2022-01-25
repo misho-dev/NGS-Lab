@@ -1,3 +1,9 @@
+<?php
+/** @var App\Model\Project $project */
+/** @var App\Model\Image $image */
+/** @var App\Model\Image $logo */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +19,17 @@
     <script>
         $(function () {
             $("#nav").load("/templates/componenetns/nav.html");
-            $("#project-componenent").load("/templates/componenetns/project-componenent.html");
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
 </head>
 
 <body>
-   
     <div id="nav"></div>
-    <div id="project-componenent"></div>
+    <div id="project-componenent">
+        <?php \App\ViewModel\View::renderComponent('project-component.phtml',
+            compact('project', 'image', 'logo')); ?>
+    </div>
     <div id="footer"></div>
 </body>
 

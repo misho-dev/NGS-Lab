@@ -1,7 +1,12 @@
 <?php
+/** @var App\Model\Product[] $products */
+/** @var App\Model\Image[] $productImages */
+/** @var App\Model\Image[] $productLogos */
+
 /** @var App\Model\User[] $productOwners */
 /** @var App\Model\Image[] $productOwnerImages */
-/** @var App\Model\Image[] $productOwnerGifs */
+
+/** @var App\Model\Project[] $projects */
 ?>
 
 <!DOCTYPE html>
@@ -20,21 +25,6 @@
   <script>
     $(function () {
       $("#nav").load("/templates/componenetns/nav.html");
-      $("#our-projects-component").load(
-        "/templates/componenetns/our-projects-component.html"
-      );
-      $("#landing-component-item1").load(
-        "/templates/componenetns/landing-component-item.html"
-      );
-      $("#landing-component-item2").load(
-        "/templates/componenetns/landing-component-item.html"
-      );
-      $("#landing-component-item3").load(
-        "/templates/componenetns/landing-component-item.html"
-      );
-      $("#landing-component-item4").load(
-        "/templates/componenetns/landing-component-item.html"
-      );
       $("#footer").load("/templates/componenetns/footer.html");
     });
   </script>
@@ -280,36 +270,26 @@
       <div class="swiper-main-wrapper">
         <div class="swiper mySwiper2">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="product-showcase-wrapper" id="landing-component-item1"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-showcase-wrapper" id="landing-component-item2"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-showcase-wrapper" id="landing-component-item3"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-showcase-wrapper" id="landing-component-item4"></div>
-            </div>
+              <?php foreach($products as $product): ?>
+                <?php $image = $productImages[$product->getId()] ?? new \App\Model\Image() ?>
+                <?php $logo = $productLogos[$product->getId()] ?? new \App\Model\Image() ?>
+                <div class="swiper-slide">
+                  <div class="product-showcase-wrapper">
+                      <?php \App\ViewModel\View::renderComponent('landing-component-item.phtml', compact('product', 'image', 'logo')); ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
         <div thumbsSlider="" class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="static/images/Untitled-2.png" />
-            </div>
-            <div class="swiper-slide">
-              <img src="static/images/Untitled-2.png" />
-            </div>
-            <div class="swiper-slide">
-              <img src="static/images/Untitled-2.png" />
-            </div>
-            <div class="swiper-slide">
-              <img src="static/images/Untitled-2.png" />
-            </div>
+            <?php foreach($products as $product): ?>
+                <div class="swiper-slide">
+                    <?= $productLogos[$product->getId()]->toHtml() ?>
+                </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -345,9 +325,11 @@
     <br><br>
     <div id="product-owners-component" class="snap-child">
         <?php \App\ViewModel\View::renderComponent('product-owners-component.phtml',
-            compact('productOwners', 'productOwnerGifs', 'productOwnerImages')); ?>
+            compact('productOwners', 'productOwnerImages')); ?>
     </div>
-    <div id="our-projects-component" class="snap-child"></div>
+    <div id="our-projects-component" class="snap-child">
+        <?php \App\ViewModel\View::renderComponent('our-projects-component.phtml',compact('projects')); ?>
+    </div>
     <div id="footer" class="snap-child"></div>
   </div>
   <script src="/static/js/scroll-controller.js"></script>

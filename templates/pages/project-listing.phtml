@@ -1,3 +1,9 @@
+<?php
+/** @var App\Model\Project[] $projects */
+/** @var App\Model\Image[] $projectImages */
+/** @var App\Model\Image[] $projectLogos */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +19,6 @@
     <script>
         $(function() {
             $("#nav").load("/templates/componenetns/nav.html");
-
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
@@ -81,32 +86,27 @@
         }
     </style>
 
-    <script>
-        $(function() {
-            $("#our-project-gallery-item-component1").load("/templates/componenetns/project-gallery-item-component.html");
-            $("#our-project-gallery-item-component2").load("/templates/componenetns/project-gallery-item-component.html");
-            $("#our-project-gallery-item-component3").load("/templates/componenetns/project-gallery-item-component.html");
-            $("#our-project-gallery-item-component4").load("/templates/componenetns/project-gallery-item-component.html");
-            $("#our-project-gallery-item-component5").load("/templates/componenetns/project-gallery-item-component.html");
-        });
-    </script>
-
     <div id="nav"></div>
     <div class="our-projects-wrapper">
         <div class="section-title">
             <h1>OUR PROJECTS</h1>
         </div>
+
         <div class="project-gallery-wrapper">
             <div class="projects-gallery">
-                <div id="our-project-gallery-item-component1"></div>
-                <div id="our-project-gallery-item-component2"></div>
-                <div id="our-project-gallery-item-component3"></div>
-                <div id="our-project-gallery-item-component4"></div>
-                <div id="our-project-gallery-item-component5"></div>
-                <div id="our-project-gallery-item-component6"></div>
+                <?php foreach ($projects as $project): ?>
+                    <?php $projectLink = '/project?id=' . $project->getId() ?>
+                    <div>
+                        <a href="<?= $projectLink ?>" class="project-gallery-item-wrapper"
+                           style="background-image:url(<?= $projectLogos[$project->getId()]->getValue() ?>);">
+                            <div class="color-overlay">
+                                <h2> <?= $project->getName() ?> </h2>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
-
     </div>
     <div id="footer"></div>
 </body>

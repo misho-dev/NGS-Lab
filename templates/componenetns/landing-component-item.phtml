@@ -1,0 +1,25 @@
+<?php
+/** @var App\Model\Product $product */
+/** @var App\Model\Image $image */
+/** @var App\Model\Image $logo */
+?>
+
+<div class="product-image">
+    <?= $image->toHtml() ?>
+</div>
+<div class="product-information">
+  <div class="product-logo">
+      <?= $logo->toHtml() ?>
+  </div>
+  <div class="product-slogan">
+    <h1> <?= $product->getName() ?> </h1>
+  </div>
+  <div class="product-description">
+    <p>
+        <?= $product->getShortDescription() ?>
+    </p>
+    <div class="product-redirect-button">
+      <a href="/product/page?id=<?= $product->getId() ?>">READ MORE</a>
+    </div>
+  </div>
+</div>

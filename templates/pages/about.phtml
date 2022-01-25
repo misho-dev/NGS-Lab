@@ -1,3 +1,9 @@
+<?php
+/** @var App\Model\User[] $users */
+/** @var App\Model\Image[] $userImages */
+/** @var App\Model\Image[] $userGifs */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,21 +95,17 @@
             <h1>Team Members</h1>
         </div>
 
-        <script>
-            $(function() {
-                $("#team-member1").load("/templates/componenetns/team-member-card-component.html");
-                $("#team-member2").load("/templates/componenetns/team-member-card-component.html");
-                $("#team-member3").load("/templates/componenetns/team-member-card-component.html");
-                $("#team-member4").load("/templates/componenetns/team-member-card-component.html");
-                $("#team-member5").load("/templates/componenetns/team-member-card-component.html");
-            });
-        </script>
         <div class="team-members-wrapper">
-            <div id="team-member1"></div>
-            <div id="team-member2"></div>
-            <div id="team-member3"></div>
-            <div id="team-member4"></div>
-            <div id="team-member5"></div>
+            <?php foreach ($users as $user): ?>
+                <?php $userImage = $userImages[$user->getId()] ?>
+                <?php $userImageSrc = $userImage ? $userImage->getValue() : '' ?>
+                <div>
+                    <div class="team-member-wrapper" style="background-image: url(<?= $userImageSrc ?>);">
+                        <h2><?= $user->getName() ?></h2>
+                        <h3>Position</h3>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <div id="footer"></div>

@@ -1,6 +1,10 @@
 <?php
-/** @var \App\Model\User $user */
-/** @var array $products */
+/** @var App\Model\User $user */
+/** @var App\Model\Image $userImage */
+/** @var App\Model\Image $userGif */
+/** @var App\Model\Product[] $products */
+/** @var App\Model\Product[] $projects */
+$projects = [];
 ?>
 
 <!DOCTYPE html>
@@ -166,12 +170,12 @@
         }
         .profile-picture {
         display: grid;
-        
+
         width: 300px;
         height: 300px;
         border-radius: 50%;
         overflow: hidden;
-        
+
         cursor: pointer;
         }
 
@@ -202,10 +206,8 @@
         <div class="product-owner-page-wrapper">
 
             <div class="profile-picture">
-
-                <img src="https://media3.giphy.com/media/Y5qrZjgde6PxIK2VPo/giphy.gif">
-                <img src="<?= $user->getImage() ?>">
-                
+                <?= $userImage->toHtml('overlay-image') ?>
+                <?= $userGif->toHtml() ?>
             </div>
 
             <div class="profile-name">
@@ -237,7 +239,6 @@
                                 <a href="/product/page?id=<?= $product->getId() ?>" class="product-card-component">
                                     <div class="product-name"> <?= $product->getName() ?> </div>
                                     <div class="slogan"><?= $product->getShortDescription() ?></div>
-                                    <div class="description"><p><?= $product->getDescription() ?></p></div>
                                     <img src="<?= $product->getImage() ?>" alt="">
                                 </a>
                             </div>
@@ -272,20 +273,23 @@
                 });
             </script>
 
-            <script>
-                $(function () {
-                    $("#our-project-listing-item-component1").load("/templates/componenetns/our-project-listing-item-component.html");
-                    $("#our-project-listing-item-component2").load("/templates/componenetns/our-project-listing-item-component.html");
-                });
-            </script>
-
             <div class="projects">
                 <h1 style="margin-left: 50px;">Projects</h1>
                 <div class="our-projects-component-wrapper">
                     <div style="margin-left: 50px; margin-right: 50px;" class="project-listing">
+                        TODO
                         <ul>
-                            <div id="our-project-listing-item-component1"></div>
-                            <div id="our-project-listing-item-component2"></div>
+                            <?php foreach ($projects as $project): ?>
+                                <?php $projectLink = '/project?id=' . $project->getId() ?>
+                                <div>
+                                    <a href="<?= $projectLink ?>">
+                                        <li class="our-project-listing-item">
+                                            <p class="project-title"> <?= $project->getName(); ?> </p>
+                                            <p class="project-description"> <?= $project->getShortDescription(); ?> </p>
+                                        </li>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

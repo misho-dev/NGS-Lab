@@ -1,3 +1,7 @@
+<?php
+/** @var App\Model\Project[] $projects */
+?>
+
 <style>
     .our-projects-component-wrapper {
         width: 100%;
@@ -86,30 +90,26 @@
     }
 </style>
 
-<script>
-    $(function() {
-        $("#our-project-listing-item-component1").load("/templates/componenetns/our-project-listing-item-component.html");
-        $("#our-project-listing-item-component2").load("/templates/componenetns/our-project-listing-item-component.html");
-        $("#our-project-listing-item-component3").load("/templates/componenetns/our-project-listing-item-component.html");
-        $("#our-project-listing-item-component4").load("/templates/componenetns/our-project-listing-item-component.html");
-        $("#our-project-listing-item-component5").load("/templates/componenetns/our-project-listing-item-component.html");
-    });
-</script>
-
 <div class="our-projects-component-wrapper">
     <div class="section-title">
         <h1>Our Projects</h1>
     </div>
     <div class="project-listing">
         <ul>
-            <div id="our-project-listing-item-component1"></div>
-            <div id="our-project-listing-item-component2"></div>
-            <div id="our-project-listing-item-component3"></div>
-            <div id="our-project-listing-item-component4"></div>
-            <div id="our-project-listing-item-component5"></div>
+            <?php foreach ($projects as $project): ?>
+                <?php $projectLink = '/project?id=' . $project->getId() ?>
+                <div>
+                    <a href="<?= $projectLink ?>">
+                        <li class="our-project-listing-item">
+                            <p class="project-title"> <?= $project->getName(); ?> </p>
+                            <p class="project-description"> <?= $project->getShortDescription(); ?> </p>
+                        </li>
+                    </a>
+                </div>
+            <?php endforeach; ?>
         </ul>
     </div>
     <div class="read-more-button">
-        <a href="/templates/pages/our-ptojects.html">READ MORE</a>
+        <a href="/project/listing">READ MORE</a>
     </div>
 </div>

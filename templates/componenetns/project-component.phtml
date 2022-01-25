@@ -1,0 +1,66 @@
+<?php
+/** @var App\Model\Project $project */
+/** @var App\Model\Image $image */
+/** @var App\Model\Image $logo */
+?>
+
+<style>
+    .project-componenet-wrapper {
+        width: 100vw;
+        min-height: 87vh;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    
+    .project-componenet-wrapper .description {
+        height: 100%;
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 50px;
+    }
+    
+    .project-componenet-wrapper .description p {
+        font-size: 1.5em;
+    }
+    
+    .project-componenet-wrapper .description h1 {
+        margin: 0;
+    }
+    
+    .project-componenet-wrapper .image-carousel {
+        height: 75vh;
+        margin: 50px;
+        width: 45vw;
+        background-color: black;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+    }
+    /*phone resolution*/
+    
+    @media screen and (max-width: 1368px) {
+        .project-componenet-wrapper {
+            flex-direction: column;
+        }
+        .project-componenet-wrapper .description {
+            width: 80%;
+        }
+        .project-componenet-wrapper .image-carousel {
+            width: 60%;
+        }
+    }
+</style>
+
+<div class="project-componenet-wrapper">
+    <div class="description">
+        <h1> <?= $project->getName() ?> </h1>
+        <p> <?= $project->getDescription() ?></p>
+    </div>
+    <div class="image-carousel" style="background-image: url(<?= $image->getValue() ?>);"></div>
+</div>
