@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script>
+        $(function () {
+            $("#nav").load("/templates/componenetns/nav.html");
+            $("#footer").load("/templates/componenetns/footer.html");
+        });
+    </script>
+</head>
+
+<body>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .product-page-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin: 50px 0 50px 0;
+        }
+
+        .banner-section img {
+            width: 95%;
+        }
+
+        .banner-section h1 {
+            font-size: 3em;
+            font-weight: bolder;
+        }
+
+        .description {
+            width: 80%;
+        }
+
+        .associated-projects {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .project-cards {
+            position: relative;
+            margin-top: 50px;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .project-gallery-item-wrapper {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 480px;
+            height: 270px;
+            background-color: black;
+            display: block;
+            margin: 30px;
+            border-radius: 50px;
+            color: white;
+        }
+
+        .color-overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            background-color: rgba(0, 0, 0, 0.253);
+        }
+
+        .associated-owners {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .offer{
+            width: 70%;
+        }
+        .clickable-item {
+            border: 5px solid rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            transition: all 0.2s linear;
+            padding: 7px;
+        }
+
+        .clickable-item img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            
+        }
+
+        .listing {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .drone-listing .drone{
+            float: left;
+            position: relative;
+            width: 20%;
+            /* = width for a 1:1 aspect ratio */
+            margin: 1.66%;
+        }
+
+        .industry-listing .industry{
+            float: left;
+            position: relative;
+            width: 20%;
+            /* = width for a 1:1 aspect ratio */
+            margin: 1.66%;
+        }
+
+        .camera-listing .camera{
+            float: left;
+            position: relative;
+            width: 18%;
+            /* = width for a 1:1 aspect ratio */
+            margin: 1.66%;
+        }
+
+        @media screen and (max-width: 1368px) {
+            .offer{
+                width: 100%;
+            }
+            .project-gallery-item-wrapper {
+                width: 90vw;
+                height: 50vw;
+                background-color: black;
+            }
+
+            .banner-section img {
+                width: 90%;
+            }
+
+            .description {
+                width: 90%;
+                text-align: justify;
+            }
+        }
+
+        /*phone resolution*/
+        @media screen and (max-width: 768px) {}
+    </style>
+
+    <div id="nav"></div>
+    <div class="product-page-wrapper">
+        <div class="banner-section">
+            <div class="product-title">
+                <h1>Internet Of Things</h1>
+            </div>
+            <img src="https://image.shutterstock.com/image-vector/dark-wide-abstract-banner-grey-260nw-1804227037.jpg">
+
+        </div>
+        <div class="description">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ex quis leo mollis rhoncus. Proin
+                dapibus ullamcorper ipsum tristique fermentum. Nullam porttitor id enim eu luctus. Vivamus condimentum
+                diam
+                efficitur, ornare ante sit amet, egestas nisl. Aenean libero nunc, vestibulum quis malesuada eu,
+                volutpat id
+                nisl. Ut laoreet pellentesque dictum. Vivamus at diam velit. Donec eu elit et nunc semper gravida eget
+                vitae
+                ipsum. Curabitur sed eros facilisis, egestas est eget, cursus nibh. Fusce turpis nisi, lobortis vel
+                blandit
+                ac, volutpat vel velit. Cras aliquet cursus iaculis. Vestibulum convallis euismod erat. Phasellus eu
+                ligula
+                mattis, euismod dolor nec, faucibus elit.
+
+                Maecenas faucibus sem odio, vel tristique ante egestas eu. Nullam enim nibh, fringilla non sodales sit
+                amet,
+                aliquam eget tellus. Sed neque lorem, aliquet et elementum nec, hendrerit sit amet leo. Cras vitae nibh
+                sed
+                libero porttitor feugiat. Integer iaculis vel orci vel pulvinar. In vehicula et elit et vehicula.
+                Curabitur
+                at libero eu quam elementum pharetra eu ut felis. Aenean ac est placerat, accumsan eros id, venenatis
+                eros.
+                Curabitur tristique egestas elit, ac aliquam nunc feugiat eget. In arcu urna, molestie eget varius sit
+                amet,
+                posuere sit amet mauris. Duis eget risus ac leo ultrices cursus a ac eros. Nulla facilisi. Praesent
+                vulputate nec mi eu facilisis. Praesent volutpat condimentum quam, eget venenatis tortor accumsan quis.
+                Cras
+                cursus erat et tellus hendrerit interdum. Ut rutrum, quam nec facilisis porttitor, arcu nulla accumsan
+                mi,
+                at faucibus orci nulla in elit.
+            </p>
+        </div>
+        <div class="offer">
+            <div class="drones row-section">
+                <h1>Drones</h1>
+                <div class="drone-listing listing">
+                    <div id="drone1" class="drone clickable-item">
+                        <img src="/static/images/droni1.png">
+                    </div>
+                    <div id="drone2" class="drone clickable-item">
+                        <img src="/static/images/droni2.png">
+                    </div>
+                    <div id="drone3" class="drone clickable-item">
+                        <img src="/static/images/droni3.png">
+                    </div>
+                </div>
+            </div>
+            <div class="industries row-section">
+                <h1>Industries</h1>
+                <div class="industry-listing listing">
+                    <div id="ind1" class="industry clickable-item"><img src="/static/images/ind1.png"></div>
+                    <div id="ind2" class="industry clickable-item"><img src="/static/images/ind2.png"></div>
+                    <div id="ind3" class="industry clickable-item"><img src="/static/images/ind3.png"></div>
+                    <div id="ind4" class="industry clickable-item"><img src="/static/images/ind4.png"></div>
+                    <div id="ind5" class="industry clickable-item"><img src="/static/images/ind5.png"></div>
+                    <div id="ind6" class="industry clickable-item"><img src="/static/images/ind6.png"></div>
+                </div>
+            </div>
+            <div class="cameras row-section">
+                <h1>Cameras</h1>
+                <div class="camera-listing listing">
+                    <div id="camera1" class="camera clickable-item"><img src="/static/images/camera1.png"></div>
+                    <div id="camera2" class="camera clickable-item"><img src="/static/images/camera2.png"></div>
+                    <div id="camera3" class="camera clickable-item"><img src="/static/images/camera3.png"></div>
+                    <div id="camera4" class="camera clickable-item"><img src="/static/images/camera4.png"></div>
+                    <div id="camera5" class="camera clickable-item"><img src="/static/images/camera5.png"></div>
+                    <div id="camera6" class="camera clickable-item"><img src="/static/images/camera6.png"></div>
+                    <div id="camera7" class="camera clickable-item"><img src="/static/images/camera7.png"></div>
+                    <div id="camera8" class="camera clickable-item"><img src="/static/images/camera8.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="associated-projects">
+            <h1>Associated Projects</h1>
+            <div class="description">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ex quis leo mollis rhoncus.
+                    Proin
+                    dapibus ullamcorper ipsum tristique fermentum. Nullam porttitor id enim eu luctus. Vivamus
+                    condimentum
+                    diam
+                    efficitur, ornare ante sit amet, egestas nisl. Aenean libero nunc, vestibulum quis malesuada eu,
+                    volutpat id
+                    nisl. Ut laoreet pellentesque dictum. Vivamus at diam velit. Donec eu elit et nunc semper gravida
+                    eget
+                    vitae
+                    ipsum. Curabitur sed eros facilisis, egestas est eget, cursus nibh. Fusce turpis nisi, lobortis vel
+                    blandit
+                    ac, volutpat vel velit. Cras aliquet cursus iaculis. Vestibulum convallis euismod erat. Phasellus eu
+                    ligula
+                    mattis, euismod dolor nec, faucibus elit.
+                </p>
+            </div>
+            <div class="project-cards">
+                <a href="/templates/pages/project-page.html" class="project-gallery-item-wrapper"
+                    style="background-image:url(https://th.bing.com/th/id/OIP.EMwreuzQ5-TCOJtBZ_1ssAHaEK?pid=ImgDet&rs=1);">
+                    <div class="color-overlay">
+                        <h2>Title</h2>
+                    </div>
+                </a>
+                <a href="/templates/pages/project-page.html" class="project-gallery-item-wrapper"
+                    style="background-image:url(https://th.bing.com/th/id/OIP.EMwreuzQ5-TCOJtBZ_1ssAHaEK?pid=ImgDet&rs=1);">
+                    <div class="color-overlay">
+                        <h2>Title</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="associated-owners">
+            <h1>Associated Product Owners</h1>
+            <div class="description">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ex quis leo mollis rhoncus.
+                    Proin
+                    dapibus ullamcorper ipsum tristique fermentum. Nullam porttitor id enim eu luctus. Vivamus
+                    condimentum
+                    diam
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <script src="/static/js/sensflyController.js"></script>
+    <div id="footer"></div>
+</body>
+
+</html>
