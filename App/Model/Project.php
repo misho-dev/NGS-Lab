@@ -2,8 +2,12 @@
 
 namespace App\Model;
 
+use App\Model\MetaTrait;
+
 class Project
 {
+    use MetaTrait;
+
     /** @var int $id */
     private $id;
 
@@ -30,6 +34,10 @@ class Project
         $this->description = $data['description'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->logo = $data['logo'] ?? '';
+
+        $this->setMetaTitle($data['meta_title'] ?? '');
+        $this->setMetaKeyword($data['meta_keyword'] ?? '');
+        $this->setMetaDescription($data['meta_description'] ?? '');
     }
 
     /**

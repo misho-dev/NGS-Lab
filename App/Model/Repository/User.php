@@ -11,6 +11,7 @@ use Exception;
 class User
 {
     const TABLE_NAME = 'user_entity';
+    const TABLE_TO_PROJECT = 'user_to_project';
 
     /**
      * @return array
@@ -94,6 +95,13 @@ class User
             'full_name' => $user->getName(),
             'short_description' => $user->getShortDescription(),
             'description' => $user->getDescription(),
+            'position' => $user->getPosition(),
+            'meta_title' => $user->getMetaTitle(),
+            'meta_keyword' => $user->getMetaKeyword(),
+            'meta_description' => $user->getMetaDescription(),
+            'social_facebook' => $user->getSocials()['facebook'],
+            'social_linkedin' => $user->getSocials()['linkedin'],
+            'social_instagram' => $user->getSocials()['instagram'],
             'is_owner' => (int) $user->isProductOwner()
         ];
 
@@ -115,6 +123,13 @@ class User
             'enabled' => (int) $updatedUser->isEnabled(),
             'short_description' => $updatedUser->getShortDescription(),
             'description' => $updatedUser->getDescription(),
+            'position' => $updatedUser->getPosition(),
+            'meta_title' => $updatedUser->getMetaTitle(),
+            'meta_keyword' => $updatedUser->getMetaKeyword(),
+            'meta_description' => $updatedUser->getMetaDescription(),
+            'social_facebook' => $updatedUser->getSocials()['facebook'],
+            'social_linkedin' => $updatedUser->getSocials()['linkedin'],
+            'social_instagram' => $updatedUser->getSocials()['instagram'],
             'is_owner' => (int) $updatedUser->isProductOwner()
         ];
 
@@ -131,6 +146,43 @@ class User
         }
 
         return $updated;
+    }
+
+    /**
+     * @param $userId
+     * @param $projectIds
+     * @return mixed
+     * @throws Exception
+     */
+    public static function setProjects($userId, $projectIds)
+    {
+        $relationTable = DAL::builder()->table(self::TABLE_TO_PROJECT);
+
+        $deleted = $relationTable->delete()
+            ->where('user_id', (int) $userId)
+            ->execute();
+
+        $insertData = [];
+        foreach ($projectIds as $projectId) {
+            $insertData[] = [
+                'user_id' => $userId,
+                'project_id' => $projectId
+            ];
+        }
+
+        return $relationTable->insert($insertData)->execute();
+    }
+
+    public static function getProjects($userId)
+    {
+        $queryResult = DAL::builder()
+            ->table(self::TABLE_TO_PROJECT . ' as utp')
+            ->select()
+            ->join(Project::TABLE_NAME . ' as p', 'utp.project_id', '=', 'p.entity_id')
+            ->where('utp.user_id', (int) $userId)
+            ->execute();
+
+        return Project::buildProjects($queryResult);
     }
 
     /**

@@ -19,9 +19,11 @@ class Save extends AbstractAdminAction
         $user = $this->createUserFromPostRequest();
 
         if (isset($_POST['create_user'])) {
-            UserRepository::addUser($user);
+            $userId = UserRepository::addUser($user);
+            UserRepository::setProjects($userId, $_POST['projects'] ?? []);
         } else if (isset($_POST['update_user']) && $_GET['id']) {
             UserRepository::updateUser($user, $_GET['id']);
+            UserRepository::setProjects($_GET['id'], $_POST['projects'] ?? []);
         } else {
             throw new \Exception('Unexpected error occurred. Please try again.');
         }
@@ -36,6 +38,15 @@ class Save extends AbstractAdminAction
             'full_name' => $_POST['name'],
             'description' => $_POST['description'],
             'short_description' => $_POST['short_description'],
+            'position' => $_POST['position'],
+            'meta_title' => $_POST['meta_title'],
+            'meta_keyword' => $_POST['meta_keyword'],
+            'meta_description' => $_POST['meta_description'],
+            'socials' => [
+                'facebook' => $_POST['social_fb'],
+                'instagram' => $_POST['social_ig'],
+                'linkedin' => $_POST['social_in'],
+            ],
             'is_owner' => $_POST['is_owner'] == 'on',
         ]);
     }

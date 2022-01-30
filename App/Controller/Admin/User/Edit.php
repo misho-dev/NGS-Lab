@@ -4,6 +4,7 @@ namespace App\Controller\Admin\User;
 
 use App\Controller\Admin\AbstractAdminAction;
 use App\Model\Repository\Image;
+use App\Model\Repository\Project;
 use App\Model\Repository\User as UserRepository;
 use App\ViewModel\View;
 
@@ -29,7 +30,9 @@ class Edit extends AbstractAdminAction
                 $gif = new \App\Model\Image();
             }
 
-            View::render('admin/user-edit.phtml', compact('user', 'image', 'gif'));
+            $projects = Project::getProjects();
+            $ownedProjects = UserRepository::getProjects($user->getId());
+            View::render('admin/user-edit.phtml', compact('user', 'image', 'gif', 'projects', 'ownedProjects'));
         }
     }
 }

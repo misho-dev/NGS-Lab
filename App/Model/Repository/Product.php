@@ -71,6 +71,9 @@ class Product
             'name' => $product->getName(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
+            'meta_title' => $product->getMetaTitle(),
+            'meta_keyword' => $product->getMetaKeyword(),
+            'meta_description' => $product->getMetaDescription(),
             'owner_id' => $product->getOwnerId()
         ];
 
@@ -116,6 +119,9 @@ class Product
             'name' => $product->getName(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
+            'meta_title' => $product->getMetaTitle(),
+            'meta_keyword' => $product->getMetaKeyword(),
+            'meta_description' => $product->getMetaDescription(),
             'owner_id' => $product->getOwnerId(),
         ];
 

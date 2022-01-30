@@ -2,27 +2,31 @@
 
 namespace App\Model;
 
+use App\Model\MetaTrait;
+
 class Blog
 {
+    use MetaTrait;
+
     /** @var int $id */
     private $id;
 
-    /** @var boolean $isEnabled */
+    /** @var boolean $enabled */
     private $enabled;
 
     /** @var string $title */
     private $title;
 
-    /** @var string $title */
+    /** @var string $description */
+    private $description;
+
+    /** @var string $body */
     private $body;
 
-    /** @var string $isOwner */
-    private $metaKeys;
-
-    /** @var string $isOwner */
+    /** @var string $createdAt */
     private $createdAt;
 
-    /** @var string $isOwner */
+    /** @var string $updatedAt */
     private $updatedAt;
 
     public function __construct($data = [])
@@ -30,10 +34,14 @@ class Blog
         $this->id = $data['entity_id'] ?? '';
         $this->enabled = $data['enabled'] ?? true;
         $this->title = $data['title'] ?? '';
+        $this->description = $data['description'] ?? '';
         $this->body = $data['body'] ?? '';
-        $this->metaKeys = $data['meta_keys'] ?? '';
         $this->createdAt = $data['created_at'] ?? '';
         $this->updatedAt = $data['updated_at'] ?? '';
+
+        $this->setMetaTitle($data['meta_title'] ?? '');
+        $this->setMetaKeyword($data['meta_keyword'] ?? '');
+        $this->setMetaDescription($data['meta_description'] ?? '');
     }
 
     /**
@@ -63,25 +71,17 @@ class Blog
     /**
      * @return mixed|string
      */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return mixed|string
+     */
     public function getBody()
     {
         return $this->body;
-    }
-
-    /**
-     * @return bool|mixed
-     */
-    public function getMetaKeys()
-    {
-        return $this->metaKeys;
-    }
-
-    /**
-     * @return bool|mixed
-     */
-    public function getMetaKeysAsArray()
-    {
-        return explode(',', $this->metaKeys);
     }
 
     /**

@@ -2,8 +2,12 @@
 
 namespace App\Model;
 
+use App\Model\MetaTrait;
+
 class Product
 {
+    use MetaTrait;
+
     /** @var int $id */
     private $id;
 
@@ -34,6 +38,10 @@ class Product
         $this->logo = $data['logo'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
+
+        $this->setMetaTitle($data['meta_title'] ?? '');
+        $this->setMetaKeyword($data['meta_keyword'] ?? '');
+        $this->setMetaDescription($data['meta_description'] ?? '');
     }
 
     /**
