@@ -2,8 +2,12 @@
 
 namespace App\Model;
 
+use App\Model\MetaTrait;
+
 class User
 {
+    use MetaTrait;
+
     /** @var int $id */
     private $id;
 
@@ -25,6 +29,12 @@ class User
     /** @var string $description */
     private $description;
 
+    /** @var string $position */
+    private $position;
+
+    /** @var string[] $socials */
+    private $socials;
+
     /** @var boolean $isOwner */
     private $isOwner;
 
@@ -37,7 +47,22 @@ class User
         $this->gif = $data['gif'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
+        $this->position = $data['position'] ?? '';
         $this->isOwner = $data['is_owner'] ?? false;
+
+        $this->setMetaTitle($data['meta_title'] ?? '');
+        $this->setMetaKeyword($data['meta_keyword'] ?? '');
+        $this->setMetaDescription($data['meta_description'] ?? '');
+
+        if (isset($data['socials'])) {
+            $this->socials = $data['socials'] ?? [];
+        } else {
+            $this->socials = [
+                'facebook' => $data['social_facebook'],
+                'linkedin' => $data['social_linkedin'],
+                'instagram' => $data['social_instagram'],
+            ];
+        }
     }
 
     /**
@@ -129,15 +154,26 @@ class User
     }
 
     /**
+     * @return mixed|string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getSocials()
+    {
+        return $this->socials;
+    }
+
+    /**
      * @return bool|mixed
      */
     public function isProductOwner()
     {
         return $this->isOwner;
-    }
-
-    public function getUrl()
-    {
-
     }
 }

@@ -75,8 +75,11 @@ class Blog
         $newBlog = [
             'enabled' => (int) $blog->isEnabled(),
             'title' => $blog->getTitle(),
+            'description' => $blog->getDescription(),
             'body' => $blog->getBody(),
-            'meta_keys' => $blog->getMetaKeys(),
+            'meta_title' => $blog->getMetaTitle(),
+            'meta_keyword' => $blog->getMetaKeyword(),
+            'meta_description' => $blog->getMetaDescription(),
         ];
 
         return DAL::builder()
@@ -93,8 +96,11 @@ class Blog
         $newData = [
             'enabled' => (int) $updatedBlog->isEnabled(),
             'title' => $updatedBlog->getTitle(),
+            'description' => $updatedBlog->getDescription(),
             'body' => $updatedBlog->getBody(),
-            'meta_keys' => $updatedBlog->getMetaKeys(),
+            'meta_title' => $updatedBlog->getMetaTitle(),
+            'meta_keyword' => $updatedBlog->getMetaKeyword(),
+            'meta_description' => $updatedBlog->getMetaDescription(),
         ];
 
         return DAL::builder()

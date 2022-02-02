@@ -2,6 +2,8 @@
 /** @var App\Model\User $user */
 /** @var App\Model\Image $image */
 /** @var App\Model\Image $gif */
+/** @var App\Model\Project[] $projects */
+/** @var App\Model\Project[] $ownedProjects */
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +95,51 @@
         <textarea class="desc" id="desc_form" name="short_description"><?= $user->getShortDescription() ?></textarea>
         <br>
 
+        <label for="pos_form">Position</label>
+        <input type="text" id="pos_form" name="position" value="<?= $user->getPosition() ?>">
+        <br>
+
         <label for="is_owner">Is Product Owner:</label>
         <input type="checkbox" id="is_owner" name="is_owner" <?= $user->isProductOwner() ? 'checked' : '' ?>>
+        <br>
+
+        <label for="projects">Projects:</label>
+        <br>
+        <select name="projects[]" id="projects" multiple style="width: 200px">
+            <?php foreach ($projects as $project): ?>
+                <option value="<?= $project->getId() ?>" <?= isset($ownedProjects[$project->getId()]) ? 'selected' : '' ?>>
+                    <?= $project->getName() ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+
+        <h2>Links</h2>
+
+        <label for="social_fb">Facebook</label>
+        <input type="text" id="social_fb" name="social_fb" value="<?= $user->getSocials()['facebook'] ?>">
+        <br>
+
+        <label for="social_in">LinkedIn</label>
+        <input type="text" id="social_in" name="social_in" value="<?= $user->getSocials()['linkedin'] ?>">
+        <br>
+
+        <label for="social_ig">Instagram</label>
+        <input type="text" id="social_ig" name="social_ig" value="<?= $user->getSocials()['instagram'] ?>">
+        <br>
+
+        <h2>SEO</h2>
+
+        <label for="meta_title">Meta Title</label>
+        <input type="text" id="meta_title" name="meta_title" value="<?= $user->getMetaTitle() ?>">
+        <br>
+
+        <label for="meta_keyword">Meta Keyword</label>
+        <input type="text" id="meta_keyword" name="meta_keyword" value="<?= $user->getMetaKeyword() ?>">
+        <br>
+
+        <label for="meta_description">Meta Description</label>
+        <input type="text" id="meta_description" name="meta_description" value="<?= $user->getMetaDescription() ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save User</button>

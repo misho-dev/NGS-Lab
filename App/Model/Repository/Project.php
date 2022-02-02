@@ -43,7 +43,7 @@ class Project
             return null;
         }
 
-        return $project[0];
+        return $project[$id];
     }
 
     /**
@@ -72,6 +72,9 @@ class Project
             'name' => $project->getName(),
             'short_description' => $project->getShortDescription(),
             'description' => $project->getDescription(),
+            'meta_title' => $project->getMetaTitle(),
+            'meta_keyword' => $project->getMetaKeyword(),
+            'meta_description' => $project->getMetaDescription(),
         ];
 
         return DAL::builder()
@@ -116,6 +119,9 @@ class Project
             'name' => $project->getName(),
             'short_description' => $project->getShortDescription(),
             'description' => $project->getDescription(),
+            'meta_title' => $project->getMetaTitle(),
+            'meta_keyword' => $project->getMetaKeyword(),
+            'meta_description' => $project->getMetaDescription(),
         ];
 
         return DAL::builder()
@@ -146,7 +152,7 @@ class Project
     {
         $result = [];
         foreach ($projects as $project) {
-            $result[] = new ProjectModel($project);
+            $result[$project['entity_id']] = new ProjectModel($project);
         }
 
         return $result;

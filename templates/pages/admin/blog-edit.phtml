@@ -94,13 +94,27 @@
         <input type="text" id="title_form" name="title" value="<?= $blog->getTitle() ?>" required>
         <br>
 
+        <label for="description_form">Description:</label>
+        <input type="text" id="description_form" name="description" value="<?= $blog->getDescription() ?>">
+        <br>
+
         <label for="blog_body">Body: </label>
         <textarea id="blog_body" name="blog_body">
             <?= $blog->getBody() ?>
         </textarea>
 
-        <label for="meta_keys">Meta Keywords (separated by comma, ex. "computer,mouse,keyboard")</label>
-        <input type="text" id="meta_keys" name="meta_keys" value="<?= $blog->getMetaKeys() ?>">
+        <h2>SEO</h2>
+
+        <label for="meta_title">Meta Title</label>
+        <input type="text" id="meta_title" name="meta_title" value="<?= $blog->getMetaTitle() ?>">
+        <br>
+
+        <label for="meta_keyword">Meta Keyword</label>
+        <input type="text" id="meta_keyword" name="meta_keyword" value="<?= $blog->getMetaKeyword() ?>">
+        <br>
+
+        <label for="meta_description">Meta Description</label>
+        <input type="text" id="meta_description" name="meta_description" value="<?= $blog->getMetaDescription() ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $blog->getId() ? 'update_blog' : 'create_blog' ?>">Save</button>

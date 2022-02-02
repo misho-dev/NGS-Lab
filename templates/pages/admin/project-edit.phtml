@@ -90,6 +90,20 @@
         <textarea id="full_description" name="description"><?= $project->getDescription() ?></textarea>
         <br>
 
+        <h2>SEO</h2>
+
+        <label for="meta_title">Meta Title</label>
+        <input type="text" id="meta_title" name="meta_title" value="<?= $project->getMetaTitle() ?>">
+        <br>
+
+        <label for="meta_keyword">Meta Keyword</label>
+        <input type="text" id="meta_keyword" name="meta_keyword" value="<?= $project->getMetaKeyword() ?>">
+        <br>
+
+        <label for="meta_description">Meta Description</label>
+        <input type="text" id="meta_description" name="meta_description" value="<?= $project->getMetaDescription() ?>">
+        <br>
+
         <button type="submit" class="btn" name="<?= $project->getId() ? 'update_project' : 'create_project' ?>">Save</button>
     </form>
 

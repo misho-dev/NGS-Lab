@@ -20,10 +20,10 @@ class Owner implements ControllerAction
         if ($user) {
             $userImage = ImageRepository::getImageById($user->getImage()) ?? new Image();
             $userGif = ImageRepository::getImageById($user->getGif()) ?? new Image();
-            $products = ProductRepository::getProductsOwnedByUser($_GET['id']);
-            // TODO: projects by user
+            $products = ProductRepository::getProductsOwnedByUser($user->getId());
+            $projects = UserRepository::getProjects($user->getId());
 
-            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products'));
+            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products', 'projects'));
         } else {
             View::render('contact.html'); // TODO: 404 page
         }

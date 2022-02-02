@@ -34,8 +34,11 @@ class Save extends AbstractAdminAction
         return new BlogModel([
             'enabled' => $_POST['enabled'] == 'on',
             'title' => $_POST['title'],
+            'description' => $_POST['description'],
             'body' => $_POST['blog_body'],
-            'meta_keys' => $_POST['meta_keys'],
+            'meta_title' => $_POST['meta_title'],
+            'meta_keyword' => $_POST['meta_keyword'],
+            'meta_description' => $_POST['meta_description'],
         ]);
     }
 }

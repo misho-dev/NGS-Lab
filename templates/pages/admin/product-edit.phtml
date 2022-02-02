@@ -102,6 +102,20 @@
         </select>
         <br>
 
+        <h2>SEO</h2>
+
+        <label for="meta_title">Meta Title</label>
+        <input type="text" id="meta_title" name="meta_title" value="<?= $product->getMetaTitle() ?>">
+        <br>
+
+        <label for="meta_keyword">Meta Keyword</label>
+        <input type="text" id="meta_keyword" name="meta_keyword" value="<?= $product->getMetaKeyword() ?>">
+        <br>
+
+        <label for="meta_description">Meta Description</label>
+        <input type="text" id="meta_description" name="meta_description" value="<?= $product->getMetaDescription() ?>">
+        <br>
+
         <button type="submit" class="btn" name="<?= $product->getId() ? 'update_product' : 'create_product' ?>">Save</button>
     </form>
 
