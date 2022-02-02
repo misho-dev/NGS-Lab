@@ -82,11 +82,11 @@
         <input type="text" id="name_form" name="name" value="<?= $project->getName() ?>" required>
         <br>
 
-        <label for="desc_form">Short Description:</label>
+        <label for="desc_form">Description: </label>
         <textarea class="desc" id="desc_form" name="short_description"><?= $project->getShortDescription() ?></textarea>
         <br>
 
-        <label for="full_description">Full Description: </label>
+        <label for="full_description">Project Text: </label>
         <textarea id="full_description" name="description"><?= $project->getDescription() ?></textarea>
         <br>
 
@@ -117,7 +117,7 @@
             <br>
 
 
-            <h4>Logo</h4>
+            <h4>Background For Listing </h4>
             <input type="hidden" name="project_logo_id" value="<?= $logo->getId() ?>"/>
             <input type="file" name="project_logo" accept="image/*"/>
             <img src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">

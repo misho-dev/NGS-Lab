@@ -82,11 +82,11 @@
         <input type="text" id="name_form" name="name" value="<?= $product->getName() ?>" required>
         <br>
 
-        <label for="desc_form">Short Description:</label>
+        <label for="desc_form">Description:</label>
         <textarea class="desc" id="desc_form" name="short_description"><?= $product->getShortDescription() ?></textarea>
         <br>
 
-        <label for="full_description">Full Description: </label>
+        <label for="full_description">Page Code: </label>
         <textarea id="full_description" name="description"><?= $product->getDescription() ?></textarea>
         <br>
 
@@ -108,11 +108,11 @@
 
     <?php if ($product->getId()): ?>
         <form method="post" action="/admin/product/delete?id=<?= $product->getId() ?>">
-            <button type="submit" class="btn">Delete User</button>
+            <button type="submit" class="btn">Delete Product</button>
         </form>
         <h2>Images</h2>
         <form method="POST" action="/admin/product/upload?id=<?= $product->getId() ?>" enctype="multipart/form-data">
-            <h4>Picture</h4>
+            <h4>Picture For Main Page</h4>
             <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
 
             <input type="hidden" name="product_pic_id" value="<?= $product->getImage() ?>"/>

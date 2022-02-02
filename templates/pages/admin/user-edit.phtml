@@ -74,7 +74,7 @@
 <div id="nav"></div>
 <div class="about-wrapper">
     <div class="section-title">
-        <h1><?= $user->getId() ? 'Edit User' : 'New User' ?></h1>
+        <h1><?= $user->getId() ? 'Edit Product Owner' : 'Create New Product Owner' ?></h1>
     </div>
     <form method="post" action="/admin/user/save?id=<?= $user->getId() ?>" enctype="multipart/form-data">
         <label for="enabled">Enabled:</label>
