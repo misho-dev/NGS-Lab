@@ -1,5 +1,6 @@
 <?php
 /** @var App\Model\Blog $blog */
+/** @var App\Model\Image $thumbnail */
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
     <meta name="title" content="<?= $blog->getMetaTitle() ?>">
     <meta name="keywords" content="<?= $blog->getMetaKeyword() ?>">
     <meta name="description" content="<?= $blog->getMetaDescription() ?>">
+    <meta name="thumbnail" content="<?= $thumbnail->getValue() ?>"
     <title><?= $blog->getTitle() ?> | NGSLab</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">

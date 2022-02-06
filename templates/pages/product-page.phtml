@@ -1,5 +1,7 @@
 <?php
 /** @var \App\Model\Product $product */
+/** @var \App\Model\Image $image */
+/** @var \App\Model\Image $gif */
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +15,7 @@
     <meta name="title" content="<?= $product->getMetaTitle() ?>">
     <meta name="keywords" content="<?= $product->getMetaKeyword() ?>">
     <meta name="description" content="<?= $product->getMetaDescription() ?>">
+    <meta name="thumbnail" content="<?= $image->getValue() ?>">
     <title><?= $product->getName() ?> | NGSLab</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
