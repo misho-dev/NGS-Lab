@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script>
         $(function () {
-            $("#nav").load("/templates/componenetns/nav.html");
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
@@ -173,7 +172,7 @@
         @media screen and (max-width: 768px) {}
     </style>
 
-    <div id="nav"></div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
     <div class="product-page-wrapper">
         <div class="banner-section">
             <div class="product-title">

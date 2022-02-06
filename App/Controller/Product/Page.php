@@ -16,7 +16,7 @@ class Page implements ControllerAction
     {
         $product = ProductRepository::getProductById($_GET['id']);
         if (!$product) {
-            View::render('contact.html'); // TODO: 404 page
+            View::render('contact.phtml'); // TODO: 404 page
         } else {
             $image = Image::getImageById($product->getImage()) ?? new \App\Model\Image();
             $logo = Image::getImageById($product->getLogo()) ?? new \App\Model\Image();

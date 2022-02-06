@@ -25,7 +25,7 @@ class Owner implements ControllerAction
 
             View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products', 'projects'));
         } else {
-            View::render('contact.html'); // TODO: 404 page
+            View::render('contact.phtml'); // TODO: 404 page
         }
     }
 }

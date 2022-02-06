@@ -14,7 +14,7 @@ class Page implements ControllerAction
         $blog = Blog::getBlogById($_GET['id']);
 
         if (!$blog) {
-            View::render('contact.html'); // TODO: 404 page
+            View::render('contact.phtml'); // TODO: 404 page
         } else {
             View::render('blog-page.phtml', compact('blog'));
         }

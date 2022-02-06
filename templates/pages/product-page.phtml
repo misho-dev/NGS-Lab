@@ -19,14 +19,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
     <script>
         $(function () {
-            $("#nav").load("/templates/componenetns/nav.html");
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
 </head>
 
 <body>
-    <div id="nav"></div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
     <?= $product->getDescription() ?>
     <div id="footer"></div>
 </body>

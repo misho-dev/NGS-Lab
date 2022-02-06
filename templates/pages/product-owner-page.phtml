@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script>
         $(function () {
-            $("#nav").load("/templates/componenetns/nav.html");
             $("#footer").load("/templates/componenetns/footer.html");
         });
     </script>
@@ -202,7 +201,7 @@
             }
         }
     </style>
-    <div id="nav"></div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
     <div id="product-owner-component">
 
         <div class="product-owner-page-wrapper">

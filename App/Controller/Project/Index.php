@@ -16,7 +16,7 @@ class Index implements ControllerAction
     {
         $project = ProjectRepository::getProjectById($_GET['id']);
         if (!$project) {
-            View::render('contact.html'); // TODO: 404 page
+            View::render('contact.phtml'); // TODO: 404 page
         } else {
             $image = Image::getImageById($project->getImage()) ?? new \App\Model\Image();
             $logo = Image::getImageById($project->getLogo())  ?? new \App\Model\Image();
