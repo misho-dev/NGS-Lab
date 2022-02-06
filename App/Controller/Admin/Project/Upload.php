@@ -9,7 +9,7 @@ use App\Model\Repository\Project as ProjectRepository;
 
 class Upload extends AbstractAdminAction
 {
-    const ACTION_PERMISSION = self::PERMISSION_PRODUCT;
+    const ACTION_PERMISSION = self::PERMISSION_PROJECT;
 
     /**
      * @throws \Exception

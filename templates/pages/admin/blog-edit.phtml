@@ -1,5 +1,6 @@
 <?php
 /** @var App\Model\Blog $blog */
+/** @var App\Model\Image $image */
 ?>
 
 <!DOCTYPE html>
@@ -123,6 +124,32 @@
     <?php if ($blog->getId()): ?>
         <form method="post" action="/admin/blog/delete?id=<?= $blog->getId() ?>">
             <button type="submit" class="btn">DELETE</button>
+        </form>
+    <?php endif; ?>
+
+    <?php if ($blog->getId()): ?>
+        <h2>Images</h2>
+        <form method="POST" action="/admin/blog/upload?id=<?= $blog->getId() ?>" enctype="multipart/form-data">
+            <h4>Thumbnail</h4>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+
+            <input type="hidden" name="blog_pic_id" value="<?= $image->getId() ?>"/>
+            <input type="file" name="blog_pic" accept="image/*"/>
+            <?= $image->toHtml(); ?>
+            <br>
+
+            <label for="blog_pic_title">Title:</label>
+            <input type="text" id="blog_pic_title" name="blog_pic_title" value="<?= $image->getTitle() ?? '' ?>">
+            <br>
+
+            <label for="blog_pic_alt">Alt:</label>
+            <input type="text" id="blog_pic_alt" name="blog_pic_alt" value="<?= $image->getAlt() ?? '' ?>">
+            <br>
+
+            <br>
+            <br>
+
+            <input type="submit" value="Save Images"/>
         </form>
     <?php endif; ?>
 </div>

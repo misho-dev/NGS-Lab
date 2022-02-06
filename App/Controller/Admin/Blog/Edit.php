@@ -4,6 +4,7 @@ namespace App\Controller\Admin\Blog;
 
 use App\Controller\Admin\AbstractAdminAction;
 use App\Model\Repository\Blog as BlogRepository;
+use App\Model\Repository\Image;
 use App\ViewModel\View;
 
 class Edit extends AbstractAdminAction
@@ -19,7 +20,12 @@ class Edit extends AbstractAdminAction
         if (!$blog){
             throw new \Exception('Blog with given ID (' . $_GET['id'] . ') does not exist');
         } else {
-            View::render('admin/blog-edit.phtml', compact('blog'));
+            $image = Image::getImageById($blog->getImage());
+            if (!$image) {
+                $image = new \App\Model\Image();
+            }
+
+            View::render('admin/blog-edit.phtml', compact('blog', 'image'));
         }
     }
 }

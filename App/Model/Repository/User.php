@@ -12,6 +12,7 @@ class User
 {
     const TABLE_NAME = 'user_entity';
     const TABLE_TO_PROJECT = 'user_to_project';
+    const TABLE_TO_SERVICE = 'user_to_service';
 
     /**
      * @return array
@@ -170,7 +171,11 @@ class User
             ];
         }
 
-        return $relationTable->insert($insertData)->execute();
+        if (count($insertData)) {
+            return $relationTable->insert($insertData)->execute();
+        }
+
+        return false;
     }
 
     public static function getProjects($userId)
@@ -183,6 +188,47 @@ class User
             ->execute();
 
         return Project::buildProjects($queryResult);
+    }
+
+    /**
+     * @param $userId
+     * @param $serviceIds
+     * @return mixed
+     * @throws Exception
+     */
+    public static function setServices($userId, $serviceIds)
+    {
+        $relationTable = DAL::builder()->table(self::TABLE_TO_SERVICE);
+
+        $deleted = $relationTable->delete()
+            ->where('user_id', (int) $userId)
+            ->execute();
+
+        $insertData = [];
+        foreach ($serviceIds as $serviceId) {
+            $insertData[] = [
+                'user_id' => $userId,
+                'service_id' => $serviceId
+            ];
+        }
+
+        if (count($insertData)) {
+            return $relationTable->insert($insertData)->execute();
+        }
+
+        return false;
+    }
+
+    public static function getServices($userId)
+    {
+        $queryResult = DAL::builder()
+            ->table(self::TABLE_TO_SERVICE . ' as uts')
+            ->select()
+            ->join(Project::TABLE_NAME . ' as p', 'uts.service_id', '=', 'p.entity_id')
+            ->where('uts.user_id', (int) $userId)
+            ->execute();
+
+        return Service::buildServices($queryResult);
     }
 
     /**

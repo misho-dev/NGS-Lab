@@ -21,9 +21,11 @@ class Save extends AbstractAdminAction
         if (isset($_POST['create_user'])) {
             $userId = UserRepository::addUser($user);
             UserRepository::setProjects($userId, $_POST['projects'] ?? []);
+            UserRepository::setServices($userId, $_POST['services'] ?? []);
         } else if (isset($_POST['update_user']) && $_GET['id']) {
             UserRepository::updateUser($user, $_GET['id']);
             UserRepository::setProjects($_GET['id'], $_POST['projects'] ?? []);
+            UserRepository::setServices($_GET['id'], $_POST['services'] ?? []);
         } else {
             throw new \Exception('Unexpected error occurred. Please try again.');
         }

@@ -33,8 +33,7 @@ class Admin
             }
 
             try {
-                if ($controller::ACTION_PERMISSION != AbstractAdminAction::PERMISSION_NONE
-                    && !AdminSession::hasPermission(AbstractAdminAction::PERMISSION_ADMIN)
+                if (!AdminSession::hasPermission(AbstractAdminAction::PERMISSION_ADMIN)
                     && !AdminSession::hasPermission($controller::ACTION_PERMISSION)
                 ) {
                     throw new \Exception('You do not have permission to perform this action');

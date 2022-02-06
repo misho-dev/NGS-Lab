@@ -4,6 +4,8 @@
 /** @var App\Model\Image $gif */
 /** @var App\Model\Project[] $projects */
 /** @var App\Model\Project[] $ownedProjects */
+/** @var App\Model\Service[] $services */
+/** @var App\Model\Service[] $ownedServices */
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +111,17 @@
             <?php foreach ($projects as $project): ?>
                 <option value="<?= $project->getId() ?>" <?= isset($ownedProjects[$project->getId()]) ? 'selected' : '' ?>>
                     <?= $project->getName() ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+
+        <label for="services">Services:</label>
+        <br>
+        <select name="services[]" id="services" multiple style="width: 200px">
+            <?php foreach ($services as $service): ?>
+                <option value="<?= $service->getId() ?>" <?= isset($ownedServices[$service->getId()]) ? 'selected' : '' ?>>
+                    <?= $service->getTitle() ?>
                 </option>
             <?php endforeach; ?>
         </select>

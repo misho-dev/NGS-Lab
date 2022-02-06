@@ -17,7 +17,7 @@ class User
     /** @var string $name */
     private $name;
 
-    /** @var string $image */
+    /** @var int $image */
     private $image;
 
     /** @var string $gif */
@@ -90,7 +90,7 @@ class User
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getImage()
     {
@@ -103,22 +103,6 @@ class User
     public function setImage($image)
     {
         $this->image = $image;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageAlt()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageTitle()
-    {
-        return $this->image;
     }
 
     /**

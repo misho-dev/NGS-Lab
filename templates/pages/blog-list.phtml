@@ -1,5 +1,6 @@
 <?php
 /** @var App\Model\Blog[] $blogs */
+/** @var App\Model\Image[] $blogImages */
 ?>
 
 <!DOCTYPE html>
@@ -107,8 +108,7 @@
         <?php foreach ($blogs as $blog): ?>
             <div class="blog-card-wrapper">
                 <a href="/blog/page?id=<?= $blog->getId() ?>" class="blog-card">
-                    <img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAMAAABThUXgAAAAG1BMVEXMzMyWlpbFxcWcnJyjo6O+vr6qqqqxsbG3t7c5aJrXAAAEG0lEQVR4nO2cyZKjMAxAvdv//8XjfYvpJHOYgp73Do1FCxUSshCkjBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8RnJbGqSbaJFpxIb7Fy2YpyIb9O1M3xFWPQhGri14cxffoHiy/BetrU/cjuWSciX+zkyqL3cFNfI+Vc7B0wf6VqRuipU7eRSddEl0WVZwv4iC+xeoRLNeStYnfmbohtl1pn51QdTrWBNnEd7aMlnJomiWHvjN1T2IhKQObB13UubZs4ntbc7D0EqzvTN0T32aFlVqkuVLFMthE0VSz7pi7bb+LjGCtKXQ29VBadOplb7FbxKFbppQ5TKm+S7VUasccTT0R5Yv/phXl4tImdu2SWvbUB/RgxUNUbKx0Vbkw9TxyXXZlVOtMyYtN7PgcJn1yuwcrxMYh17B8t7009ThG5zi7pF7EQWo4glx7g2arKo6e1BwsP5fRZ2/l+apap3ubO3dMc7CMKp3XwfKTsaYkwKeZlWr7uRcfwdIllrUN/TWZlTCnInVdaKxc24bOayjCG1MPpHTWn90NE/pYsU7BUifLj8T7ZXb0biisfVbYPUzl++j0Vet1beo59IePMjv82mf7q7Y7dVrnty2jKVVD9ydTD8KtjzufPhvGHn5+wTDRdvYn9JpKv+PZsDrn9rcO9lXsqFTdw7HE9wj2xNNZ7crUk1ClGxKtw/zsfZapNfuQWn2f6RZLdH7B+6zkizaxwaxl96M3pfVtg5UHx+cH6Xhosux+MPUslJHTE9xn7+BbtTIHz0e2hflp58rU0/AmvRsYv+6Y9dcd8/KTTGgeq0P7ME3N/NLBjG7sYAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOC/QW5b+IH/NVhpTZT7dvn8j8GSbVMXRsVhWRGk5XZIWgxU1gKl5Vl56d+sej9kOufjuvufD1q2p3/KMS7LoYLZgqXScizr6kj5tJBtVr0f6axUvJxO63Ta6YRD2SN82SWkTxe6SVHR92DVnTk9lB4WxRqsYLLSFizn15F3q+r9qMHyRikTT9kFoWT6yKLIu7IXeYI0KSv2YNWjbF7a74dFsQZLaJt0tmBptY5StGfV+1GnYVnCm76ZFVMoCGdF3yXyisMm5W0PVlOJqdUSq5WqJVgxX6LKFiy5j+Sqej9qge+u6XhpjdCiOS1ajrRi3RT7Nv2JueDCvHPLLKGDFp9l1lC9H+2DAyNH4pW1Rky+SDFJ58wS2uvN4hosnxbLflKzJtX7Uc+q1aw8CUP+oliIpUq5ptKkY81KS4fDZnENVt9O4+PdcDVyM9pZ1buhsDFbVFkXHbTMnyQtKk063Q3Tf3eLV8GaprNy8qXP2k7rV2KOX/2BE+GxH+/595QJCgAAAHAH/gDvvREOZ4/ycgAAAABJRU5ErkJggg==">
+                    <?= $blogImages[$blog->getId()]->toHtml() ?>
                     <div class="info-section">
                         <div class="blog-title"> <?= $blog->getTitle() ?> </div>
                         <div class="brief"> <?= $blog->getDescription() ?> </div>

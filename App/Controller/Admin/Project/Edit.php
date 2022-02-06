@@ -10,7 +10,7 @@ use App\ViewModel\View;
 
 class Edit extends AbstractAdminAction
 {
-    const ACTION_PERMISSION = self::PERMISSION_PRODUCT;
+    const ACTION_PERMISSION = self::PERMISSION_PROJECT;
 
     /**
      * @throws \Exception

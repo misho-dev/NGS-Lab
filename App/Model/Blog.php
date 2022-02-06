@@ -23,6 +23,9 @@ class Blog
     /** @var string $body */
     private $body;
 
+    /** @var int $image */
+    private $image;
+
     /** @var string $createdAt */
     private $createdAt;
 
@@ -36,6 +39,7 @@ class Blog
         $this->title = $data['title'] ?? '';
         $this->description = $data['description'] ?? '';
         $this->body = $data['body'] ?? '';
+        $this->image = $data['image'] ?? '';
         $this->createdAt = $data['created_at'] ?? '';
         $this->updatedAt = $data['updated_at'] ?? '';
 
@@ -82,6 +86,14 @@ class Blog
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * @return mixed|int
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

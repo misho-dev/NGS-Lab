@@ -111,6 +111,21 @@ class Blog
     }
 
     /**
+     * @param $imageId
+     * @param $blogId
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateImage($imageId, $blogId)
+    {
+        return DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->update(['image' => $imageId])
+            ->where('entity_id', (int) $blogId)
+            ->execute();
+    }
+
+    /**
      * @throws HydrahonException
      * @throws Exception
      */

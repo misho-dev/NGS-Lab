@@ -35,17 +35,17 @@ class ImageUploader
     }
 
     /**
-     * @param $imageId
+     * @param $imageEntityId
      * @param $fileName
      * @param $title
      * @param $alt
      * @return int|mixed|string
      * @throws \Exception
      */
-    public static function uploadAndSaveImage($imageId, $fileName, $title, $alt)
+    public static function uploadAndSaveImage($imageEntityId, $fileName, $title, $alt)
     {
         $isNew = false;
-        $image = ImageRepository::getImageById($imageId);
+        $image = ImageRepository::getImageById($imageEntityId);
         if (!$image) {
             $image = new Image();
             $isNew = true;
