@@ -93,7 +93,7 @@
         <div class="project-gallery-wrapper">
             <div class="projects-gallery">
                 <?php foreach ($products as $product): ?>
-                    <?php $productLink = '/product?id=' . $product->getId() ?>
+                    <?php $productLink = '/product/page?id=' . $product->getId() ?>
                     <div>
                         <a href="<?= $productLink ?>" class="project-gallery-item-wrapper"
                            style="background-image:url(<?= $productLogos[$product->getId()]->getValue() ?>); background-color: white">
