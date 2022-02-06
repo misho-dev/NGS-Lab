@@ -14,10 +14,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="title" content="<?= $user->getMetaTitle() ?>">
+    <meta name="title" property="og:title" content="<?= $user->getMetaTitle() ?>">
     <meta name="keywords" content="<?= $user->getMetaKeyword() ?>">
-    <meta name="description" content="<?= $user->getMetaDescription() ?>">
-    <meta name="thumbnail" content="<?= $userImage->getValue() ?>">
+    <meta name="description" property="og:description" content="<?= $user->getMetaDescription() ?>">
+    <meta name="thumbnail" property="og:image" content="<?= $userImage->getValue() ?>">
     <title><?= $user->getName() ?> | NGSLab</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
