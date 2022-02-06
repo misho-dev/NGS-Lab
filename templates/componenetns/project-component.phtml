@@ -62,5 +62,5 @@
         <h1> <?= $project->getName() ?> </h1>
         <p> <?= $project->getDescription() ?></p>
     </div>
-    <div class="image-carousel" style="background-image: url(<?= $image->getValue() ?>);"></div>
+    <div class="image-carousel"><?= $project->getSliderHtml() ?></div>
 </div>

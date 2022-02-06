@@ -26,12 +26,16 @@ class Project
     /** @var string $description */
     private $description;
 
+    /** @var string $sliderHtml */
+    private $sliderHtml;
+
     public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? null;
         $this->name = $data['name'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
+        $this->sliderHtml = $data['slider_html'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->logo = $data['logo'] ?? '';
 
@@ -86,5 +90,13 @@ class Project
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getSliderHtml()
+    {
+        return $this->sliderHtml;
     }
 }
