@@ -177,26 +177,75 @@
         height: 300px;
         border-radius: 50%;
         overflow: hidden;
-
+        z-index:10;
         cursor: pointer;
         }
 
         .profile-picture img {
-        grid-area: 1 / 1;
-        width: 100%;
+            z-index: 10;
+            grid-area: 1 / 1;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .service-container{
+            top:6vh;
+            position: absolute;
+            z-index: 0;
+            width:300px;
+            height:300px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor: pointer;
         }
 
         .profile-picture img:last-of-type {
-        transition: all 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .profile-picture:hover img:last-of-type {
-        opacity: 0;
+            display:none;
+        }
+
+        .menu-item{
+            background: #e91e63;
+            border-radius: 100%;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .divider{
+            width: 100%;
+            height:0px;
+            transition: all 0.5s linear;
+        }
+
+        .menu-item {
+            transition-duration: 0.5s;
+        }
+
+        .service{
+            width:100%;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            border-radius:50%;
+        }
+
+        .hidden{
+            display:none
         }
 
         @media screen and (max-width: 768px) {
-
-
             .product-owner-page-wrapper .owner-bio {
                 width: 90%;
             }
@@ -208,10 +257,30 @@
         <div class="product-owner-page-wrapper">
 
             <div class="profile-picture">
+                <?= $userGif->toHtml('service-button') ?>
                 <?= $userImage->toHtml('overlay-image') ?>
-                <?= $userGif->toHtml() ?>
+                
             </div>
 
+            <div class="service-container">
+                    <div class="service hidden" style="background-image:url(https://i.pinimg.com/736x/30/14/13/301413967f5d22cd710317c8c3fe7f77--cool-wallpaper-wallpaper-designs.jpg)">
+                        <h1>nigato1</h1>
+                    </div>
+
+                    <div class="service hidden" style="background-image:url()">
+                        <h1>nigato2</h1>
+                    </div>
+
+                    <div class="service hidden" style="background-image:url()">
+                        <h1>nigato3</h1>
+                    </div>
+                    
+                    <a href="#" class="menu-item"> <i class="fa"></i> </a>
+                    <a href="#" class="menu-item"> <i class="fa"></i> </a>
+                    <a href="#" class="menu-item"> <i class="fa"></i> </a>
+            </div>
+
+            <div id="divider" class="divider"></div>
             <div class="profile-name">
                 <h1><?= $user->getName() ?></h1>
             </div>
@@ -298,7 +367,7 @@
 
         </div>
     </div>
-
+    <script src="/static/js/serviceFeature.js"> </script>                      
     <div id="footer"></div>
 </body>
 
