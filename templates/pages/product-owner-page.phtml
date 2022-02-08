@@ -4,6 +4,7 @@
 /** @var App\Model\Image $userGif */
 /** @var App\Model\Product[] $products */
 /** @var App\Model\Product[] $projects */
+/** @var App\Model\Image[] $productLogos */
 ?>
 
 <!DOCTYPE html>
@@ -241,7 +242,7 @@
                                 <a href="/product/page?id=<?= $product->getId() ?>" class="product-card-component">
                                     <div class="product-name"> <?= $product->getName() ?> </div>
                                     <div class="slogan"><?= $product->getShortDescription() ?></div>
-                                    <img src="<?= $product->getImage() ?>" alt="">
+                                    <?= $productLogos[$product->getId()]->toHtml() ?>
                                 </a>
                             </div>
                         </div>

@@ -23,7 +23,13 @@ class Owner implements ControllerAction
             $products = ProductRepository::getProductsOwnedByUser($user->getId());
             $projects = UserRepository::getProjects($user->getId());
 
-            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products', 'projects'));
+
+            $productLogos = [];
+            foreach ($products as $product) {
+                $productLogos[$product->getId()] = ImageRepository::getImageById($product->getLogo()) ?? new Image();
+            }
+
+            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products', 'projects', 'productLogos'));
         } else {
             View::render('contact.phtml'); // TODO: 404 page
         }

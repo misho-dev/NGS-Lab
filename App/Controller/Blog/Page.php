@@ -18,9 +18,9 @@ class Page implements ControllerAction
         if (!$blog) {
             View::render('contact.phtml'); // TODO: 404 page
         } else {
-            $image = ImageRepository::getImageById($blog->getImage()) ?? new Image();
+            $thumbnail = ImageRepository::getImageById($blog->getImage()) ?? new Image();
 
-            View::render('blog-page.phtml', compact('image'));
+            View::render('blog-page.phtml', compact('blog','thumbnail'));
         }
     }
 }
