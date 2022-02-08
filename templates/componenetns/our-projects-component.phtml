@@ -10,7 +10,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
     
     .our-projects-component-wrapper .section-title h1 {
@@ -28,6 +28,7 @@
     }
     
     .our-projects-component-wrapper .project-listing ul {
+        padding:0;  
         list-style-type: circle;
     }
     
@@ -78,6 +79,11 @@
     /*phone resolution*/
     
     @media screen and (max-width: 768px) {
+        .our-projects-component-wrapper .project-listing {
+            color: white;
+            width: 95%;
+            height: 75%;
+        }
         .our-projects-component-wrapper {
             min-width: 0;
             width: 100%;

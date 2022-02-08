@@ -89,11 +89,11 @@
         <br>
 
         <label for="full_description">Full Description: </label>
-        <textarea id="full_description" name="description"><?= $user->getDescription() ?></textarea>
+        <textarea id="full_description" name="description" maxlength="1400"><?= $user->getDescription() ?></textarea>
         <br>
 
         <label for="desc_form">Short Description</label>
-        <textarea class="desc" id="desc_form" name="short_description"><?= $user->getShortDescription() ?></textarea>
+        <textarea class="desc" id="desc_form" name="short_description" maxlength="250"><?= $user->getShortDescription() ?></textarea>
         <br>
 
         <label for="pos_form">Position</label>

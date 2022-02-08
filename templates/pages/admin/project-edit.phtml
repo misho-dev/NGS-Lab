@@ -77,11 +77,11 @@
     </div>
     <form method="post" action="/admin/project/save?id=<?= $project->getId() ?>" enctype="multipart/form-data">
         <label for="name_form">Name:</label>
-        <input type="text" id="name_form" name="name" value="<?= $project->getName() ?>" required>
+        <input type="text" id="name_form" name="name" maxlength="100" value="<?= $project->getName() ?>" required>
         <br>
 
         <label for="desc_form">Description: </label>
-        <textarea class="desc" id="desc_form" name="short_description"><?= $project->getShortDescription() ?></textarea>
+        <textarea class="desc" id="desc_form" name="short_description" maxlength="300" ><?= $project->getShortDescription() ?></textarea>
         <br>
 
         <label for="full_description">Project Text: </label>

@@ -43,7 +43,7 @@
             height: 150px;
             display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: left;
             text-decoration: none;
             color: black;
         }
@@ -68,7 +68,7 @@
             font-weight: 300;
         }
 
-        @media screen and (max-width: 1368px) {
+        @media screen and (max-width: 738px) {
             .archive-listing {
                 display: flex;
                 align-items: center;
@@ -80,11 +80,17 @@
                 height: auto;
                 width: 95%;
                 margin-bottom: 50px;
+                display: flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
             }
 
             .blog-card {
                 flex-direction: column;
+                justify-content:center;
                 height: auto;
+                width:auto;
             }
 
             .blog-card img {
@@ -99,11 +105,13 @@
         }
     </style>
 
-    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav-blog.html') ?> </div>
     <div class="page-title">
         <h1>Blogs</h1>
     </div>
     <div class="archive-listing">
+       
+
         <?php foreach ($blogs as $blog): ?>
             <div class="blog-card-wrapper">
                 <a href="/blog/page?id=<?= $blog->getId() ?>" class="blog-card">
