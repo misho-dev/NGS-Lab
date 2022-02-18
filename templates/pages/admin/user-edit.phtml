@@ -92,12 +92,28 @@
         <textarea id="full_description" name="description" maxlength="1400"><?= $user->getDescription() ?></textarea>
         <br>
 
-        <label for="desc_form">Short Description</label>
+        <label for="desc_form">Short Description:</label>
         <textarea class="desc" id="desc_form" name="short_description" maxlength="250"><?= $user->getShortDescription() ?></textarea>
         <br>
 
-        <label for="pos_form">Position</label>
+        <label for="pos_form">Position:</label>
         <input type="text" id="pos_form" name="position" value="<?= $user->getPosition() ?>">
+        <br>
+
+        <label for="name_form_ka">Full Name (KA):</label>
+        <input type="text" id="name_form_ka" name="name_ka" value="<?= $user->getName('ka') ?>" required>
+        <br>
+
+        <label for="full_description_ka">Full Description (KA): </label>
+        <textarea id="full_description_ka" name="description_ka" maxlength="1400"><?= $user->getDescription('ka') ?></textarea>
+        <br>
+
+        <label for="desc_form_ka">Short Description (KA):</label>
+        <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="250"><?= $user->getShortDescription('ka') ?></textarea>
+        <br>
+
+        <label for="pos_form_ka">Position (KA):</label>
+        <input type="text" id="pos_form_ka" name="position_ka" value="<?= $user->getPosition('ka') ?>">
         <br>
 
         <label for="is_owner">Is Product Owner:</label>
@@ -152,6 +168,18 @@
 
         <label for="meta_description">Meta Description</label>
         <input type="text" id="meta_description" name="meta_description" value="<?= $user->getMetaDescription() ?>">
+        <br>
+
+        <label for="meta_title_ka">Meta Title (KA):</label>
+        <input type="text" id="meta_title_ka" name="meta_title_ka" value="<?= $user->getMetaTitle('ka') ?>">
+        <br>
+
+        <label for="meta_keyword_ka">Meta Keyword (KA):</label>
+        <input type="text" id="meta_keyword_ka" name="meta_keyword_ka" value="<?= $user->getMetaKeyword('ka') ?>">
+        <br>
+
+        <label for="meta_description_ka">Meta Description (KA):</label>
+        <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $user->getMetaDescription('ka') ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save User</button>

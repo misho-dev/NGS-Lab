@@ -2,32 +2,45 @@
 
 namespace App\Model;
 
+use App\Helper\Session;
 use App\Model\MetaTrait;
 
 class Project
 {
     use MetaTrait;
 
-    /** @var int $id */
+    /** @var int */
     private $id;
 
-    /** @var string $name */
+    /** @var string */
     private $name;
 
-    /** @var string $image */
+    /** @var string */
+    private $name_ka;
+
+    /** @var string */
     private $image;
 
-    /** @var string $logo */
+    /** @var string */
     private $logo;
 
-    /** @var string $shortDescription */
+    /** @var string */
     private $shortDescription;
 
-    /** @var string $description */
+    /** @var string */
     private $description;
 
-    /** @var string $sliderHtml */
+    /** @var string */
     private $sliderHtml;
+
+    /** @var string */
+    private $shortDescription_ka;
+
+    /** @var string */
+    private $description_ka;
+
+    /** @var string */
+    private $sliderHtml_ka;
 
     public function __construct($data = [])
     {
@@ -36,12 +49,14 @@ class Project
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
         $this->sliderHtml = $data['slider_html'] ?? '';
+        $this->name_ka = $data['name_ka'] ?? '';
+        $this->shortDescription_ka = $data['short_description_ka'] ?? '';
+        $this->description_ka = $data['description_ka'] ?? '';
+        $this->sliderHtml_ka = $data['slider_html_ka'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->logo = $data['logo'] ?? '';
 
-        $this->setMetaTitle($data['meta_title'] ?? '');
-        $this->setMetaKeyword($data['meta_keyword'] ?? '');
-        $this->setMetaDescription($data['meta_description'] ?? '');
+        $this->setMetaData($data);
     }
 
     /**
@@ -55,8 +70,13 @@ class Project
     /**
      * @return mixed|string
      */
-    public function getName()
+    public function getName($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->name_ka;
+
         return $this->name;
     }
 
@@ -79,24 +99,39 @@ class Project
     /**
      * @return mixed|string
      */
-    public function getShortDescription()
+    public function getShortDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->shortDescription_ka;
+
         return $this->shortDescription;
     }
 
     /**
      * @return mixed|string
      */
-    public function getDescription()
+    public function getDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->description_ka;
+
         return $this->description;
     }
 
     /**
      * @return mixed|string
      */
-    public function getSliderHtml()
+    public function getSliderHtml($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->sliderHtml_ka;
+
         return $this->sliderHtml;
     }
 }

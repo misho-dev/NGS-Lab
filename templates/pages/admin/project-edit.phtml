@@ -92,6 +92,22 @@
         <textarea id="slider_html" name="slider_html"><?= $project->getSliderHtml() ?></textarea>
         <br>
 
+        <label for="name_form_ka">Name (KA):</label>
+        <input type="text" id="name_form_ka" name="name_ka" maxlength="100" value="<?= $project->getName('ka') ?>" required>
+        <br>
+
+        <label for="desc_form_ka">Description (KA): </label>
+        <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="300" ><?= $project->getShortDescription('ka') ?></textarea>
+        <br>
+
+        <label for="full_description_ka">Project Text (KA): </label>
+        <textarea id="full_description_ka" name="description_ka"><?= $project->getDescription('ka') ?></textarea>
+        <br>
+
+        <label for="slider_html_ka">Slider HTML (KA): </label>
+        <textarea id="slider_html_ka" name="slider_html_ka"><?= $project->getSliderHtml('ka') ?></textarea>
+        <br>
+
         <h2>SEO</h2>
 
         <label for="meta_title">Meta Title</label>
@@ -104,6 +120,18 @@
 
         <label for="meta_description">Meta Description</label>
         <input type="text" id="meta_description" name="meta_description" value="<?= $project->getMetaDescription() ?>">
+        <br>
+
+        <label for="meta_title_ka">Meta Title (KA):</label>
+        <input type="text" id="meta_title_ka" name="meta_title_ka" value="<?= $project->getMetaTitle('ka') ?>">
+        <br>
+
+        <label for="meta_keyword_ka">Meta Keyword (KA):</label>
+        <input type="text" id="meta_keyword_ka" name="meta_keyword_ka" value="<?= $project->getMetaKeyword('ka') ?>">
+        <br>
+
+        <label for="meta_description_ka">Meta Description (KA):</label>
+        <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $project->getMetaDescription('ka') ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $project->getId() ? 'update_project' : 'create_project' ?>">Save</button>

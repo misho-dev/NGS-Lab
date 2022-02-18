@@ -33,6 +33,7 @@ class Save extends AbstractAdminAction
     {
         return new ServiceModel([
             'title' => $_POST['title'],
+            'title_ka' => $_POST['title_ka'],
         ]);
     }
 }

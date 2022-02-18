@@ -70,6 +70,7 @@ class Service
     {
         $newService = [
             'title' => $service->getTitle(),
+            'title_ka' => $service->getTitle('ka'),
         ];
 
         return DAL::builder()
@@ -97,6 +98,7 @@ class Service
     {
         $data = [
             'title' => $service->getTitle(),
+            'title_ka' => $service->getTitle('ka'),
         ];
 
         return DAL::builder()

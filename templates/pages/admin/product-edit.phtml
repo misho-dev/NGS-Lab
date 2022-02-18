@@ -89,6 +89,18 @@
         <textarea id="full_description" name="description"><?= $product->getDescription() ?></textarea>
         <br>
 
+        <label for="name_form_ka">Name (KA):</label>
+        <input type="text" id="name_form_ka" name="name_ka" maxlength="45" value="<?= $product->getName('ka') ?>" required>
+        <br>
+
+        <label for="desc_form_ka">Description (KA):</label>
+        <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="800"><?= $product->getShortDescription('ka') ?></textarea>
+        <br>
+
+        <label for="full_description_ka">Page Code (KA): </label>
+        <textarea id="full_description_ka" name="description_ka"><?= $product->getDescription('ka') ?></textarea>
+        <br>
+
         <label for="owner_id">Product Owner:</label>
         <select name="owner_id" id="owner_id">
             <option value="-1">&lt;None&gt;</option>
@@ -113,6 +125,18 @@
 
         <label for="meta_description">Meta Description</label>
         <input type="text" id="meta_description" name="meta_description" value="<?= $product->getMetaDescription() ?>">
+        <br>
+
+        <label for="meta_title_ka">Meta Title (KA):</label>
+        <input type="text" id="meta_title_ka" name="meta_title_ka" value="<?= $product->getMetaTitle('ka') ?>">
+        <br>
+
+        <label for="meta_keyword_ka">Meta Keyword (KA):</label>
+        <input type="text" id="meta_keyword_ka" name="meta_keyword_ka" value="<?= $product->getMetaKeyword('ka') ?>">
+        <br>
+
+        <label for="meta_description_ka">Meta Description (KA):</label>
+        <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $product->getMetaDescription('ka') ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $product->getId() ? 'update_product' : 'create_product' ?>">Save</button>

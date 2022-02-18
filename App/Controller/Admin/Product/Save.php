@@ -36,9 +36,15 @@ class Save extends AbstractAdminAction
             'name' => $_POST['name'],
             'description' => $_POST['description'],
             'short_description' => $_POST['short_description'],
+            'name_ka' => $_POST['name_ka'],
+            'description_ka' => $_POST['description_ka'],
+            'short_description_ka' => $_POST['short_description_ka'],
             'meta_title' => $_POST['meta_title'],
             'meta_keyword' => $_POST['meta_keyword'],
             'meta_description' => $_POST['meta_description'],
+            'meta_title_ka' => $_POST['meta_title_ka'],
+            'meta_keyword_ka' => $_POST['meta_keyword_ka'],
+            'meta_description_ka' => $_POST['meta_description_ka'],
             'owner_id' => $ownerId == -1 ? null : $ownerId,
         ]);
     }

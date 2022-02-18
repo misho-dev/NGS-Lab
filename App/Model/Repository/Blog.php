@@ -74,12 +74,18 @@ class Blog
     {
         $newBlog = [
             'enabled' => (int) $blog->isEnabled(),
-            'title' => $blog->getTitle(),
-            'description' => $blog->getDescription(),
-            'body' => $blog->getBody(),
-            'meta_title' => $blog->getMetaTitle(),
-            'meta_keyword' => $blog->getMetaKeyword(),
-            'meta_description' => $blog->getMetaDescription(),
+            'title' => $blog->getTitle('en'),
+            'title_ka' => $blog->getTitle('ka'),
+            'description' => $blog->getDescription('en'),
+            'description_ka' => $blog->getDescription('ka'),
+            'body' => $blog->getBody('en'),
+            'body_ka' => $blog->getBody('ka'),
+            'meta_title' => $blog->getMetaTitle('en'),
+            'meta_keyword' => $blog->getMetaKeyword('en'),
+            'meta_description' => $blog->getMetaDescription('en'),
+            'meta_title_ka' => $blog->getMetaTitle('ka'),
+            'meta_keyword_ka' => $blog->getMetaKeyword('ka'),
+            'meta_description_ka' => $blog->getMetaDescription('ka'),
         ];
 
         return DAL::builder()
@@ -95,12 +101,18 @@ class Blog
     {
         $newData = [
             'enabled' => (int) $updatedBlog->isEnabled(),
-            'title' => $updatedBlog->getTitle(),
-            'description' => $updatedBlog->getDescription(),
-            'body' => $updatedBlog->getBody(),
-            'meta_title' => $updatedBlog->getMetaTitle(),
-            'meta_keyword' => $updatedBlog->getMetaKeyword(),
-            'meta_description' => $updatedBlog->getMetaDescription(),
+            'title' => $updatedBlog->getTitle('en'),
+            'title_ka' => $updatedBlog->getTitle('ka'),
+            'description' => $updatedBlog->getDescription('en'),
+            'description_ka' => $updatedBlog->getDescription('ka'),
+            'body' => $updatedBlog->getBody('en'),
+            'body_ka' => $updatedBlog->getBody('ka'),
+            'meta_title' => $updatedBlog->getMetaTitle('en'),
+            'meta_keyword' => $updatedBlog->getMetaKeyword('en'),
+            'meta_description' => $updatedBlog->getMetaDescription('en'),
+            'meta_title_ka' => $updatedBlog->getMetaTitle('ka'),
+            'meta_keyword_ka' => $updatedBlog->getMetaKeyword('ka'),
+            'meta_description_ka' => $updatedBlog->getMetaDescription('ka'),
         ];
 
         return DAL::builder()

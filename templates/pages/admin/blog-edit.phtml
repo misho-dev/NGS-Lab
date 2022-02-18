@@ -103,6 +103,19 @@
             <?= $blog->getBody() ?>
         </textarea>
 
+        <label for="title_form_ka">Title (KA):</label>
+        <input type="text" id="title_form_ka" name="title_ka" value="<?= $blog->getTitle('ka') ?>" required>
+        <br>
+
+        <label for="description_form_ka">Description (KA):</label>
+        <input type="text" id="description_form_ka" name="description_ka" value="<?= $blog->getDescription('ka') ?>">
+        <br>
+
+        <label for="blog_body_ka">Body (KA): </label>
+        <textarea id="blog_body_ka" name="blog_body_ka">
+            <?= $blog->getBody('ka') ?>
+        </textarea>
+
         <h2>SEO</h2>
 
         <label for="meta_title">Meta Title</label>
@@ -115,6 +128,18 @@
 
         <label for="meta_description">Meta Description</label>
         <input type="text" id="meta_description" name="meta_description" value="<?= $blog->getMetaDescription() ?>">
+        <br>
+
+        <label for="meta_title_ka">Meta Title (KA):</label>
+        <input type="text" id="meta_title_ka" name="meta_title_ka" value="<?= $blog->getMetaTitle('ka') ?>">
+        <br>
+
+        <label for="meta_keyword_ka">Meta Keyword (KA):</label>
+        <input type="text" id="meta_keyword_ka" name="meta_keyword_ka" value="<?= $blog->getMetaKeyword('ka') ?>">
+        <br>
+
+        <label for="meta_description_ka">Meta Description (KA):</label>
+        <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $blog->getMetaDescription('ka') ?>">
         <br>
 
         <button type="submit" class="btn" name="<?= $blog->getId() ? 'update_blog' : 'create_blog' ?>">Save</button>

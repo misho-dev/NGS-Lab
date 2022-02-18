@@ -2,15 +2,20 @@
 
 namespace App\Model;
 
+use App\Helper\Session;
+
 class Service
 {
-    /** @var int $id */
+    /** @var int */
     private $id;
 
     /** @var string $name */
     private $title;
 
-    /** @var string $image */
+    /** @var string */
+    private $title_ka;
+
+    /** @var string */
     private $image;
 
 
@@ -18,6 +23,7 @@ class Service
     {
         $this->id = $data['entity_id'] ?? null;
         $this->title = $data['title'] ?? '';
+        $this->title_ka = $data['title_ka'] ?? '';
         $this->image = $data['image'] ?? '';
     }
 
@@ -32,8 +38,13 @@ class Service
     /**
      * @return mixed|string
      */
-    public function getTitle()
+    public function getTitle($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->title_ka;
+
         return $this->title;
     }
 

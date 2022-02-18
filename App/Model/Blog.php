@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Helper\Session;
 use App\Model\MetaTrait;
 
 class Blog
@@ -23,6 +24,15 @@ class Blog
     /** @var string $body */
     private $body;
 
+    /** @var string $title */
+    private $title_ka;
+
+    /** @var string $description */
+    private $description_ka;
+
+    /** @var string $body */
+    private $body_ka;
+
     /** @var int $image */
     private $image;
 
@@ -36,16 +46,19 @@ class Blog
     {
         $this->id = $data['entity_id'] ?? '';
         $this->enabled = $data['enabled'] ?? true;
-        $this->title = $data['title'] ?? '';
-        $this->description = $data['description'] ?? '';
-        $this->body = $data['body'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->createdAt = $data['created_at'] ?? '';
         $this->updatedAt = $data['updated_at'] ?? '';
 
-        $this->setMetaTitle($data['meta_title'] ?? '');
-        $this->setMetaKeyword($data['meta_keyword'] ?? '');
-        $this->setMetaDescription($data['meta_description'] ?? '');
+        $this->title = $data['title'] ?? '';
+        $this->description = $data['description'] ?? '';
+        $this->body = $data['body'] ?? '';
+
+        $this->title_ka = $data['title_ka'] ?? '';
+        $this->description_ka = $data['description_ka'] ?? '';
+        $this->body_ka = $data['body_ka'] ?? '';
+
+        $this->setMetaData($data);
     }
 
     /**
@@ -67,24 +80,39 @@ class Blog
     /**
      * @return mixed|string
      */
-    public function getTitle()
+    public function getTitle($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->title_ka;
+
         return $this->title;
     }
 
     /**
      * @return mixed|string
      */
-    public function getDescription()
+    public function getDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->description_ka;
+
         return $this->description;
     }
 
     /**
      * @return mixed|string
      */
-    public function getBody()
+    public function getBody($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->body_ka;
+
         return $this->body;
     }
 

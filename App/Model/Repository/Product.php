@@ -71,9 +71,15 @@ class Product
             'name' => $product->getName(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
+            'name_ka' => $product->getName('ka'),
+            'short_description_ka' => $product->getShortDescription('ka'),
+            'description_ka' => $product->getDescription('ka'),
             'meta_title' => $product->getMetaTitle(),
             'meta_keyword' => $product->getMetaKeyword(),
             'meta_description' => $product->getMetaDescription(),
+            'meta_title_ka' => $product->getMetaTitle('ka'),
+            'meta_keyword_ka' => $product->getMetaKeyword('ka'),
+            'meta_description_ka' => $product->getMetaDescription('ka'),
             'owner_id' => $product->getOwnerId()
         ];
 
@@ -119,9 +125,15 @@ class Product
             'name' => $product->getName(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
+            'name_ka' => $product->getName('ka'),
+            'short_description_ka' => $product->getShortDescription('ka'),
+            'description_ka' => $product->getDescription('ka'),
             'meta_title' => $product->getMetaTitle(),
             'meta_keyword' => $product->getMetaKeyword(),
             'meta_description' => $product->getMetaDescription(),
+            'meta_title_ka' => $product->getMetaTitle('ka'),
+            'meta_keyword_ka' => $product->getMetaKeyword('ka'),
+            'meta_description_ka' => $product->getMetaDescription('ka'),
             'owner_id' => $product->getOwnerId(),
         ];
 

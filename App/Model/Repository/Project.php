@@ -73,9 +73,16 @@ class Project
             'short_description' => $project->getShortDescription(),
             'description' => $project->getDescription(),
             'slider_html' => $project->getSliderHtml(),
+            'name_ka' => $project->getName('ka'),
+            'short_description_ka' => $project->getShortDescription('ka'),
+            'description_ka' => $project->getDescription('ka'),
+            'slider_html_ka' => $project->getSliderHtml('ka'),
             'meta_title' => $project->getMetaTitle(),
             'meta_keyword' => $project->getMetaKeyword(),
             'meta_description' => $project->getMetaDescription(),
+            'meta_title_ka' => $project->getMetaTitle('ka'),
+            'meta_keyword_ka' => $project->getMetaKeyword('ka'),
+            'meta_description_ka' => $project->getMetaDescription('ka'),
         ];
 
         return DAL::builder()
@@ -121,9 +128,16 @@ class Project
             'short_description' => $project->getShortDescription(),
             'description' => $project->getDescription(),
             'slider_html' => $project->getSliderHtml(),
+            'name_ka' => $project->getName('ka'),
+            'short_description_ka' => $project->getShortDescription('ka'),
+            'description_ka' => $project->getDescription('ka'),
+            'slider_html_ka' => $project->getSliderHtml('ka'),
             'meta_title' => $project->getMetaTitle(),
             'meta_keyword' => $project->getMetaKeyword(),
             'meta_description' => $project->getMetaDescription(),
+            'meta_title_ka' => $project->getMetaTitle('ka'),
+            'meta_keyword_ka' => $project->getMetaKeyword('ka'),
+            'meta_description_ka' => $project->getMetaDescription('ka'),
         ];
 
         return DAL::builder()

@@ -2,35 +2,48 @@
 
 namespace App\Model;
 
+use App\Helper\Session;
 use App\Model\MetaTrait;
 
 class User
 {
     use MetaTrait;
 
-    /** @var int $id */
+    /** @var int */
     private $id;
 
-    /** @var boolean $isEnabled */
+    /** @var boolean */
     private $enabled;
 
-    /** @var string $name */
+    /** @var string */
     private $name;
 
-    /** @var int $image */
+    /** @var string */
+    private $name_ka;
+
+    /** @var int */
     private $image;
 
-    /** @var string $gif */
+    /** @var int */
     private $gif;
 
-    /** @var string $shortDescription */
+    /** @var string */
     private $shortDescription;
 
-    /** @var string $description */
+    /** @var string */
     private $description;
 
-    /** @var string $position */
+    /** @var string */
     private $position;
+
+    /** @var string */
+    private $shortDescription_ka;
+
+    /** @var string */
+    private $description_ka;
+
+    /** @var string */
+    private $position_ka;
 
     /** @var string[] $socials */
     private $socials;
@@ -43,24 +56,26 @@ class User
         $this->id = $data['entity_id'] ?? '';
         $this->enabled = $data['enabled'] ?? true;
         $this->name = $data['full_name'] ?? '';
+        $this->name_ka = $data['full_name_ka'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->gif = $data['gif'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
         $this->position = $data['position'] ?? '';
+        $this->shortDescription_ka = $data['short_description_ka'] ?? '';
+        $this->description_ka = $data['description_ka'] ?? '';
+        $this->position_ka = $data['position_ka'] ?? '';
         $this->isOwner = $data['is_owner'] ?? false;
 
-        $this->setMetaTitle($data['meta_title'] ?? '');
-        $this->setMetaKeyword($data['meta_keyword'] ?? '');
-        $this->setMetaDescription($data['meta_description'] ?? '');
+        $this->setMetaData($data);
 
         if (isset($data['socials'])) {
             $this->socials = $data['socials'] ?? [];
         } else {
             $this->socials = [
-                'facebook' => $data['social_facebook'],
-                'linkedin' => $data['social_linkedin'],
-                'instagram' => $data['social_instagram'],
+                'facebook' => $data['social_facebook'] ?? '',
+                'linkedin' => $data['social_linkedin'] ?? '',
+                'instagram' => $data['social_instagram'] ?? '',
             ];
         }
     }
@@ -84,8 +99,13 @@ class User
     /**
      * @return mixed|string
      */
-    public function getName()
+    public function getName($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->name_ka;
+
         return $this->name;
     }
 
@@ -124,24 +144,39 @@ class User
     /**
      * @return mixed|string
      */
-    public function getShortDescription()
+    public function getShortDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->shortDescription_ka;
+
         return $this->shortDescription;
     }
 
     /**
      * @return mixed|string
      */
-    public function getDescription()
+    public function getDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->description_ka;
+
         return $this->description;
     }
 
     /**
      * @return mixed|string
      */
-    public function getPosition()
+    public function getPosition($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->position_ka;
+
         return $this->position;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Helper\Session;
 use App\Model\MetaTrait;
 
 class Product
@@ -17,6 +18,9 @@ class Product
     /** @var string $name */
     private $name;
 
+    /** @var string $name */
+    private $name_ka;
+
     /** @var string $image */
     private $image;
 
@@ -29,19 +33,26 @@ class Product
     /** @var string $description */
     private $description;
 
+    /** @var string $shortDescription */
+    private $shortDescription_ka;
+
+    /** @var string $description */
+    private $description_ka;
+
     public function __construct($data = [])
     {
         $this->id = $data['entity_id'] ?? null;
         $this->ownerId = $data['owner_id'] ?? null;
         $this->name = $data['name'] ?? '';
+        $this->name_ka = $data['name_ka'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->logo = $data['logo'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
+        $this->shortDescription_ka = $data['short_description_ka'] ?? '';
+        $this->description_ka = $data['description_ka'] ?? '';
 
-        $this->setMetaTitle($data['meta_title'] ?? '');
-        $this->setMetaKeyword($data['meta_keyword'] ?? '');
-        $this->setMetaDescription($data['meta_description'] ?? '');
+        $this->setMetaData($data);
     }
 
     /**
@@ -63,8 +74,13 @@ class Product
     /**
      * @return mixed|string
      */
-    public function getName()
+    public function getName($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->name_ka;
+
         return $this->name;
     }
 
@@ -87,16 +103,26 @@ class Product
     /**
      * @return mixed|string
      */
-    public function getShortDescription()
+    public function getShortDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->shortDescription_ka;
+
         return $this->shortDescription;
     }
 
     /**
      * @return mixed|string
      */
-    public function getDescription()
+    public function getDescription($lang = '')
     {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->description_ka;
+
         return $this->description;
     }
 }

@@ -79,6 +79,10 @@
         <input type="text" id="title_form" name="title" value="<?= $service->getTitle() ?>" required>
         <br>
 
+        <label for="title_form_ka">Name (KA):</label>
+        <input type="text" id="title_form_ka" name="title_ka" value="<?= $service->getTitle('ka') ?>" required>
+        <br>
+
         <button type="submit" class="btn" name="<?= $service->getId() ? 'update_service' : 'create_service' ?>">Save</button>
     </form>
 
