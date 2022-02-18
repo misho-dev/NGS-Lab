@@ -105,7 +105,7 @@ use Diversen\Lang;
     <div class="project-listing">
         <ul>
             <?php foreach ($projects as $project): ?>
-                <?php $projectLink = '/project?id=' . $project->getId() ?>
+                <?php $projectLink = \App\Helper\Url::getUrl('/project?id=' . $project->getId()) ?>
                 <div>
                     <a href="<?= $projectLink ?>">
                         <li class="our-project-listing-item">
@@ -118,6 +118,6 @@ use Diversen\Lang;
         </ul>
     </div>
     <div class="read-more-button">
-        <a href="/project/listing">READ MORE</a>
+        <a href="<?= \App\Helper\Url::getUrl('/project/listing') ?>">READ MORE</a>
     </div>
 </div>

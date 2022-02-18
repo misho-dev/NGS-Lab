@@ -114,7 +114,7 @@
 
         <?php foreach ($blogs as $blog): ?>
             <div class="blog-card-wrapper">
-                <a href="/blog/page?id=<?= $blog->getId() ?>" class="blog-card">
+                <a href="<?= \App\Helper\Url::getUrl('/blog/page?id=' . $blog->getId()) ?>" class="blog-card">
                     <?= $blogImages[$blog->getId()]->toHtml() ?>
                     <div class="info-section">
                         <div class="blog-title"> <?= $blog->getTitle() ?> </div>

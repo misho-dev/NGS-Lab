@@ -252,7 +252,7 @@
             }
         }
     </style>
-    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.phtml') ?> </div>
     <div id="product-owner-component">
 
         <div class="product-owner-page-wrapper">
@@ -290,9 +290,9 @@
                 <div class="social-icons-product-owner">
                     <ul>
                         <?php $socialLinks = $user->getSocials() ?>
-                        <li><a href="<?= $socialLinks['facebook'] ?>"><i class=" icon-facebook"></i></a></li>
-                        <li><a href="<?= $socialLinks['linkedin'] ?>"><i class=" icon-linkedin"></i></a></li>
-                        <li><a href="<?= $socialLinks['instagram'] ?>"><i class="icon-instagram"></i></a></li>
+                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['facebook']) ?>"><i class=" icon-facebook"></i></a></li>
+                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['linkedin']) ?>"><i class=" icon-linkedin"></i></a></li>
+                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['instagram']) ?>"><i class="icon-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -308,7 +308,7 @@
                         <?php foreach ($products as $product): ?>
                         <div class="swiper-slide">
                             <div class="product-card-component">
-                                <a href="/product/page?id=<?= $product->getId() ?>" class="product-card-component">
+                                <a href="<?= \App\Helper\Url::getUrl('/product/page?id=' . $product->getId()) ?>" class="product-card-component">
                                     <div class="product-name"> <?= $product->getName() ?> </div>
                                     <div class="slogan"><?= $product->getShortDescription() ?></div>
                                     <?= $productLogos[$product->getId()]->toHtml() ?>
@@ -351,7 +351,7 @@
                     <div style="margin-left: 50px; margin-right: 50px;" class="project-listing">
                         <ul>
                             <?php foreach ($projects as $project): ?>
-                                <?php $projectLink = '/project?id=' . $project->getId() ?>
+                                <?php $projectLink = \App\Helper\Url::getUrl('/project?id=' . $project->getId()) ?>
                                 <div>
                                     <a href="<?= $projectLink ?>">
                                         <li class="our-project-listing-item">

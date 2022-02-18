@@ -262,7 +262,7 @@
                                     <h2><?= $productOwner->getName() ?></h2>
                                     <?= $productOwnerImage->toHtml() ?>
                                     <p class="description"> <?= $productOwner->getShortDescription() ?> </p>
-                                    <a href="/product/owner?id=<?= $productOwner->getId() ?>">Read More</a>
+                                    <a href="<?= \App\Helper\Url::getUrl('/product/owner?id=' . $productOwner->getId()) ?>">Read More</a>
                                 </div>
                             </div>
                         </div>

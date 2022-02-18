@@ -36,4 +36,12 @@ class Url
     {
 
     }
+
+    public static function getUrl($url) {
+        if (Session::getLanguage() == 'ka') {
+            return '/ka' . $url;
+        }
+
+        return $url;
+    }
 }

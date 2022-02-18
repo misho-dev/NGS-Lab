@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.html') ?> </div>
+    <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.phtml') ?> </div>
     <div id="project-componenent">
         <?php \App\ViewModel\View::renderComponent('project-component.phtml',
             compact('project', 'image', 'logo')); ?>

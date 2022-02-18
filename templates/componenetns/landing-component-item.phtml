@@ -19,7 +19,7 @@
         <?= $product->getShortDescription() ?>
     </p>
     <div class="product-redirect-button">
-      <a href="/product/page?id=<?= $product->getId() ?>">READ MORE</a>
+      <a href="<?= \App\Helper\Url::getUrl('/product/page?id=. ' . $product->getId()) ?> ?>">READ MORE</a>
     </div>
   </div>
 </div>

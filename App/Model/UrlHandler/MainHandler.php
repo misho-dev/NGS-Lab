@@ -18,6 +18,7 @@ class MainHandler
     public function handle()
     {
         if (Url::isAdmin()) {
+            Session::setLanguage('en');
             $admin = new Admin();
             $admin->handle();
             return;
