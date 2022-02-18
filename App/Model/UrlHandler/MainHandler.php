@@ -2,11 +2,13 @@
 
 namespace App\Model\UrlHandler;
 
-use App\Controller\Admin\AbstractAdminAction;
 use App\Helper\ClassHelper;
+use App\Helper\Session;
 use App\Model\Logger\Logger;
 use App\Helper\Url;
 use App\ViewModel\View;
+use Diversen\Lang;
+
 
 class MainHandler
 {
@@ -22,6 +24,12 @@ class MainHandler
         }
 
         $urlPath = Url::getPath();
+        if ($urlPath[0] == 'ka') {
+            Session::setLanguage('ka');
+            array_shift($urlPath);
+        } else {
+            Session::setLanguage('en');
+        }
 
         $controllerName = ucfirst(array_shift($urlPath));
         $controllerDir = 'App/Controller/' . $controllerName;
@@ -32,6 +40,7 @@ class MainHandler
             $controller = ClassHelper::createClassFromDir($controllerDir, $action);
 
             try {
+                $this->initLanguage();
                 $controller->execute();
             } catch (\Exception $e) {
                 $logger = new Logger('exception.log');
@@ -44,5 +53,14 @@ class MainHandler
             View::render(strtolower($controllerName)); // TODO: add .html?
             // TODO: If not, 404
         }
+    }
+
+    protected function initLanguage()
+    {
+        $language = new Lang();
+
+        $language::$ignore = true;
+        $language->setSingleDir("App");
+        $language->loadLanguage(Session::getLanguage());
     }
 }

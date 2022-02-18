@@ -6,7 +6,8 @@
     "clancats/hydrahon": "dev-master",
     "ext-pdo": "*",
     "ext-mysqli": "*",
-    "samayo/bulletproof": "4.0.*"
+    "samayo/bulletproof": "4.0.*",
+    "diversen/simple-php-translation": "^2.0@dev"
   },
   "autoload": {
     "psr-4": {
