@@ -233,12 +233,17 @@ class User
         return false;
     }
 
+    /**
+     * @param $userId
+     * @return \App\Model\Service[]|null
+     * @throws \Exception
+     */
     public static function getServices($userId)
     {
         $queryResult = DAL::builder()
             ->table(self::TABLE_TO_SERVICE . ' as uts')
-            ->select()
-            ->join(Project::TABLE_NAME . ' as p', 'uts.service_id', '=', 'p.entity_id')
+            ->select('')
+            ->join(Service::TABLE_NAME . ' as s', 'uts.service_id', '=', 's.entity_id')
             ->where('uts.user_id', (int) $userId)
             ->execute();
 

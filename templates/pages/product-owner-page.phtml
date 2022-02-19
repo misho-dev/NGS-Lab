@@ -5,6 +5,8 @@
 /** @var App\Model\Product[] $products */
 /** @var App\Model\Product[] $projects */
 /** @var App\Model\Image[] $productLogos */
+/** @var App\Model\Service[] $services */
+/** @var App\Model\Image[] $serviceImages */
 ?>
 
 <!DOCTYPE html>
@@ -264,21 +266,13 @@
             </div>
 
             <div class="service-container">
-                    <div class="service hidden" style="background-image:url(https://i.pinimg.com/736x/30/14/13/301413967f5d22cd710317c8c3fe7f77--cool-wallpaper-wallpaper-designs.jpg)">
-                        <h1>nigato1</h1>
+                <?php foreach ($services as $service): ?>
+                    <div class="service hidden" style="background-image:url(<?= $serviceImages[$service->getId()]->getValue() ?>)">
+                        <h1><?= $service->getTitle() ?>></h1>
                     </div>
 
-                    <div class="service hidden" style="background-image:url()">
-                        <h1>nigato2</h1>
-                    </div>
-
-                    <div class="service hidden" style="background-image:url()">
-                        <h1>nigato3</h1>
-                    </div>
-                    
                     <a href="#" class="menu-item"> <i class="fa"></i> </a>
-                    <a href="#" class="menu-item"> <i class="fa"></i> </a>
-                    <a href="#" class="menu-item"> <i class="fa"></i> </a>
+                <?php endforeach; ?>
             </div>
 
             <div id="divider" class="divider"></div>

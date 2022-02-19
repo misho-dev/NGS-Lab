@@ -22,14 +22,20 @@ class Owner implements ControllerAction
             $userGif = ImageRepository::getImageById($user->getGif()) ?? new Image();
             $products = ProductRepository::getProductsOwnedByUser($user->getId());
             $projects = UserRepository::getProjects($user->getId());
-
+            $services = UserRepository::getServices($user->getId());
 
             $productLogos = [];
             foreach ($products as $product) {
                 $productLogos[$product->getId()] = ImageRepository::getImageById($product->getLogo()) ?? new Image();
             }
 
-            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif', 'products', 'projects', 'productLogos'));
+            $serviceImages = [];
+            foreach ($services as $service) {
+                $serviceImages[$service->getId()] = ImageRepository::getImageById($service->getImage()) ?? new Image();
+            }
+
+            View::render('product-owner-page.phtml', compact('user', 'userImage', 'userGif',
+                'products', 'projects', 'productLogos', 'services', 'serviceImages'));
         } else {
             View::render('contact.phtml'); // TODO: 404 page
         }
