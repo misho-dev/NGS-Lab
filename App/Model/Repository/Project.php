@@ -150,14 +150,15 @@ class Project
     /**
      * @throws \Exception
      */
-    public static function unsetOwnerForProjects($ownerId)
+    public static function deleteProject($projectId)
     {
-        // TODO ?
-        return DAL::builder()
-            ->table('project_entity')
-            ->update(['owner_id' => null])
-            ->where('owner_id', (int) $ownerId)
+        $deleted = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->delete()
+            ->where('entity_id', $projectId)
             ->execute();
+
+        return $deleted;
     }
 
     /**

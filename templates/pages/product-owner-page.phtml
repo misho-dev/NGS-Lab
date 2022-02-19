@@ -283,10 +283,7 @@
             <div class="socials">
                 <div class="social-icons-product-owner">
                     <ul>
-                        <?php $socialLinks = $user->getSocials() ?>
-                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['facebook']) ?>"><i class=" icon-facebook"></i></a></li>
-                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['linkedin']) ?>"><i class=" icon-linkedin"></i></a></li>
-                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['instagram']) ?>"><i class="icon-instagram"></i></a></li>
+                        <li><a href="<?= $user->getSocials()['linkedin'] ?>"><i class=" icon-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>

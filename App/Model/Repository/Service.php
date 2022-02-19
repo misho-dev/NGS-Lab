@@ -111,14 +111,15 @@ class Service
     /**
      * @throws \Exception
      */
-    public static function unsetOwnerForServices($ownerId)
+    public static function deleteService($serviceId)
     {
-        // TODO ?
-        return DAL::builder()
-            ->table('service_entity')
-            ->update(['owner_id' => null])
-            ->where('owner_id', (int) $ownerId)
+        $deleted = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->delete()
+            ->where('entity_id', $serviceId)
             ->execute();
+
+        return $deleted;
     }
 
     /**
