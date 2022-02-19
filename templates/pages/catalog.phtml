@@ -1,4 +1,5 @@
 <?php
+    use Diversen\Lang;
 /** @var App\Model\Product[] $products */
 /** @var App\Model\Image[] $productLogos */
 ?>
@@ -87,7 +88,7 @@
     <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.phtml') ?> </div>
     <div class="our-projects-wrapper">
         <div class="section-title">
-            <h1>CATALOG</h1>
+            <h1><?= Lang::translate('CATALOG'); ?></h1>
         </div>
 
         <div class="project-gallery-wrapper">

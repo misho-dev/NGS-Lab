@@ -74,10 +74,10 @@
     <div class="section-title">
         <h1>Product Owners</h1>
     </div>
-    <a href="/admin/user/create">Create New Product Owner</a>
+    <a class="dashboard-button" href="/admin/user/create">Create New Product Owner</a>
     <div>&nbsp;</div>
     <?php foreach ($users as $user): ?>
-        <a href="/admin/user/edit?id=<?= $user->getId() ?>"> <?= $user->getName(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/user/edit?id=<?= $user->getId() ?>"> <?= $user->getName(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

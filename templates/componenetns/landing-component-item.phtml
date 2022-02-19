@@ -1,4 +1,5 @@
 <?php
+    use Diversen\Lang;
 /** @var App\Model\Product $product */
 /** @var App\Model\Image $image */
 /** @var App\Model\Image $logo */
@@ -19,7 +20,7 @@
         <?= $product->getShortDescription() ?>
     </p>
     <div class="product-redirect-button">
-      <a href="<?= \App\Helper\Url::getUrl('/product/page?id=' . $product->getId()) ?> ">READ MORE</a>
+      <a href="<?= \App\Helper\Url::getUrl('/product/page?id=' . $product->getId()) ?> "><?= Lang::translate('READ MORE'); ?></a>
     </div>
   </div>
 </div>

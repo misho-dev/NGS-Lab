@@ -57,6 +57,7 @@
         height: 300px;
         background-color: black;
     }
+    
     /*low-res monitors*/
     @media screen and (max-width: 1368px) {}
 
@@ -74,10 +75,10 @@
     <div class="section-title">
         <h1>Blogs</h1>
     </div>
-    <a href="/admin/blog/create">Create New Blog</a>
+    <a class="dashboard-button" href="/admin/blog/create">Create New Blog</a>
     <div>&nbsp;</div>
     <?php foreach ($blogs as $blog): ?>
-        <a href="/admin/blog/edit?id=<?= $blog->getId() ?>"> <?= $blog->getTitle(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/blog/edit?id=<?= $blog->getId() ?>"> <?= $blog->getTitle(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

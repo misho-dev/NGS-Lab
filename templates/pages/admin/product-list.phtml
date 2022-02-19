@@ -74,10 +74,10 @@
     <div class="section-title">
         <h1>Products</h1>
     </div>
-    <a href="/admin/product/create">Create New Product</a>
+    <a class="dashboard-button" href="/admin/product/create">Create New Product</a>
     <div>&nbsp;</div>
     <?php foreach ($products as $product): ?>
-        <a href="/admin/product/edit?id=<?= $product->getId() ?>"> <?= $product->getName(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/product/edit?id=<?= $product->getId() ?>"> <?= $product->getName(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

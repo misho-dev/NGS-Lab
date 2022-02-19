@@ -147,7 +147,7 @@
 
     <?php if ($blog->getId()): ?>
         <form method="post" action="/admin/blog/delete?id=<?= $blog->getId() ?>">
-            <button type="submit" class="btn">DELETE</button>
+            <button class="dashboard-button" style="background-color: #ff0000;" type="submit" class="btn">DELETE</button>
         </form>
     <?php endif; ?>
 
@@ -158,8 +158,8 @@
             <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
 
             <input type="hidden" name="blog_pic_id" value="<?= $image->getId() ?>"/>
-            <input type="file" name="blog_pic" accept="image/*"/>
-            <?= $image->toHtml(); ?>
+            <input class="dashboard-button" type="file" name="blog_pic" accept="image/*"/>
+            <?= $image->toHtml("admin-image-showcase"); ?>
             <br>
 
             <label for="blog_pic_title">Title:</label>
@@ -173,7 +173,7 @@
             <br>
             <br>
 
-            <input type="submit" value="Save Images"/>
+            <input class="dashboard-button" type="submit" value="Save Images"/>
         </form>
     <?php endif; ?>
 </div>

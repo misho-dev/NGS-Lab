@@ -82,46 +82,46 @@
     <form method="post" action="/admin/user/save?id=<?= $user->getId() ?>" enctype="multipart/form-data">
         <label for="enabled">Enabled:</label>
         <input type="checkbox" id="enabled" name="enabled" <?= $user->isEnabled() ? 'checked' : '' ?>>
-        <br>
+        <br><br><br>
 
         <label for="name_form">Full Name:</label>
         <input type="text" id="name_form" name="name" value="<?= $user->getName() ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="full_description">Full Description: </label>
         <textarea id="full_description" name="description" maxlength="1400"><?= $user->getDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="desc_form">Short Description:</label>
         <textarea class="desc" id="desc_form" name="short_description" maxlength="250"><?= $user->getShortDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="pos_form">Position:</label>
         <input type="text" id="pos_form" name="position" value="<?= $user->getPosition() ?>">
-        <br>
+        <br><br><br>
 
         <label for="name_form_ka">Full Name (KA):</label>
         <input type="text" id="name_form_ka" name="name_ka" value="<?= $user->getName('ka') ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="full_description_ka">Full Description (KA): </label>
         <textarea id="full_description_ka" name="description_ka" maxlength="1400"><?= $user->getDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="desc_form_ka">Short Description (KA):</label>
         <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="250"><?= $user->getShortDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="pos_form_ka">Position (KA):</label>
         <input type="text" id="pos_form_ka" name="position_ka" value="<?= $user->getPosition('ka') ?>">
-        <br>
+        <br><br><br>
 
         <label for="is_owner">Is Product Owner:</label>
         <input type="checkbox" id="is_owner" name="is_owner" <?= $user->isProductOwner() ? 'checked' : '' ?>>
-        <br>
+        <br><br><br>
 
         <label for="projects">Projects:</label>
-        <br>
+        <br><br><br>
         <select name="projects[]" id="projects" multiple style="width: 200px">
             <?php foreach ($projects as $project): ?>
                 <option value="<?= $project->getId() ?>" <?= isset($ownedProjects[$project->getId()]) ? 'selected' : '' ?>>
@@ -129,7 +129,7 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <br>
+        <br><br><br>
 
         <label for="services">Services:</label>
         <br>
@@ -140,7 +140,7 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <br>
+        <br><br><br>
 
         <h2>Links</h2>
 
@@ -182,12 +182,12 @@
         <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $user->getMetaDescription('ka') ?>">
         <br>
 
-        <button type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save User</button>
+        <button class="dashboard-button" type="submit" class="btn" name="<?= $user->getId() ? 'update_user' : 'create_user' ?>">Save User</button>
     </form>
 
     <?php if ($user->getId()): ?>
         <form method="post" action="/admin/user/delete?id=<?= $user->getId() ?>">
-            <button type="submit" class="btn">Delete User</button>
+            <button class="dashboard-button" style="background-color: #ff0000;" type="submit" class="btn">Delete User</button>
         </form>
         <h2>Images</h2>
         <form method="POST" action="/admin/user/upload?id=<?= $user->getId() ?>" enctype="multipart/form-data">
@@ -196,7 +196,7 @@
 
             <input type="hidden" name="user_pic_id" value="<?= $image->getId() ?>"/>
             <input type="file" name="user_pic" accept="image/*"/>
-            <?= $image->toHtml(); ?>
+            <?= $image->toHtml("admin-image-showcase"); ?>
             <br>
 
             <label for="user_pic_title">Title:</label>
@@ -211,7 +211,7 @@
             <h4>Gif Image</h4>
             <input type="hidden" name="user_gif_id" value="<?= $gif->getId() ?>"/>
             <input type="file" name="user_gif" accept="image/*"/>
-            <?= $gif->toHtml(); ?>
+            <?= $gif->toHtml("admin-image-showcase"); ?>
             <br>
 
             <label for="user_gif_title">Title:</label>
@@ -225,7 +225,7 @@
             <br>
             <br>
 
-            <input type="submit" value="Save Images"/>
+            <input class="dashboard-button" type="submit" value="Save Images"/>
         </form>
     <?php endif; ?>
 </div>

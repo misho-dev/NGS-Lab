@@ -75,10 +75,10 @@
     <div class="section-title">
         <h1>Administrators</h1>
     </div>
-    <a href="/admin/administrator/create">Create New Administrator</a>
+    <a class="dashboard-button" href="/admin/administrator/create">Create New Administrator</a>
     <div>&nbsp;</div>
     <?php foreach ($administrators as $administrator): ?>
-        <a href="/admin/administrator/edit?id=<?= $administrator->getId() ?>"> <?= $administrator->getUsername(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/administrator/edit?id=<?= $administrator->getId() ?>"> <?= $administrator->getUsername(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

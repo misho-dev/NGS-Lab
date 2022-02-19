@@ -78,35 +78,35 @@
     <form method="post" action="/admin/project/save?id=<?= $project->getId() ?>" enctype="multipart/form-data">
         <label for="name_form">Name:</label>
         <input type="text" id="name_form" name="name" maxlength="100" value="<?= $project->getName() ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="desc_form">Description: </label>
         <textarea class="desc" id="desc_form" name="short_description" maxlength="300" ><?= $project->getShortDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="full_description">Project Text: </label>
         <textarea id="full_description" name="description"><?= $project->getDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="slider_html">Slider HTML: </label>
         <textarea id="slider_html" name="slider_html"><?= $project->getSliderHtml() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="name_form_ka">Name (KA):</label>
         <input type="text" id="name_form_ka" name="name_ka" maxlength="100" value="<?= $project->getName('ka') ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="desc_form_ka">Description (KA): </label>
         <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="300" ><?= $project->getShortDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="full_description_ka">Project Text (KA): </label>
         <textarea id="full_description_ka" name="description_ka"><?= $project->getDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="slider_html_ka">Slider HTML (KA): </label>
         <textarea id="slider_html_ka" name="slider_html_ka"><?= $project->getSliderHtml('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <h2>SEO</h2>
 
@@ -134,13 +134,13 @@
         <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $project->getMetaDescription('ka') ?>">
         <br>
 
-        <button type="submit" class="btn" name="<?= $project->getId() ? 'update_project' : 'create_project' ?>">Save</button>
+        <button class="dashboard-button" type="submit" class="btn" name="<?= $project->getId() ? 'update_project' : 'create_project' ?>">Save</button>
     </form>
 
 
     <?php if ($project->getId()): ?>
         <form method="post" action="/admin/project/delete?id=<?= $project->getId() ?>">
-            <button type="submit" class="btn">Delete Project</button>
+            <button class="dashboard-button" style="background-color: #ff0000;" type="submit" class="btn">Delete Project</button>
         </form>
         <h2>Images</h2>
         <form method="POST" action="/admin/project/upload?id=<?= $project->getId() ?>" enctype="multipart/form-data">
@@ -149,7 +149,7 @@
 
             <input type="hidden" name="project_pic_id" value="<?= $project->getImage() ?>"/>
             <input type="file" name="project_pic" accept="image/*"/>
-            <img src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
+            <img class="admin-image-showcase" src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
             <br>
 
             <label for="project_pic_title">Title:</label>
@@ -164,7 +164,7 @@
             <h4>Background For Listing </h4>
             <input type="hidden" name="project_logo_id" value="<?= $logo->getId() ?>"/>
             <input type="file" name="project_logo" accept="image/*"/>
-            <img src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">
+            <img class="admin-image-showcase" src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">
             <br>
 
             <label for="project_logo_title">Title:</label>
@@ -178,7 +178,7 @@
             <br>
             <br>
 
-            <input type="submit" value="Save Images"/>
+            <input class="dashboard-button" type="submit" value="Save Images"/>
         </form>
     <?php endif; ?>
 </div>

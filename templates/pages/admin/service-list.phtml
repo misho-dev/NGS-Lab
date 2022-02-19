@@ -74,10 +74,10 @@
     <div class="section-title">
         <h1>Services</h1>
     </div>
-    <a href="/admin/service/create">Create New Service</a>
+    <a class="dashboard-button" href="/admin/service/create">Create New Service</a>
     <div>&nbsp;</div>
     <?php foreach ($services as $service): ?>
-        <a href="/admin/service/edit?id=<?= $service->getId() ?>"> <?= $service->getTitle(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/service/edit?id=<?= $service->getId() ?>"> <?= $service->getTitle(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

@@ -1,6 +1,5 @@
 <?php
-use Diversen\Lang;
-
+    use Diversen\Lang;
 /** @var App\Model\Project[] $projects */
 ?>
 
@@ -118,6 +117,6 @@ use Diversen\Lang;
         </ul>
     </div>
     <div class="read-more-button">
-        <a href="<?= \App\Helper\Url::getUrl('/project/listing') ?>">READ MORE</a>
+        <a href="<?= \App\Helper\Url::getUrl('/project/listing') ?>"><?= Lang::translate('READ MORE'); ?></a>
     </div>
 </div>

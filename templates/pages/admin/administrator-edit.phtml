@@ -82,15 +82,15 @@ $permissions = $administrator->getPermissionsAsArray();
         <?php if (!$administrator->getId()): ?>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
-            <br>
+            <br><br><br>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            <br>
+            <br><br><br>
 
             <label for="password_confirm">Confirm Password:</label>
             <input type="password" id="password_confirm" required>
-            <br>
+            <br><br><br>
         <?php endif; ?>
 
         <h3>Permissions</h3>
@@ -100,39 +100,39 @@ $permissions = $administrator->getPermissionsAsArray();
             <?= in_array(AbstractAdminAction::PERMISSION_ADMIN, $permissions) ? 'checked' : '' ?>
         >
         <div>* This privilege grants access to every action. Can also create, edit and delete other administrators</div>
-        <br>
+        <br><br><br>
 
         <label for="permission_user">User:</label>
         <input type="checkbox" id="permission_user" name="permission_user"
                <?php $a = isset($permissions[AbstractAdminAction::PERMISSION_USER]) ?>
             <?= in_array(AbstractAdminAction::PERMISSION_USER, $permissions) ? 'checked' : '' ?>
         >
-        <br>
+        <br><br><br>
 
         <label for="permission_product">Product:</label>
         <input type="checkbox" id="permission_product" name="permission_product"
             <?= in_array(AbstractAdminAction::PERMISSION_PRODUCT, $permissions) ? 'checked' : '' ?>
         >
-        <br>
+        <br><br><br>
 
         <label for="permission_project">Project:</label>
         <input type="checkbox" id="permission_project" name="permission_project"
             <?= in_array(AbstractAdminAction::PERMISSION_PROJECT, $permissions) ? 'checked' : '' ?>
         >
-        <br>
+        <br><br><br>
 
         <label for="permission_blog">Blog:</label>
         <input type="checkbox" id="permission_blog" name="permission_blog"
             <?= in_array(AbstractAdminAction::PERMISSION_BLOG, $permissions) ? 'checked' : '' ?>
         >
-        <br>
+        <br><br><br>
 
         <button type="submit" class="btn" name="<?= $administrator->getId() ? 'update_administrator' : 'create_administrator' ?>">Save</button>
     </form>
 
     <?php if ($administrator->getId()): ?>
         <form method="post" action="/admin/administrator/delete?id=<?= $administrator->getId() ?>">
-            <button type="submit" class="btn">DELETE</button>
+            <button class="dashboard-button" type="submit" class="btn">DELETE</button>
         </form>
     <?php endif; ?>
 </div>

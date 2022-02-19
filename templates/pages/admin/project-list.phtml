@@ -74,10 +74,10 @@
     <div class="section-title">
         <h1>Projects</h1>
     </div>
-    <a href="/admin/project/create">Create New Project</a>
+    <a class="dashboard-button" href="/admin/project/create">Create New Project</a>
     <div>&nbsp;</div>
     <?php foreach ($projects as $project): ?>
-        <a href="/admin/project/edit?id=<?= $project->getId() ?>"> <?= $project->getName(); ?> </a>
+        <a class="dashboard-button dashboard-list-item" href="/admin/project/edit?id=<?= $project->getId() ?>"> <?= $project->getName(); ?> </a>
     <?php endforeach; ?>
 </div>
 <div id="footer"></div>

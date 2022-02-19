@@ -68,3 +68,12 @@ function enableScroll() {
   window.removeEventListener("touchmove", preventDefault, wheelOpt);
   window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
 }
+
+
+let fontUrl = window.location.pathname;
+if(fontUrl.includes("/ka")){
+    document.body.style.fontFamily = "geo"
+    console.log("log")
+}else{
+  document.body.style.fontFamily = "Magistral";
+}

@@ -79,27 +79,27 @@
     <form method="post" action="/admin/product/save?id=<?= $product->getId() ?>" enctype="multipart/form-data">
         <label for="name_form">Name:</label>
         <input type="text" id="name_form" name="name" maxlength="45" value="<?= $product->getName() ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="desc_form">Description:</label>
         <textarea class="desc" id="desc_form" name="short_description" maxlength="800"><?= $product->getShortDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="full_description">Page Code: </label>
         <textarea id="full_description" name="description"><?= $product->getDescription() ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="name_form_ka">Name (KA):</label>
         <input type="text" id="name_form_ka" name="name_ka" maxlength="45" value="<?= $product->getName('ka') ?>" required>
-        <br>
+        <br><br><br>
 
         <label for="desc_form_ka">Description (KA):</label>
         <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="800"><?= $product->getShortDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="full_description_ka">Page Code (KA): </label>
         <textarea id="full_description_ka" name="description_ka"><?= $product->getDescription('ka') ?></textarea>
-        <br>
+        <br><br><br>
 
         <label for="owner_id">Product Owner:</label>
         <select name="owner_id" id="owner_id">
@@ -111,7 +111,7 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <br>
+        <br><br><br>
 
         <h2>SEO</h2>
 
@@ -139,13 +139,13 @@
         <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $product->getMetaDescription('ka') ?>">
         <br>
 
-        <button type="submit" class="btn" name="<?= $product->getId() ? 'update_product' : 'create_product' ?>">Save</button>
+        <button class="dashboard-button" type="submit" class="btn" name="<?= $product->getId() ? 'update_product' : 'create_product' ?>">Save</button>
     </form>
 
 
     <?php if ($product->getId()): ?>
         <form method="post" action="/admin/product/delete?id=<?= $product->getId() ?>">
-            <button type="submit" class="btn">Delete Product</button>
+            <button class="dashboard-button" style="background-color: #ff0000;" type="submit" class="btn">Delete Product</button>
         </form>
         <h2>Images</h2>
         <form method="POST" action="/admin/product/upload?id=<?= $product->getId() ?>" enctype="multipart/form-data">
@@ -154,7 +154,7 @@
 
             <input type="hidden" name="product_pic_id" value="<?= $product->getImage() ?>"/>
             <input type="file" name="product_pic" accept="image/*"/>
-            <img src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
+            <img class="admin-image-showcase" src="<?= $image->getValue() ?>" title="<?= $image->getTitle() ?>" alt="<?= $image->getAlt() ?>">
             <br>
 
             <label for="product_pic_title">Title:</label>
@@ -169,7 +169,7 @@
             <h4>Logo</h4>
             <input type="hidden" name="product_logo_id" value="<?= $logo->getId() ?>"/>
             <input type="file" name="product_logo" accept="image/*"/>
-            <img src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">
+            <img class="admin-image-showcase" src="<?= $logo->getValue() ?>" title="<?= $logo->getTitle() ?>" alt="<?= $logo->getAlt() ?>">
             <br>
 
             <label for="product_logo_title">Title:</label>
@@ -183,7 +183,7 @@
             <br>
             <br>
 
-            <input type="submit" value="Save Images"/>
+            <input class="dashboard-button" type="submit" value="Save Images"/>
         </form>
     <?php endif; ?>
 </div>

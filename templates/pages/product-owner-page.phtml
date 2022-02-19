@@ -1,4 +1,5 @@
 <?php
+    use Diversen\Lang;
 /** @var App\Model\User $user */
 /** @var App\Model\Image $userImage */
 /** @var App\Model\Image $userGif */
@@ -137,7 +138,8 @@
         }
 
         .product-card-component{
-            color: white;
+            color: black;
+            text-decoration:none;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -146,6 +148,13 @@
             width: 410px;
             height: 410px;
             background-color: #ebebeb;
+        }
+
+        .product-name{
+            font-size:1.5em;
+        }
+        .slogan{
+            width:95%;
         }
 
         .swiper {
@@ -284,9 +293,7 @@
                 <div class="social-icons-product-owner">
                     <ul>
                         <?php $socialLinks = $user->getSocials() ?>
-                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['facebook']) ?>"><i class=" icon-facebook"></i></a></li>
                         <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['linkedin']) ?>"><i class=" icon-linkedin"></i></a></li>
-                        <li><a href="<?= \App\Helper\Url::getUrl($socialLinks['instagram']) ?>"><i class="icon-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -340,7 +347,7 @@
             </script>
 
             <div class="projects">
-                <h1 style="margin-left: 50px;">Projects</h1>
+                <h1 style="margin-left: 50px;"><?= Lang::translate('Projects'); ?></h1>
                 <div class="our-projects-component-wrapper">
                     <div style="margin-left: 50px; margin-right: 50px;" class="project-listing">
                         <ul>
