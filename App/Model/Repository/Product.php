@@ -147,6 +147,20 @@ class Product
     /**
      * @throws \Exception
      */
+    public static function deleteProduct($productId)
+    {
+        $deleted = DAL::builder()
+            ->table(self::TABLE_NAME)
+            ->delete()
+            ->where('entity_id', $productId)
+            ->execute();
+
+        return $deleted;
+    }
+
+    /**
+     * @throws \Exception
+     */
     public static function unsetOwnerForProducts($ownerId)
     {
         return DAL::builder()
