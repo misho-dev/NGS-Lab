@@ -1,6 +1,9 @@
 <?php
-    use Diversen\Lang;
+
+use Diversen\Lang;
+
 /** @var App\Model\Blog[] $blogs */
+/** @var App\Model\Blog[] $blogHighlights */
 /** @var App\Model\Image[] $blogImages */
 ?>
 
@@ -198,44 +201,43 @@
     <div class="page-title">
     </div>
     <div class="archive-listing">
-       
-        <div class="highlighted-section">
-            <a class="latest-item" href="#">
-                <img class="main-image" src="https://i.pinimg.com/originals/9a/7c/fb/9a7cfb72bee5b42e2daa8ae46cff241a.jpg"/>
-                <div class="main-description">
-                    <h1>Some Kind Of nigato Title that would fit this blog</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore Lorem 
-                        ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                        eiusmod tempor incididunt ut labore et dolore Lorem ipsum 
-                        dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                        tempor incididunt ut labore et dolore </p>
-                </div>
-            </a>
-            <br><br>
-            <div class="two-items">
-                <a href="#" class="item1 item">
-                    <img class="small-image" src="https://i.pinimg.com/originals/9a/7c/fb/9a7cfb72bee5b42e2daa8ae46cff241a.jpg"/>
-                    <div class="item-description">
-                        <h1>Some Kind Of nigato Title that would fit this blog</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+        <?php $mainBlog = $blogHighlights[0] ?? null ?>
+        <?php $secondaryBlog1 = $blogHighlights[1] ?? null ?>
+        <?php $secondaryBlog2 = $blogHighlights[2] ?? null?>
+
+
+        <?php if (isset($mainBlog)): ?>
+            <div class="highlighted-section">
+                <a class="latest-item" href="<?= \App\Helper\Url::getUrl('/blog/page?id=' . $mainBlog->getId()) ?>">
+                    <?= $blogImages[$mainBlog->getId()]->toHtml('main-image'); ?>
+                    <div class="main-description">
+                        <h1> <?= $mainBlog->getTitle() ?> </h1>
+                        <p> <?= $mainBlog->getDescription() ?> </p>
                     </div>
                 </a>
-                <a href="#" class="item2 item">
-                    <img class="small-image" src="https://i.pinimg.com/originals/9a/7c/fb/9a7cfb72bee5b42e2daa8ae46cff241a.jpg"/>
-                    <div class="item-description">
-                        <h1>Some Kind Of nigato Title that would fit this blog</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+                <br><br>
+                <?php if (isset($secondaryBlog1)): ?>
+                    <div class="two-items">
+                        <a class="item1 item" href="<?= \App\Helper\Url::getUrl('/blog/page?id=' . $secondaryBlog1->getId()) ?>">
+                            <?= $blogImages[$secondaryBlog1->getId()]->toHtml('small-image'); ?>
+                            <div class="item-description">
+                                <h1> <?= $secondaryBlog1->getTitle() ?> </h1>
+                                <p> <?= $secondaryBlog1->getDescription() ?> </p>
+                            </div>
+                        </a>
+                        <?php if (isset($secondaryBlog2)): ?>
+                            <a href="<?= \App\Helper\Url::getUrl('/blog/page?id=' . $secondaryBlog2->getId()) ?>" class="item2 item">
+                                <?= $blogImages[$secondaryBlog2->getId()]->toHtml('small-image'); ?>
+                                <div class="item-description">
+                                    <h1> <?= $secondaryBlog2->getTitle() ?> </h1>
+                                    <p> <?= $secondaryBlog2->getDescription() ?> </p>
+                                </div>
+                            </a>
+                        <?php endif; ?>
                     </div>
-                </a>
+                <?php endif; ?>
             </div>
-        </div>
+        <?php endif; ?>
         <br><br>
         <h1><?= Lang::translate('Blogs'); ?></h1>
         <br><br>

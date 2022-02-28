@@ -27,11 +27,17 @@ class Product
     /** @var string $logo */
     private $logo;
 
+    /** @var string $pageHtml */
+    private $pageHtml;
+
     /** @var string $shortDescription */
     private $shortDescription;
 
     /** @var string $description */
     private $description;
+
+    /** @var string $pageHtml_ka */
+    private $pageHtml_ka;
 
     /** @var string $shortDescription */
     private $shortDescription_ka;
@@ -47,8 +53,10 @@ class Product
         $this->name_ka = $data['name_ka'] ?? '';
         $this->image = $data['image'] ?? '';
         $this->logo = $data['logo'] ?? '';
+        $this->pageHtml = $data['page_html'] ?? '';
         $this->shortDescription = $data['short_description'] ?? '';
         $this->description = $data['description'] ?? '';
+        $this->pageHtml_ka = $data['page_html_ka'] ?? '';
         $this->shortDescription_ka = $data['short_description_ka'] ?? '';
         $this->description_ka = $data['description_ka'] ?? '';
 
@@ -124,5 +132,18 @@ class Product
             return $this->description_ka;
 
         return $this->description;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getPageHtml($lang = '')
+    {
+        $language = $lang ?: Session::getLanguage();
+
+        if ($language == 'ka')
+            return $this->pageHtml_ka;
+
+        return $this->pageHtml;
     }
 }

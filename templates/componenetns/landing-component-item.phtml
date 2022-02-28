@@ -17,7 +17,7 @@
   </div>
   <div class="product-description">
     <p>
-        <?= $product->getShortDescription() ?>
+        <?= $product->getDescription() ?>
     </p>
     <div class="product-redirect-button">
       <a href="<?= \App\Helper\Url::getUrl('/product/page?id=' . $product->getId()) ?> "><?= Lang::translate('READ MORE'); ?></a>

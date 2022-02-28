@@ -81,24 +81,32 @@
         <input type="text" id="name_form" name="name" maxlength="45" value="<?= $product->getName() ?>" required>
         <br><br><br>
 
-        <label for="desc_form">Description:</label>
-        <textarea class="desc" id="desc_form" name="short_description" maxlength="800"><?= $product->getShortDescription() ?></textarea>
+        <label for="page_html">Page Html:</label>
+        <textarea class="desc" id="page_html" name="page_html" ><?= $product->getPageHtml() ?></textarea>
         <br><br><br>
 
-        <label for="full_description">Page Code: </label>
+        <label for="full_description">Description: </label>
         <textarea id="full_description" name="description"><?= $product->getDescription() ?></textarea>
+        <br><br><br>
+
+        <label for="desc_form">Short Description:</label>
+        <textarea class="desc" id="desc_form" name="short_description" maxlength="800"><?= $product->getShortDescription() ?></textarea>
         <br><br><br>
 
         <label for="name_form_ka">Name (KA):</label>
         <input type="text" id="name_form_ka" name="name_ka" maxlength="45" value="<?= $product->getName('ka') ?>" required>
         <br><br><br>
 
-        <label for="desc_form_ka">Description (KA):</label>
-        <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="800"><?= $product->getShortDescription('ka') ?></textarea>
+        <label for="page_html_ka">Page Html (KA):</label>
+        <textarea class="desc" id="page_html_ka" name="page_html_ka" ><?= $product->getPageHtml('ka') ?></textarea>
         <br><br><br>
 
-        <label for="full_description_ka">Page Code (KA): </label>
+        <label for="full_description_ka">Description (KA): </label>
         <textarea id="full_description_ka" name="description_ka"><?= $product->getDescription('ka') ?></textarea>
+        <br><br><br>
+
+        <label for="desc_form_ka">Short Description (KA):</label>
+        <textarea class="desc" id="desc_form_ka" name="short_description_ka" maxlength="800"><?= $product->getShortDescription('ka') ?></textarea>
         <br><br><br>
 
         <label for="owner_id">Product Owner:</label>

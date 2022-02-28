@@ -34,9 +34,11 @@ class Save extends AbstractAdminAction
         $ownerId = (int) $_POST['owner_id'];
         return new ProductModel([
             'name' => $_POST['name'],
+            'page_html' => $_POST['page_html'],
             'description' => $_POST['description'],
             'short_description' => $_POST['short_description'],
             'name_ka' => $_POST['name_ka'],
+            'page_html_ka' => $_POST['page_html_ka'],
             'description_ka' => $_POST['description_ka'],
             'short_description_ka' => $_POST['short_description_ka'],
             'meta_title' => $_POST['meta_title'],

@@ -69,9 +69,11 @@ class Product
     {
         $newProduct = [
             'name' => $product->getName(),
+            'page_html' => $product->getPageHtml(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
             'name_ka' => $product->getName('ka'),
+            'page_html_ka' => $product->getPageHtml('ka'),
             'short_description_ka' => $product->getShortDescription('ka'),
             'description_ka' => $product->getDescription('ka'),
             'meta_title' => $product->getMetaTitle(),
@@ -123,9 +125,11 @@ class Product
     {
         $data = [
             'name' => $product->getName(),
+            'page_html' => $product->getPageHtml(),
             'short_description' => $product->getShortDescription(),
             'description' => $product->getDescription(),
             'name_ka' => $product->getName('ka'),
+            'page_html_ka' => $product->getPageHtml('ka'),
             'short_description_ka' => $product->getShortDescription('ka'),
             'description_ka' => $product->getDescription('ka'),
             'meta_title' => $product->getMetaTitle(),

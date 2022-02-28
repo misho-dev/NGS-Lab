@@ -9,6 +9,7 @@ use App\ViewModel\View;
 
 class Index implements ControllerAction
 {
+    const BLOG_HIGHLIGHT_COUNT = 3;
 
     public function execute()
     {
@@ -19,6 +20,8 @@ class Index implements ControllerAction
             $blogImages[$blog->getId()] = Image::getImageById($blog->getImage()) ?? new \App\Model\Image();
         }
 
-        View::render('blog-list.phtml', compact('blogs', 'blogImages'));
+        $blogHighlights = array_chunk($blogs, self::BLOG_HIGHLIGHT_COUNT)[0];
+
+        View::render('blog-list.phtml', compact('blogs', 'blogHighlights', 'blogImages'));
     }
 }
