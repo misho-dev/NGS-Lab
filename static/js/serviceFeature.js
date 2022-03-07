@@ -123,7 +123,7 @@ class tuple {
 function getOffsetFromPointAtAngle(arcAngle, numButtons, scalar){
     let result = [];
     if(numButtons === 1){
-        result.push(new tuple(0, 1.5 * 150));
+        result.push(new tuple(0, -1.8 * 150));
     }else{
         let firstXOffset = - Math.tan(arcAngle/2 * Math.PI/180).toFixed(5) * scalar;
         let length = -2 * firstXOffset;
