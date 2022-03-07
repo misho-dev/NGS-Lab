@@ -48,10 +48,16 @@
             align-items:center;
         }
         .project-componenet-wrapper .description {
-            width: 80%;
+            width: 85%;
+            text-align:justify;
         }
         .project-componenet-wrapper .image-carousel {
-            width: 60%;
+        height: auto;
+        margin-top: 0;
+        width: 95%;
+        }
+        .project-componenet-wrapper .image-carousel img{
+            width:100%;
         }
         
     }
@@ -62,5 +68,11 @@
         <h1> <?= $project->getName() ?> </h1>
         <p> <?= $project->getDescription() ?></p>
     </div>
-    <div class="image-carousel"><?= $project->getSliderHtml() ?></div>
+    <div class="image-carousel">
+         <?= $project->getSliderHtml() ?>
+    </div>
+    
+
+    
+
 </div>
