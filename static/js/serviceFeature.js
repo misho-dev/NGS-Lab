@@ -11,15 +11,13 @@ document.querySelectorAll(".service-button")[0].addEventListener("click", (e) =>
     })
     if (rolledOut == false) {
         divider.style.height = "150px";
-        for (let i = 0; i < serviceButtons.length; i++) {
-            serviceButtons[i].style.transform = `translate3d(${offsets[i + 1].elem1}px, ${offsets[i + 1].elem2}px, 0)`
-        }
+        rollOut();
         serviceContainer.style.zIndex = "100";
         rolledOut = true;
     } else {
         divider.style.height = "0px";
         for (let i = 0; i < serviceButtons.length; i++) {
-            serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
+            rollOut();
         }
         serviceContainer.style.zIndex = "0";
         rolledOut = false;
@@ -28,16 +26,14 @@ document.querySelectorAll(".service-button")[0].addEventListener("click", (e) =>
 
 
 function rollOut() {
-    console.log("test");
-    let offsets = getOffsetFromPoint(0, serviceButtons.length + 1, 225);
-    console.log(offsets)
+    let offsets = getOffsetFromPointAtAngle(90, serviceButtons.length, 130);
     offsets.forEach(elem => {
         elem.print();
     })
     if (rolledOut == false) {
         divider.style.height = "150px";
         for (let i = 0; i < serviceButtons.length; i++) {
-            serviceButtons[i].style.transform = `translate3d(${offsets[i + 1].elem1}px, ${offsets[i + 1].elem2}px, 0)`
+            serviceButtons[i].style.transform = `translate3d(${offsets[i].elem1}px, ${-offsets[i].elem2}px, 0)`
         }
         serviceContainer.style.zIndex = "100";
         rolledOut = true;
@@ -56,20 +52,16 @@ function rollOut() {
 document.querySelectorAll(".service-container")[0].addEventListener("click", (e) => {
     if (e.target.classList.contains('service-container')) {
         divider.style.height = "0px";
-        for (let i = 0; i < serviceButtons.length; i++) {
-            serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
-        }
+        rollOut();
         serviceContainer.style.zIndex = "0";
         rolledOut = false;
     }
 
-    console.log(e.target);
+    //console.log(e.target);
     if (e.target.classList.contains('service') || e.target.parentElement.classList.contains('service')) {
         hideAllServices();
         divider.style.height = "0px";
-        for (let i = 0; i < serviceButtons.length; i++) {
-            serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
-        }
+        rollOut();
         serviceContainer.style.zIndex = "0";
         rolledOut = false;
     }
@@ -123,11 +115,33 @@ class tuple {
         this.elem2 = tmp;
     }
     print() {
-        console.log("elem1: " + this.elem1 + ", elem2: " + this.elem2);
+        //console.log("elem1: " + this.elem1 + ", elem2: " + this.elem2);
     }
 }
 
+
+function getOffsetFromPointAtAngle(arcAngle, numButtons, scalar){
+    let result = [];
+    if(numButtons === 1){
+        result.push(new tuple(0, 1.5 * 150));
+    }else{
+        let firstXOffset = - Math.tan(arcAngle/2 * Math.PI/180).toFixed(5) * scalar;
+        let length = -2 * firstXOffset;
+        let segmentLength = length / (numButtons - 1);
+    
+        for(let i = 0; i < numButtons; i++){
+            let buttonOffset = new tuple((firstXOffset + i*segmentLength), -1.8 *scalar);
+            result.push(buttonOffset);
+        }
+    }
+    return result;
+}
+
+console.log(getOffsetFromPointAtAngle(90, 1, 150));
+
 function getOffsetFromPoint(startingAngle, numButtons, scalar) {
+
+
     let result = [];
     let angleDiff = 2*Math.PI / numButtons;
     for (let i = 0; i < numButtons; i++) {
