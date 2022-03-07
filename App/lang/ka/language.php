@@ -24,5 +24,6 @@ $LANG = [
     'OUR PROJECTS' => 'ჩვენი პროექტები',
     'Team Members' => 'ჩვენი გუნდი',
     'Projects' => 'პროექტები',
+    'BLOG ARCHIVE' => 'არქივი'
 
 ];

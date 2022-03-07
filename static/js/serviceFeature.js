@@ -4,21 +4,21 @@ const services = document.querySelectorAll(".service");
 const divider = document.getElementById("divider");
 let rolledOut = false;
 
-document.querySelectorAll(".service-button")[0].addEventListener("click", (e) =>{
-    let offsets = getOffsetFromPoint(0, serviceButtons.length+1, 225);
-    offsets.forEach(elem =>{
+document.querySelectorAll(".service-button")[0].addEventListener("click", (e) => {
+    let offsets = getOffsetFromPoint(0, serviceButtons.length + 1, 225);
+    offsets.forEach(elem => {
         elem.print();
     })
-    if(rolledOut == false){
-            divider.style.height = "150px";
-            for(let i=0; i<serviceButtons.length; i++){
-                serviceButtons[i].style.transform = `translate3d(${offsets[i+1].elem1}px, ${offsets[i+1].elem2}px, 0)`
-            }
-            serviceContainer.style.zIndex = "100";
-            rolledOut = true;
-    }else{
+    if (rolledOut == false) {
+        divider.style.height = "150px";
+        for (let i = 0; i < serviceButtons.length; i++) {
+            serviceButtons[i].style.transform = `translate3d(${offsets[i + 1].elem1}px, ${offsets[i + 1].elem2}px, 0)`
+        }
+        serviceContainer.style.zIndex = "100";
+        rolledOut = true;
+    } else {
         divider.style.height = "0px";
-        for(let i=0; i<serviceButtons.length; i++){
+        for (let i = 0; i < serviceButtons.length; i++) {
             serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
         }
         serviceContainer.style.zIndex = "0";
@@ -26,10 +26,37 @@ document.querySelectorAll(".service-button")[0].addEventListener("click", (e) =>
     }
 })
 
-document.querySelectorAll(".service-container")[0].addEventListener("click", (e)=>{
-    if(e.target.classList.contains('service-container') ){
+
+function rollOut() {
+    console.log("test");
+    let offsets = getOffsetFromPoint(0, serviceButtons.length + 1, 225);
+    console.log(offsets)
+    offsets.forEach(elem => {
+        elem.print();
+    })
+    if (rolledOut == false) {
+        divider.style.height = "150px";
+        for (let i = 0; i < serviceButtons.length; i++) {
+            serviceButtons[i].style.transform = `translate3d(${offsets[i + 1].elem1}px, ${offsets[i + 1].elem2}px, 0)`
+        }
+        serviceContainer.style.zIndex = "100";
+        rolledOut = true;
+    } else {
         divider.style.height = "0px";
-        for(let i=0; i<serviceButtons.length; i++){
+        for (let i = 0; i < serviceButtons.length; i++) {
+            serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
+        }
+        serviceContainer.style.zIndex = "0";
+        rolledOut = false;
+    }
+}
+
+
+
+document.querySelectorAll(".service-container")[0].addEventListener("click", (e) => {
+    if (e.target.classList.contains('service-container')) {
+        divider.style.height = "0px";
+        for (let i = 0; i < serviceButtons.length; i++) {
             serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
         }
         serviceContainer.style.zIndex = "0";
@@ -37,10 +64,10 @@ document.querySelectorAll(".service-container")[0].addEventListener("click", (e)
     }
 
     console.log(e.target);
-    if(e.target.classList.contains('service') || e.target.parentElement.classList.contains('service')){
+    if (e.target.classList.contains('service') || e.target.parentElement.classList.contains('service')) {
         hideAllServices();
         divider.style.height = "0px";
-        for(let i=0; i<serviceButtons.length; i++){
+        for (let i = 0; i < serviceButtons.length; i++) {
             serviceButtons[i].style.transform = `translate3d(0, 0, 0)`
         }
         serviceContainer.style.zIndex = "0";
@@ -50,7 +77,7 @@ document.querySelectorAll(".service-container")[0].addEventListener("click", (e)
 
 
 serviceButtons.forEach(button => {
-    button.addEventListener("click", (e)=>{
+    button.addEventListener("click", (e) => {
         let elem = e.currentTarget;
         toggleRelevantServiceAndDisableOthers(findIndexOfElement(elem, serviceButtons))
     })
@@ -64,47 +91,47 @@ function findIndexOfElement(src, arr) {
     }
 }
 
-function hideAllServices(){
-    services.forEach(elem =>{
-        if(!elem.classList.contains('hidden')){
+function hideAllServices() {
+    services.forEach(elem => {
+        if (!elem.classList.contains('hidden')) {
             elem.classList.toggle('hidden');
         }
     })
 }
 
-function toggleRelevantServiceAndDisableOthers(index){
-    services.forEach(elem =>{
-        if(!elem.classList.contains('hidden')){
+function toggleRelevantServiceAndDisableOthers(index) {
+    services.forEach(elem => {
+        if (!elem.classList.contains('hidden')) {
             elem.classList.toggle('hidden');
         }
     })
     services[index].classList.toggle('hidden');
 }
 
-class tuple{
-    constructor(elem1, elem2){
+class tuple {
+    constructor(elem1, elem2) {
         this.elem1 = elem1;
         this.elem2 = elem2;
     }
-    multiply(scalar){
+    multiply(scalar) {
         this.elem1 *= scalar;
         this.elem2 *= scalar;
     }
-    swap(){
+    swap() {
         let tmp = this.elem1;
         this.elem1 = this.elem2;
         this.elem2 = tmp;
     }
-    print(){
-        console.log("elem1: "+this.elem1+ ", elem2: " + this.elem2);
+    print() {
+        console.log("elem1: " + this.elem1 + ", elem2: " + this.elem2);
     }
 }
 
 function getOffsetFromPoint(startingAngle, numButtons, scalar) {
     let result = [];
-    let angleDiff =  Math.PI / numButtons;
+    let angleDiff = 2*Math.PI / numButtons;
     for (let i = 0; i < numButtons; i++) {
-        let buttonOffset = new tuple(( Math.cos(startingAngle - i * angleDiff)).toFixed(5), //marcxniv
+        let buttonOffset = new tuple((Math.cos(startingAngle - i * angleDiff)).toFixed(5), //marcxniv
             (Math.sin(startingAngle) - Math.sin(startingAngle - i * angleDiff)).toFixed(5)); //qvemot
         buttonOffset.multiply(scalar);
         result.push(buttonOffset);
@@ -123,3 +150,6 @@ function getOffsetFromCenter(numButtons, scalar) {
     }
     return result;
 }
+
+rollOut();
+
