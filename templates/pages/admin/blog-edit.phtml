@@ -149,7 +149,7 @@
         <input type="text" id="meta_description_ka" name="meta_description_ka" value="<?= $blog->getMetaDescription('ka') ?>">
         <br>
 
-        <button type="submit" class="btn" name="<?= $blog->getId() ? 'update_blog' : 'create_blog' ?>">Save</button>
+        <button type="submit" class="dashboard-button" name="<?= $blog->getId() ? 'update_blog' : 'create_blog' ?>">Save</button>
     </form>
 
     <?php if ($blog->getId()): ?>
