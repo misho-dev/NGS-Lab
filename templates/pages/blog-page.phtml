@@ -71,6 +71,11 @@
         .brief {
             font-weight: 300;
         }
+        .disclaimer{
+            width:100%;
+            text-align:center;
+            color: #c7c700;
+        }
 
         @media screen and (max-width: 1368px) {
             .archive-listing {
@@ -104,10 +109,14 @@
     </style>
 
     <div id="nav"> <?php \App\ViewModel\View::renderComponent('nav.phtml') ?> </div>
-    <div class="blog-wrapper" style="width: 60vw; margin: auto;">
+    <div class="disclaimer" id="disclaimer">Currently Our Blog Only Supports Georgian Language. Please Use Language Button To View This Article!</div>
+
+    <div class="blog-wrapper" id="blog-wrapper" style="width: 60vw; margin: auto;">
         <?= $blog->getBody() ?>
     </div>
     <div id="footer"></div>
+
+    <script src="/static/js/blogExceptionHandler.js"></script>
 </body>
 
 </html>

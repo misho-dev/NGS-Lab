@@ -29,6 +29,7 @@ use Diversen\Lang;
 
 <body>
     <style>
+        #blog-nav{color:#23af4d;}
         .archive-listing {
             display: flex;
             align-items: left;
@@ -38,7 +39,7 @@ use Diversen\Lang;
         }
 
         .blog-card-wrapper {
-            width: 60%;
+            min-width: 60%;
             margin-bottom:30px;
         }
 
@@ -64,6 +65,7 @@ use Diversen\Lang;
             margin-left: 20px;
             box-sizing: border-box;
             padding-top: 10px;
+            width: calc(100% - 320px);
         }
 
         .blog-card .blog-title {
@@ -208,6 +210,7 @@ use Diversen\Lang;
                 box-sizing: border-box;
                 padding-left: 10px;
                 padding-right: 10px;
+                width:auto;
             }
 
             .highlighted-section{
